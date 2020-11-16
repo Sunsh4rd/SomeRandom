@@ -8,10 +8,10 @@ def find(passwd, l):
 
 
 def brute():
-    charlist = 'abcdefghijklmnopqrstuvwxyz'
+    charlist = '0123456789'
     complete = []
 
-    for current in range(4):
+    for current in range(5):
         a = [i for i in charlist]
         for x in range(current):
             a = [y + i for i in charlist for y in a]
@@ -21,8 +21,9 @@ def brute():
 
 def main():
     a = brute()
-    passwd = input()
-    print(find(passwd, a))
+    print(a[0], a[len(a)-1])
+    # passwd = input()
+    # print(find(passwd, a))
 
 
 if __name__ == '__main__':
