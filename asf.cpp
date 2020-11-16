@@ -5,8 +5,11 @@ using namespace std;
 
 int main()
 {
-	complex<double> a;
-	cin >> a; //(r,i)
-	cout << abs(a);
+	//complex<int> a;
+	//cin >> a; //(r,i)
+	//cout << abs(a);
+	int a = 4;
+	double b = 1.5;
+	cout << a - int(a) << " " << b - int(b) << endl;
 	return 0;
 }
