@@ -13,6 +13,7 @@ class Block():
 def main():
     with open('data.json') as f:
         d = json.load(f)
+        print(d)
 
     b = Block(d)
     print(b.id, b.name, b.texture, b.props)
