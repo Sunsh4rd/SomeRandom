@@ -1,9 +1,13 @@
 #include <iostream>
+#include <string>
 
 int main()
 {
-	int a = 4;
-	double b = 1.5;
-	std::cout << a - int(a) << " " << b - int(b) << std::endl;
-	return 0;
+	std::string alp = "0123456789";
+	int pos, len = 5;
+	for (;;)
+	{
+		if (pos >= len)
+			break;
+	}
 }
