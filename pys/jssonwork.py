@@ -11,7 +11,7 @@ class Block():
 
 
 def main():
-    with open('data.json') as f:
+    with open('../srcs/data.json') as f:
         d = json.load(f)
         print(d)
 
