@@ -1,6 +1,4 @@
 {
-    "ID":1,
-    "Name":"Grass",
-    "Texture":"Grass.t",
-    "Properties":["Green", 0]
+	"a":["b","c", "d"],
+	"b":["a","d", "f"]
 }
