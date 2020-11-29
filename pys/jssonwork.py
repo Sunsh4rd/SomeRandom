@@ -13,7 +13,7 @@ import json
 def main():
     with open('../srcs/data.json') as f:
         d = json.load(f)
-        print(type(d))
+        print(d)
 
     # b = Block(d)
     # print(b.id, b.name, b.texture, b.props)
