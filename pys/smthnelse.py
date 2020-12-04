@@ -1,22 +1,22 @@
-import time
-from threading import Thread
+# import time
+# from threading import Thread
 
 
-def sleepnprint():
-    i = 0
-    while True:
-        time.sleep(1)
-        print(i)
-        i += 1
+# def sleepnprint():
+#     i = 0
+#     while True:
+#         time.sleep(1)
+#         print(i)
+#         i += 1
 
 
-t1 = Thread(target=sleepnprint)
-t2 = Thread(target=sleepnprint)
+# t1 = Thread(target=sleepnprint)
+# t2 = Thread(target=sleepnprint)
 
-t1.start()
-t2.start()
-t1.join()
-t2.join()
+# t1.start()
+# t2.start()
+# t1.join()
+# t2.join()
 
 
 # def fib(n):
@@ -36,5 +36,13 @@ t2.join()
 #     return s
 
 
-for i in range(30):
-    print(fib1(i), end=' ')
+# for i in range(30):
+#     print(fib1(i), end=' ')
+
+import random
+
+l = list('JavaScript')
+
+for i in range(100):
+	random.shuffle(l)
+	print(''.join(l))
