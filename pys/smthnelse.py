@@ -39,10 +39,12 @@
 # for i in range(30):
 #     print(fib1(i), end=' ')
 
-import random
+# import random
 
-l = list('JavaScript')
+# l = list('JavaScript')
 
-for i in range(100):
-	random.shuffle(l)
-	print(''.join(l))
+# for i in range(100):
+# 	random.shuffle(l)
+# 	print(''.join(l))
+
+print(bin(10))
