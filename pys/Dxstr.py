@@ -9,7 +9,13 @@ class Graph():
 
 with open("graph.json") as f:
   graph_dict = json.load(f)
+  print(graph_dict)
   g = Graph(graph_dict)
+
+
+with open("gr_copy.json", 'w') as f:
+  f.write(json.dumps(graph_dict))
+
 
 
 
