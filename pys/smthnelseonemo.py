@@ -1,6 +1,6 @@
 import sqlite3
 
-conn = sqlite3.connect('Whatever.db')
+conn = sqlite3.connect('../srcs/Whatever.db')
 c = conn.cursor()
 
 c.execute('''CREATE TABLE IF NOT EXISTS WhateverT (
@@ -18,7 +18,7 @@ def insert_some_val(*args):
     a = []
     a.append(tuple(args))
 
-    conn = sqlite3.connect('Whatever.db')
+    conn = sqlite3.connect('../srcs/Whatever.db')
     c = conn.cursor()
 
     c.executemany('''INSERT INTO WhateverT (Val1, Val2, Val3)
@@ -29,7 +29,7 @@ def insert_some_val(*args):
 
 
 def get_from_t():
-    conn = sqlite3.connect('Whatever.db')
+    conn = sqlite3.connect('../srcs/Whatever.db')
     c = conn.cursor()
 
     c.execute('''SELECT * FROM WhateverT''')
