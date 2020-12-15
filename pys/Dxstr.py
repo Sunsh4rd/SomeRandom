@@ -7,7 +7,7 @@ class Graph():
     def __init__(self, gdict = None):
         self.gdict = gdict
 
-with open("graph.json") as f:
+with open("graph.json", 'r') as f:
   graph_dict = json.load(f)
   print(graph_dict)
   g = Graph(graph_dict)
