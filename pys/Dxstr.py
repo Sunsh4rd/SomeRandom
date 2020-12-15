@@ -1,4 +1,5 @@
-# from priodict import priorityDictionary
+import math
+from heapq import *
 
 class Graph():
 
@@ -6,12 +7,10 @@ class Graph():
         self.gdict = gdict
 
 
-with open("NotOrqWithW.txt") as file: #Читаем файл
+with open("test_dijkstra.txt") as file: #Читаем файл
   onstring = file.read().splitlines()
 dict = {}
 dict2 = {}
-
-
 
 
 for item in onstring:
@@ -29,4 +28,31 @@ file.close()
 #Создаем граф
 g = Graph(dict)
 
-Dijkstra(g, 'a')
+def dijkstra(gdict, start):
+  verts = list(gdict.keys())
+  visited = dict.fromkeys(verts, False)
+  dist = dict.fromkeys(verts, math.inf)
+  dist[start] = 0
+  queue = []
+  heappush(queue, (start, 0))
+  while queue:
+    idx, min_value = heappop(queue)
+    visited[idx] = True
+    if dist[idx] < min_value:
+      continue
+    next_verts = list(gdict[idx].keys())
+    for v in next_verts:
+      if visited[v]:
+        continue
+      new_dist = dist[idx] + int(gdict[idx][v])
+      if new_dist < dist[v]:
+        dist[v] = new_dist
+        heappush(queue, (v, new_dist))
+
+  return dist
+
+def dijkstra_wrapper(g, v):
+  return dijkstra(g.gdict, v)
+
+
+print(dijkstra_wrapper(g, '0'))
