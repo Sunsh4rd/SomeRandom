@@ -3,11 +3,11 @@ import pyodbc
 def main():
 	cnxn = pyodbc.connect('Driver={SQL Server};'
 						  'Server=DESKTOP-MIRUVK9\SQLEXPRESS;'
-						  'Database=nbd;'
+						  'Database=Polyclinic;'
 						  'Trusted_Connection=yes;')
 	
 	cursor = cnxn.cursor()
-	cursor.execute("SELECT * FROM MASTERST4")
+	cursor.execute("SELECT * FROM MedicalHistory")
 
 	n = int(input())
 	d = cursor.fetchmany(n)
