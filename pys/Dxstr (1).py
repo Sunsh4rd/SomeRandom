@@ -42,7 +42,6 @@ def dijkstra(gdict, start):
       continue
     next_verts = list(gdict[idx].keys())
     for v in next_verts:
-      print(v)
       if visited[v]:
         continue
       new_dist = dist[idx] + int(gdict[idx][v])
