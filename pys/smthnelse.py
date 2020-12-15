@@ -47,4 +47,4 @@
 # 	random.shuffle(l)
 # 	print(''.join(l))
 
-print(bin(6))
+print(bin(2))
