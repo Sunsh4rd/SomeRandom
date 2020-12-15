@@ -49,7 +49,7 @@ def dijkstra(gdict, start):
         dist[v] = new_dist
         heappush(queue, (v, new_dist))
 
-  return dist #, queue, visited, idx, min_value, next_verts
+  return dist
 
 def dijkstra_wrapper(g, v):
   return dijkstra(g.gdict, v)
