@@ -8,7 +8,7 @@ def printmatrix(m):
             print(m[i][j],end=" ")
         print()
 
-with open("graph.json", 'r') as f:
+with open("../srcs/graph.json", 'r') as f:
     graph_dict = json.load(f)
     
 verts = list(graph_dict.keys())
