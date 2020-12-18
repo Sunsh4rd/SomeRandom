@@ -38,12 +38,9 @@ def dijkstra_wrapper(g, v):
 
 def main():
 
-    with open("graph.json", 'r') as f:
+    with open("../srcs/graph.json", 'r') as f:
         graph_dict = json.load(f)
         g = Graph(graph_dict)
-
-    with open("gr_copy.json", 'w') as f:
-        f.write(json.dumps(graph_dict))
 
     print(dijkstra_wrapper(g, '0'))
 
