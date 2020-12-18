@@ -24,7 +24,7 @@ def Bellman_Ford(gdict, start):
 
 def main():
 
-    with open("graphBF.json", 'r') as f:
+    with open("../srcs/graphBF.json", 'r') as f:
         graph_dict = json.load(f)
 
 
