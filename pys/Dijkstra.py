@@ -40,7 +40,6 @@ def main():
 
     with open("graph.json", 'r') as f:
         graph_dict = json.load(f)
-        print(graph_dict)
         g = Graph(graph_dict)
 
     with open("gr_copy.json", 'w') as f:
