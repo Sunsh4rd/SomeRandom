@@ -19,7 +19,7 @@ class Graph:
         # Mark all the vertices as not visited 
         visited =[False]*(self.ROW) 
           
-        # Create a queue for BFS 
+        # Create a queue for BFS
         queue=[] 
           
         # Mark the source node as visited and enqueue it 
