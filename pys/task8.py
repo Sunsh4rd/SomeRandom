@@ -2,10 +2,10 @@ import pyodbc
 
 def main():
 	cnxn = pyodbc.connect('Driver={SQL Server};'
-						  'Server=DESKTOP-MIRUVK9\SQLEXPRESS;'
+						  'Server=DESKTOP-36HKQFT\SQLEXPRESS;'
 						  'Database=Polyclinic;'
-						  'UID=Common_User;'
-						  'PWD=user')
+						  'UID=Admin;'
+						  'PWD=admin')
 	#DESKTOP-MIRUVK9\SQLEXPRESS
 	#DESKTOP-36HKQFT\SQLEXPRESS
 	cursor = cnxn.cursor()
