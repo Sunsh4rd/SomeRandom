@@ -47,4 +47,9 @@
 # 	random.shuffle(l)
 # 	print(''.join(l))
 
-print(bin(2))
+# print(bin(2))
+
+import numpy as np
+
+a = np.array([[1,3,2], [4,5,6]])
+print(a)
