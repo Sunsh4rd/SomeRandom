@@ -1,39 +1,49 @@
 import pyodbc
 
 def main():
-	cnxn = pyodbc.connect('Driver={SQL Server};'
+	try:
+		cnxn = pyodbc.connect('Driver={SQL Server};'
 						  'Server=DESKTOP-36HKQFT\SQLEXPRESS;'
 						  'Database=Polyclinic;'
 						  'UID=Admin;'
-						  'PWD=admin')
+						  'PWD=admin')	
+	except Exception:
+		print('Не удалось подключиться')
+	else:
+		
+	# cnxn = pyodbc.connect('Driver={SQL Server};'
+	# 					  'Server=DESKTOP-36HKQFT\SQLEXPRESS;'
+	# 					  'Database=Polyclinic;'
+	# 					  'UID=Admin;'
+	# 					  'PWD=admin')
 	#DESKTOP-MIRUVK9\SQLEXPRESS
 	#DESKTOP-36HKQFT\SQLEXPRESS
-	cursor = cnxn.cursor()
-	cursor.execute("SELECT * FROM Districts")
-	d = cursor.fetchall()
-	for row in d:
-		print(row)
-	cursor.execute("SELECT SUM(DistrictPopulation) FROM Districts")
-	d = cursor.fetchall()
-	for row in d:
-		print(row[0])
+		cursor = cnxn.cursor()
+		cursor.execute("SELECT * FROM Districts")
+		d = cursor.fetchall()
+		for row in d:
+			print(row)
+		cursor.execute("SELECT SUM(DistrictPopulation) FROM Districts")
+		d = cursor.fetchall()
+		for row in d:
+			print(row[0])
 
-	print(bool(cnxn))
+		print(bool(cnxn))
 
-	cursor.execute("SELECT * FROM Patients WHERE PatientID = 4")
-	d = cursor.fetchall()
-	for row in d:
-		print(row)
+		cursor.execute("SELECT * FROM Patients WHERE PatientID = 4")
+		d = cursor.fetchall()
+		for row in d:
+			print(row)
 
-	try:
-		cursor.execute("INSERT INTO Insurances VALUES (12345)")
-	except Exception:
-		print('Вы не можете изменять базовые таблицы')
+	# try:
+	# 	cursor.execute("INSERT INTO Insurances VALUES (12345)")
+	# except Exception:
+	# 	print('Вы не можете изменять базовые таблицы')
 	
 	
-	cnxn.commit()	
-	cursor.close()
-	cnxn.close()
+		cnxn.commit()	
+		cursor.close()
+		cnxn.close()
 
 if __name__ == '__main__':
 	main()
