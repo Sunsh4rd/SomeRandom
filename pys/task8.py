@@ -25,6 +25,11 @@ def main():
 	for row in d:
 		print(row)
 
+	try:
+		cursor.execute("INSERT INTO Insurances VALUES (12345)")
+	except Exception:
+		print('Вы не можете изменять базовые таблицы')
+	
 	
 	cnxn.commit()	
 	cursor.close()
