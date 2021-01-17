@@ -49,7 +49,22 @@
 
 # print(bin(2))
 
-import numpy as np
+# import numpy as np
 
-a = np.array([[1,3,2], [4,5,6]])
-print(a)
+# a = np.array([[1,3,2], [4,5,6]])
+# print(a)
+
+def mult_matr_column(matrix_a, st):
+	b = []
+	n = len(matrix_a)
+	for i in range(n):
+		tmp_sum = 0
+		for j in range(n-1):
+			tmp_sum += matrix_a[i][j] * st[j]
+			b.append(tmp_sum)
+	return b
+
+a = [[7, 0.07, 0.0], [7, 0.07, 0.0], [0.0, 0.09, 9, 0.09], [0.0, 0.0, 0.1, 10]]
+st = [7, 8, 9, 10]
+
+print(mult_matr_column(a, st))
