@@ -54,17 +54,17 @@
 # a = np.array([[1,3,2], [4,5,6]])
 # print(a)
 
-def mult_matr_column(matrix_a, st):
-	b = []
-	n = len(matrix_a)
-	for i in range(n):
-		tmp_sum = 0
-		for j in range(n-1):
-			tmp_sum += matrix_a[i][j] * st[j]
-			b.append(tmp_sum)
-	return b
+var = 7
+n = 5
 
-a = [[7, 0.07, 0.0], [7, 0.07, 0.0], [0.0, 0.09, 9, 0.09], [0.0, 0.0, 0.1, 10]]
-st = [7, 8, 9, 10]
+res = []
+for i in range(n):
+	res.append([])
+	for j in range(n):
+		if i == j:
+			res[i].append(var)
+		else:
+			res[i].append(var / 100.0)
+	var += 1
 
-print(mult_matr_column(a, st))
+print(res)
