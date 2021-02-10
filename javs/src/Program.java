@@ -16,7 +16,7 @@ public class Program {
 
 		Pet p = new Pet("UN");
 		p.speak();
-		Cat c = new Cat("Tom");
+		Pet c = new Cat("Tom");
 		c.speak();
 	}
 }
