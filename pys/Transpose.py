@@ -1,6 +1,10 @@
 from Auxiliary import *
 
-print(gen_matrix('пароль().'))
-print(gen_matrix('пассворд'))
-print(gen_matrix('abcd'))
-print(alph[25])
+k = read_key()
+print(k)
+m = gen_matrix(k)
+print_matrix(m)
+msg = read_message()
+# write_message_to_matrix(msg, m)
+# print_matrix(m)
+print(mm(msg))
