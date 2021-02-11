@@ -49,6 +49,5 @@ def write_message_to_matrix(message, matrix):
 
 
 def mm(message):
-	res = []
-	for i in list(message):
+	return list(message)
 		
