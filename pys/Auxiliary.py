@@ -36,11 +36,12 @@ def print_matrix(m):
 	print('--------------------------------------------------')
 
 def write_message_to_matrix(message, matrix):
+	n = len(matrix)
+	m = len(matrix[0])
 	message_c = message
 	count = 0
-	for i in range(len(matrix)):
-		for j in range(len(matrix[i])):
-			print(i, j)
+	for i in range(n):
+		for j in range(m):
 			if message_c:
 				matrix[i][j] = message[count]
 				print_matrix(matrix)
