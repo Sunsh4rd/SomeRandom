@@ -1,6 +1,6 @@
 import math
 
-alph = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя.,!?:;()'
+# alph = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя.,!?:;()'
 
 
 def read_key():
@@ -24,31 +24,27 @@ def gen_matrix(key):
     n = unique_sym_count(key)
     l = len(read_message())
     if l <= n:
-    	m = 1
+        m = 1
     else:
-    	m = int(math.ceil(l / n))
-    return [[None] * n ] * m
+        m = int(math.ceil(l / n))
+    return [[''] * n for i in range(m)]
 
 
 def print_matrix(m):
-	for i in m:
-		print(i)
-	print('--------------------------------------------------')
+    for i in m:
+        print(i)
+    print()
+
 
 def write_message_to_matrix(message, matrix):
-	n = len(matrix)
-	m = len(matrix[0])
-	message_c = message
-	count = 0
-	for i in range(n):
-		for j in range(m):
-			if message_c:
-				matrix[i][j] = message[count]
-				print_matrix(matrix)
-				count += 1
-				message_c = message_c[1:]
+    n = len(matrix)
+    m = len(matrix[0])
+    message_c = message
+    count = 0
+    for i in range(n):
+        for j in range(m):
+            if message_c:
+                matrix[i][j] = message[count]
+                count += 1
+                message_c = message_c[1:]
 
-
-def mm(message):
-	return list(message)
-		
