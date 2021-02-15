@@ -43,7 +43,13 @@ def gen_matrix(message):
         m = 1
     else:
         m = int(math.ceil(l / n))
-    return [[''] * n for i in range(m)]
+    # full_block_count = l // (n * m)
+    # last_block_element_count = l % n*m
+    # last_block_full_rows = last_block_element_count / m
+    res = [[''] * n for i in range(m)]
+    # d = [None] * (l - ((m - 1) * n))
+    # res.append(d)
+    return res
 
 
 def print_matrix(m):
@@ -68,11 +74,11 @@ def print_matrix(m):
 
 def write_message_to_matrix(message, matrix):
     n = len(matrix)
-    m = len(matrix[0])
+    # m = len(matrix[0])
     message_c = message
     count = 0
     for i in range(n):
-        for j in range(m):
+        for j in range(len(matrix[i])):
             if message_c:
                 matrix[i][j] = message[count]
                 count += 1
@@ -81,6 +87,10 @@ def write_message_to_matrix(message, matrix):
 
 def assign_key_symbols_to_matrix(matrix):
 	key = key_unique_unordered()
+	# assigned = []
+	# for i in range(len(matrix)):
+		# for j in range(len(matrix[i])):
+			# assigned.append((key[j], j, [matrix[i][j] for i in range(len(matrix[j]))]))
 	assigned = [(key[j], j, [matrix[i][j] for i in range(len(matrix))]) for j in range(len(matrix[0]))]
 	return assigned
 
@@ -107,7 +117,7 @@ def decrypt():
 	key = list(key_unique_unordered())
 	idx = list(range(len(key)))
 	order = list(map(lambda x,y:(x,y), key, idx))
-	order.sort(key=lambda x:x[0])
+	order.sort()
 	assigned = [(order[j][0], order[j][1], [matrix[i][j] for i in range(len(matrix))]) for j in range(len(matrix[0]))]
 	assigned.sort(key=lambda x:x[1])
 	print(key)
