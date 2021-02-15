@@ -7,11 +7,13 @@ def read_key():
     return key.lower()
 
 
-def str_key():
-    key = read_key()
-    a = list(set(key))
-    a.sort()
-    return ''.join(a)
+def read_message(name):
+    with open(f'../srcs/{name}.txt', 'r') as f:
+        msg = f.read()
+    return msg
+
+def unique_sym_count(string):
+    return len(set(string.lower()))
 
 
 def key_unique_unordered():
@@ -23,32 +25,20 @@ def key_unique_unordered():
     return ''.join(char_seen)
 
 
-def read_message():
-    with open('../srcs/msg.txt', 'r') as f:
-        msg = f.read()
-    return msg
+# def str_key():
+#     key = read_key()
+#     a = list(set(key))
+#     a.sort()
+#     return ''.join(a)
 
 
-def unique_sym_count(string):
-    return len(set(string.lower()))
 
 
-def gen_matrix():
+def gen_matrix(message):
     key = read_key()
     m = 1
     n = unique_sym_count(key)
-    l = len(read_message())
-    if l <= n:
-        m = 1
-    else:
-        m = int(math.ceil(l / n))
-    return [[''] * n for i in range(m)]
-
-def gen_en_matrix():
-    key = read_key()
-    m = 1
-    n = unique_sym_count(key)
-    l = len(read_encrypted_message())
+    l = len(read_message(message))
     if l <= n:
         m = 1
     else:
@@ -60,6 +50,20 @@ def print_matrix(m):
     for i in m:
         print(i)
     print()
+
+# def gen_en_matrix():
+#     key = read_key()
+#     m = 1
+#     n = unique_sym_count(key)
+#     l = len(read_encrypted_message())
+#     if l <= n:
+#         m = 1
+#     else:
+#         m = int(math.ceil(l / n))
+#     return [[''] * n for i in range(m)]
+
+
+
 
 
 def write_message_to_matrix(message, matrix):
@@ -92,16 +96,11 @@ def encrypt(matrix):
 	return en
 
 
-def read_encrypted_message():
-    with open('../srcs/encrypted.txt', 'r') as f:
-        msg = f.read()
-    return msg
-
 
 def decrypt():
-	message = read_encrypted_message()
+	message = read_message('encrypted_message')
 	print(message)
-	matrix = gen_en_matrix()
+	matrix = gen_matrix('encrypted_message')
 	print_matrix(matrix)
 	write_message_to_matrix(message, matrix)
 	print_matrix(matrix)
