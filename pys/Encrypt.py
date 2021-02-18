@@ -15,12 +15,6 @@ print_matrix(am)
 en = encrypt(am)
 print(en)
 
-with open('../srcs/encrypted_message.txt', 'w') as f:
-	f.write(en)
 
-# m1 = gen_matrix('encrypted_message')
-# msg1 = read_message('encrypted_message')
-# write_message_to_matrix(msg1, m1)
-# print_matrix(m1)
-# print(sort_key())
-
+with open('../srcs/encrypted_message.txt', 'w', encoding='utf-8') as f:
+    f.write(en)
