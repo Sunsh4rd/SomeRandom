@@ -3,7 +3,7 @@ import pyodbc
 def main():
 	try:
 		cnxn = pyodbc.connect('Driver={SQL Server};'
-						  'Server=DESKTOP-36HKQFT\SQLEXPRESS;'
+						  'Server=DESKTOP-MIRUVK9\SQLEXPRESS;'
 						  'Database=Polyclinic;'
 						  'UID=Admin;'
 						  'PWD=admin')	
