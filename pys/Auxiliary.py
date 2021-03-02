@@ -77,13 +77,15 @@ def decrypt():
     print(message)
     matrix = gen_matrix('encrypted_message')
     print_matrix(matrix)
-    key = list(key_unique_unordered())
+    write_message_to_matrix(message, matrix)
+    print_matrix(matrix)
+    key_s = key_unique_unordered()
+    print(key_s)
+    key = list(key_s)
     idx = list(range(len(key)))
     order = list(map(lambda x, y: (x, y, []), key, idx))
-    print(key)
-    print(idx)
-    print(order)
     order.sort()
+    print_matrix(order)
     k = 0
     for k in range(0, len(message), len(order)):
         m = len(message) - k
@@ -94,26 +96,28 @@ def decrypt():
                 t += 1
             else:
                 order[j][2].append('')
+    print_matrix(order)
     order.sort(key=lambda x: x[1])
+    print_matrix(order)
     back = [[order[i][2][j]
              for i in range(len(order))] for j in range(len(order[0][2]))]
     print_matrix(back)
-    en = ''
+    dec = ''
     for i in back:
-        en += ''.join(i)
-    return en
+        dec += ''.join(i)
+    return dec
 
 
-def sort_key():
-    key = key_unique_unordered()
-    key1 = list(key)
-    idx = list(range(len(key)))
-    order = list(map(lambda x, y: (x, y), key1, idx))
-    order.sort(key=lambda x: x[0])
-    order.sort(key=lambda x: x[1])
-    print(key)
-    print(key1)
-    print(idx)
-    print(order)
-    key1.sort()
-    return ''.join(key1)
+# def sort_key():
+#     key = key_unique_unordered()
+#     key1 = list(key)
+#     idx = list(range(len(key)))
+#     order = list(map(lambda x, y: (x, y), key1, idx))
+#     order.sort(key=lambda x: x[0])
+#     order.sort(key=lambda x: x[1])
+#     print(key)
+#     print(key1)
+#     print(idx)
+#     print(order)
+#     key1.sort()
+#     return ''.join(key1)
