@@ -38,10 +38,10 @@ if __name__ == '__main__':
 	
     alph_s = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя #.,!?:;0123456789'
     letters = alph_s[:33]
+    print(letters)
     alph = {alph_s[i]: i for i in range(len(alph_s))}
     n = len(alph)
     print(alph)
-    start = False
     opt = 0
 
     while True:
