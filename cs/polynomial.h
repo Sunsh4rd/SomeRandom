@@ -37,7 +37,7 @@ public:
 	// 	return polynomial(this->p * rsh.get_q() - rsh.get_p() * this->q, this->q * rsh.get_q());
 	// }
 
-	// const polynomial operator*(const polynomial rsh)
+	// const polynomial operator*(const polynomial rsh)	
 	// {
 	// 	return polynomial(this->p * rsh.get_p(), this->q * rsh.get_q());
 	// }
