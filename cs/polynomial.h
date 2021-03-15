@@ -27,9 +27,17 @@ public:
 		std::cout << std::endl;
 	}
 
-	const polynomial operator+(const polynomial rsh)
+	const polynomial operator+(polynomial rsh)
 	{
-		return polynomial(this->p * rsh.get_q() + rsh.get_p() * this->q, this->q * rsh.get_q());
+		int lsh_size = this->coefficients.size();
+		int rsh_size = rsh.get_coefficients().size();
+		int res_size = lsh_size > rsh_size ? lsh_size : rsh_size;
+		std::vector<rational> res = lsh_size > rsh_size ? this->coefficients : rsh.get_coefficients();
+		std::vector<rational> less = lsh_size < rsh_size ? this->coefficients : rsh.get_coefficients();
+		for (int i = 0; i < res_size; i++)
+			res[i] = res[i] + less[i];
+
+		return polynomial(res);
 	}
 
 	// const polynomial operator-(const polynomial rsh)

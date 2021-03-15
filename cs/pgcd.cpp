@@ -17,10 +17,21 @@ int main()
 	std::cout << f << std::endl;
 	std::cout << g << std::endl;
 	std::vector<rational> r;
-	r.push_back(rational(21));
+	r.push_back(rational(2));
+	r.push_back(rational(0));
 	r.push_back(rational(3));
-	r.push_back(rational(7));
+	r.push_back(rational(5));
+	r.push_back(rational(4));
 	polynomial p(r);
+	std::vector<rational> r1;
+	r1.push_back(rational(0));
+	r1.push_back(rational(8));
+	r1.push_back(rational(0));
+	r1.push_back(rational(2));
+	polynomial q(r1);
+	polynomial bb = p+q;
 	p.print();
+	q.print();
+	bb.print();
 	return 0;
 }
