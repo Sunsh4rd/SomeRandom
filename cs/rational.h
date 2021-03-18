@@ -16,6 +16,7 @@ private:
 	}
 
 public:
+	rational(): rational(0, 1) {};
 	rational(int p, int q): p(p), q(q) { normalize(); };
 	rational(int p): rational(p, 1) {};
 
@@ -34,22 +35,22 @@ public:
 
 	friend std::ostream & operator << (std::ostream &, const rational &);
 
-	const rational operator+(const rational rsh)
+	rational operator+(const rational rsh) const
 	{
 		return rational(this->p * rsh.get_q() + rsh.get_p() * this->q, this->q * rsh.get_q());
 	}
 
-	const rational operator-(const rational rsh)
+	rational operator-(const rational rsh) const
 	{
 		return rational(this->p * rsh.get_q() - rsh.get_p() * this->q, this->q * rsh.get_q());
 	}
 
-	const rational operator*(const rational rsh)
+	rational operator*(const rational rsh) const
 	{
 		return rational(this->p * rsh.get_p(), this->q * rsh.get_q());
 	}
 
-	const rational operator/(const rational rsh)
+	rational operator/(const rational rsh) const
 	{
 		return rational(this->p * rsh.get_q(), this->q * rsh.get_p());
 	}
@@ -61,7 +62,10 @@ public:
 		return (*this);
 	}	
 
-
+	rational operator-() const
+	{
+		return rational(-this->p, this->q);
+	}
 
 	~rational() = default;
 	
