@@ -38,7 +38,7 @@ def dijkstra_wrapper(g, v):
 
 def main():
 
-    with open("../srcs/graph.json", 'r') as f:
+    with open("D:\SomeRandom\srcs\graph.json", 'r') as f:
         graph_dict = json.load(f)
         g = Graph(graph_dict)
 
