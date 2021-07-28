@@ -11,10 +11,12 @@ public class Main {
 
         Person person = deserialize("src/main/resources/generated.json");
 
+        System.out.println("Json read");
         System.out.println(person);
 
         serialize(person);
 
+        System.out.println("Json wrote");
     }
 
     private static Person deserialize(String fileName) throws IOException {
@@ -23,8 +25,7 @@ public class Main {
 
         try (InputStream inputStream = new FileInputStream(fileName)) {
 
-            Person person = objectMapper.readValue(inputStream, Person.class);
-            return person;
+            return objectMapper.readValue(inputStream, Person.class);
         }
     }
 
