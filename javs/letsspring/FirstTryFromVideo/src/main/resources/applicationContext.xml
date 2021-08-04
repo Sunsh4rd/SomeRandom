@@ -5,5 +5,14 @@
     http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-
+    <bean id="classic" class="music.ClassicalMusic"/>
+    <bean id="rock" class="music.RockMusic"/>
+    <bean id="player" class="music.MusicPlayer" scope="prototype">
+        <constructor-arg>
+            <list>
+                <ref bean="classic"/>
+                <ref bean="rock"/>
+            </list>
+        </constructor-arg>
+    </bean>
 </beans>
