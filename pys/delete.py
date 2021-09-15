@@ -3,8 +3,7 @@ print(a)
 
 a_c = []
 
-for i in a:
-	a_c.append(i)
+a_c = [i for i in a]
 
 for i in a_c:
 	a.remove(i)
