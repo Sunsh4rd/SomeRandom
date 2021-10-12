@@ -1,8 +1,17 @@
 import heapq
 from collections import namedtuple
 
-Node = namedtuple('Node', ['left', 'right'])
-Leaf = namedtuple('Leaf', ['char'])
+
+class Node(namedtuple('Node', ['left', 'right'])):
+    def walk(self, code, acc):
+        self.left.walk(code, acc + '0')
+        self.right.walk(code, acc + '1')
+
+
+class Leaf(namedtuple('Leaf', ['char'])):
+    def walk(self, code, acc):
+        code[self.char] = acc or '0'
+
 
 def read_text_from_txt_file(file_name):
     with open(file_name, 'r') as f:
@@ -28,23 +37,48 @@ def get_symbol_frequencies(alphabet, text):
 
 def huffman_encode(alphabet, text):
     frequencies = get_symbol_frequencies(alphabet, text)
-    h = [(freq, ch) for ch, freq in frequencies.items()]
+    h = []
+    for ch, freq in frequencies.items():
+        h.append((freq, len(h), Leaf(ch)))
+
     heapq.heapify(h)
 
+    count = len(h)
     while len(h) >= 2:
-        freq1, ch1 = heapq.heappop(h)
-        freq2, ch2 = heapq.heappop(h)
-        heapq.heappush(freq1 + freq2, ch1 + ch2)
+        freq1, _count1, left = heapq.heappop(h)
+        freq2, _count2, right = heapq.heappop(h)
+        heapq.heappush(h, (freq1 + freq2, count, Node(left, right)))
+        count += 1
+
+    code = {}
+    if h:
+        [(_freq, _count, root)] = h
+        root.walk(code, "")
+    return code
+
+
+def huffman_decode(en, code):
+    pointer = 0
+    encoded_str = ''
+    while pointer < len(en):
+        for ch in code.keys():
+            if en.startswith(code[ch], pointer):
+                encoded_str += ch
+                pointer += len(code[ch])
+    return encoded_str
 
 def main():
-    # text = read_text_from_txt_file('D:\\SomeRandom\\srcs\\tkisi\\Тест_6.txt')
-    text = input()
-    print(text)
+    text = read_text_from_txt_file('srcs\\tkisi\\Тест_1.txt')
     alphabet = get_alphabet(text)
-    print(alphabet)
-    frequencies = get_symbol_frequencies(alphabet, text)
-    print(frequencies)
-    encoded = "".join()
+    code = huffman_encode(alphabet, text)
+    encoded = "".join(code[ch] for ch in text)
+
+    for ch in sorted(code):
+        print(f'{ch}: {code[ch]}')
+
+    print(encoded)
+
+    print(huffman_decode(encoded, code))
 
 
 if __name__ == '__main__':
