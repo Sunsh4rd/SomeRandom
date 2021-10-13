@@ -67,8 +67,9 @@ def huffman_decode(en, code):
                 pointer += len(code[ch])
     return encoded_str
 
+
 def main():
-    text = read_text_from_txt_file('srcs\\tkisi\\Тест_1.txt')
+    text = read_text_from_txt_file('srcs\\tkisi\\Тест_8.txt')
     alphabet = get_alphabet(text)
     code = huffman_encode(alphabet, text)
     encoded = "".join(code[ch] for ch in text)
@@ -77,6 +78,10 @@ def main():
         print(f'{ch}: {code[ch]}')
 
     print(encoded)
+
+    with open('srcs\\tkisi\\res.bin', 'wb') as f:
+        bts = encoded.encode()
+        f.write(bts)
 
     print(huffman_decode(encoded, code))
 
