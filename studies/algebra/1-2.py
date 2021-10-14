@@ -1,5 +1,6 @@
 import math
 
+
 def read_numbers_from_txt_file(file):
     with open(file, 'r') as f:
         numbers = [int(i) for i in f.readlines()]
