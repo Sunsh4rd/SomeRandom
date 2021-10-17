@@ -13,7 +13,7 @@ sorted_by_freq = ['о','е','а','и','н','т','с','р','в','л',
 sorted_by_freq_cap = [l.upper() for l in sorted_by_freq]
 
 read_text = []
-with open('input_4.txt', 'r', encoding='utf-8') as f1:
+with open('studies\kmzi\input_4.txt', 'r', encoding='utf-8') as f1:
     
     for s in f1.readlines():
         s = s.replace('\n', '')
