@@ -69,7 +69,7 @@ def huffman_decode(en, code):
 
 
 def main():
-    text = read_text_from_txt_file('srcs\\tkisi\\Тест_8.txt')
+    text = read_text_from_txt_file('studies\\tkisi\\Тест_7.txt')
     alphabet = get_alphabet(text)
     code = huffman_encode(alphabet, text)
     encoded = "".join(code[ch] for ch in text)
@@ -79,7 +79,7 @@ def main():
 
     print(encoded)
 
-    with open('srcs\\tkisi\\res.bin', 'wb') as f:
+    with open('studies\\tkisi\\res.bin', 'wb') as f:
         bts = encoded.encode()
         f.write(bts)
 
