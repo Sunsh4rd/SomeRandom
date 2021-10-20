@@ -70,19 +70,14 @@ def huffman_decode(en, code):
 
 
 def main():
-    text = read_text_from_txt_file('studies\\tkisi\\Тест_8.txt')
+    text = read_text_from_txt_file('studies\\tkisi\\Тест_9.txt')
     alphabet = get_alphabet(text)
     code = huffman_encode(alphabet, text)
     encoded = "".join(code[ch] for ch in text)
 
-    for ch in sorted(code):
-        print(f'{ch}: {code[ch]}')
-
-    print(len(code))
-
     with open('studies\\tkisi\\res.bin', 'wb') as f:
-        f.write(str(str(len(code)) + ' ' + str(code) + '\n').encode())
-        extra_zero = 0 if len(encoded) == 8 else 8 - len(encoded) % 8
+        f.write((str(code) + '\n').encode())
+        extra_zero = 0 if len(encoded) % 8 == 0 else 8 - len(encoded) % 8
         f.write((str(extra_zero) + '\n').encode())
         bts = '0' * extra_zero + encoded
         to_write = bytearray()
@@ -91,27 +86,19 @@ def main():
         f.write(to_write)
 
     with open('studies\\tkisi\\res.bin', 'rb') as f:
-        # file = f.readlines()
-        a = int(f.read(2).decode())
-        print(a)
-        t = f.read(a).decode()
-        print(len(t))
-        # tree = ast.literal_eval(file[0].decode())
-        # trim = int(file[1].decode())
-        # encoded = file[2]
-        # for b in encoded:
-        #     print(encoded)
-        # bitstr = ''
-        # byte = f.read(1)
-        # while(len(byte) > 0):
-            # byte = ord(byte)
-            # bits = bin(byte)[2:].rjust(8, '0')
-            # bitstr += bits
-            # byte = f.read(1)
-        # trimmed_bitstr = bitstr[trim:]
-        # print(huffman_decode(trimmed_bitstr, tree))
+        tree = ast.literal_eval(f.readline().decode())
+        trim = int(f.readline().decode())
+        t = f.read()
+        bitstr = ''
+        for b in t:
+            bits = bin(b)[2:].rjust(8, '0')
+            bitstr += bits
+        trimmed_bitstr = bitstr[trim:]
 
+    result = huffman_decode(trimmed_bitstr, tree)
 
+    with open('studies\\tkisi\\restored.txt', 'w') as f:
+        f.write(result)
 
 
 if __name__ == '__main__':
