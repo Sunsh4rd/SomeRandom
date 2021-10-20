@@ -1,5 +1,6 @@
 import heapq
 from collections import namedtuple
+import ast
 
 
 class Node(namedtuple('Node', ['left', 'right'])):
@@ -69,7 +70,7 @@ def huffman_decode(en, code):
 
 
 def main():
-    text = read_text_from_txt_file('studies\\tkisi\\Тест_7.txt')
+    text = read_text_from_txt_file('studies\\tkisi\\Тест_8.txt')
     alphabet = get_alphabet(text)
     code = huffman_encode(alphabet, text)
     encoded = "".join(code[ch] for ch in text)
@@ -77,13 +78,40 @@ def main():
     for ch in sorted(code):
         print(f'{ch}: {code[ch]}')
 
-    print(encoded)
+    print(len(code))
 
     with open('studies\\tkisi\\res.bin', 'wb') as f:
-        bts = encoded.encode()
-        f.write(bts)
+        f.write(str(str(len(code)) + ' ' + str(code) + '\n').encode())
+        extra_zero = 0 if len(encoded) == 8 else 8 - len(encoded) % 8
+        f.write((str(extra_zero) + '\n').encode())
+        bts = '0' * extra_zero + encoded
+        to_write = bytearray()
+        for i in range(0, len(bts), 8):
+            to_write.append(int(bts[i: i+8], 2))
+        f.write(to_write)
 
-    print(huffman_decode(encoded, code))
+    with open('studies\\tkisi\\res.bin', 'rb') as f:
+        # file = f.readlines()
+        a = int(f.read(2).decode())
+        print(a)
+        t = f.read(a).decode()
+        print(len(t))
+        # tree = ast.literal_eval(file[0].decode())
+        # trim = int(file[1].decode())
+        # encoded = file[2]
+        # for b in encoded:
+        #     print(encoded)
+        # bitstr = ''
+        # byte = f.read(1)
+        # while(len(byte) > 0):
+            # byte = ord(byte)
+            # bits = bin(byte)[2:].rjust(8, '0')
+            # bitstr += bits
+            # byte = f.read(1)
+        # trimmed_bitstr = bitstr[trim:]
+        # print(huffman_decode(trimmed_bitstr, tree))
+
+
 
 
 if __name__ == '__main__':
