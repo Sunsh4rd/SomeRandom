@@ -1,6 +1,7 @@
 import heapq
 from collections import namedtuple
 import ast
+import os
 
 
 class Node(namedtuple('Node', ['left', 'right'])):
@@ -70,35 +71,45 @@ def huffman_decode(en, code):
 
 
 def main():
-    text = read_text_from_txt_file('studies\\tkisi\\Тест_9.txt')
-    alphabet = get_alphabet(text)
-    code = huffman_encode(alphabet, text)
-    encoded = "".join(code[ch] for ch in text)
 
-    with open('studies\\tkisi\\res.bin', 'wb') as f:
-        f.write((str(code) + '\n').encode())
-        extra_zero = 0 if len(encoded) % 8 == 0 else 8 - len(encoded) % 8
-        f.write((str(extra_zero) + '\n').encode())
-        bts = '0' * extra_zero + encoded
-        to_write = bytearray()
-        for i in range(0, len(bts), 8):
-            to_write.append(int(bts[i: i+8], 2))
-        f.write(to_write)
+    opt = int(input())
 
-    with open('studies\\tkisi\\res.bin', 'rb') as f:
-        tree = ast.literal_eval(f.readline().decode())
-        trim = int(f.readline().decode())
-        t = f.read()
-        bitstr = ''
-        for b in t:
-            bits = bin(b)[2:].rjust(8, '0')
-            bitstr += bits
-        trimmed_bitstr = bitstr[trim:]
+    if opt == 0:
+        path = 'studies\\tkisi\\Тест_8.txt'
+        text = read_text_from_txt_file(path)
+        alphabet = get_alphabet(text)
+        code = huffman_encode(alphabet, text)
+        encoded = "".join(code[ch] for ch in text)
+        original_size = os.path.getsize(path)
 
-    result = huffman_decode(trimmed_bitstr, tree)
+        with open('studies\\tkisi\\res.bin', 'wb') as f:
+            f.write((str(code) + '\n').encode())
+            extra_zero = 0 if len(encoded) % 8 == 0 else 8 - len(encoded) % 8
+            f.write((str(extra_zero) + '\n').encode())
+            bts = '0' * extra_zero + encoded
+            to_write = bytearray()
+            for i in range(0, len(bts), 8):
+                to_write.append(int(bts[i: i+8], 2))
+            f.write(to_write)
+            encoded_size = os.path.getsize('studies\\tkisi\\res.bin')
+            coeff = original_size / encoded_size
+            print(f'Сжали, коэффициент сжатия: {coeff}')
 
-    with open('studies\\tkisi\\restored.txt', 'w') as f:
-        f.write(result)
+    else:
+        with open('studies\\tkisi\\res.bin', 'rb') as f:
+            tree = ast.literal_eval(f.readline().decode())
+            trim = int(f.readline().decode())
+            t = f.read()
+            bitstr = ''
+            for b in t:
+                bits = bin(b)[2:].rjust(8, '0')
+                bitstr += bits
+            trimmed_bitstr = bitstr[trim:]
+            result = huffman_decode(trimmed_bitstr, tree)
+
+        with open('studies\\tkisi\\restored.txt', 'w') as f:
+            f.write(result)
+            print('Разжали')
 
 
 if __name__ == '__main__':
