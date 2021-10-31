@@ -18,6 +18,7 @@ def add_matrix(a, b, m):
 def subtract_matrix(a, b, m):
     return [[(a[j][i] - b[j][i]) % m for i in range(len(a[j]))] for j in range(len(a))]
 
+
 def print_matrix(m):
     for row in m:
         print(*row)
@@ -92,7 +93,7 @@ def decrypt(cryptogramm, n, alphabet_d, alphabet_d_r, m):
     for part in split_text:
         split_text_n.append([[alphabet_d_r[c] for c in part]])
 
-    matrix_a_r = [[20, 32, 12],[25, 32, 30],[32, 12, 31]]
+    matrix_a_r = [[20, 32, 12], [25, 32, 30], [32, 12, 31]]
     vector_a = [[11, 12, 13]]
 
     decrypted_text_l = []
@@ -107,11 +108,9 @@ def decrypt(cryptogramm, n, alphabet_d, alphabet_d_r, m):
     return decrypted_text
 
 
-
 def main():
     cryptogramm, alphabet_s, alphabet_d, alphabet_d_r = setup()
     m = len(alphabet_s)
-
 
     cypher_text = encrypt_by_hill(
         'ТЕКСТ', 3, alphabet_d, alphabet_d_r, m)
@@ -125,6 +124,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-
