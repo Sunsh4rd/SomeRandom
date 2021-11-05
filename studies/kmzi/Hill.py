@@ -1,3 +1,7 @@
+import itertools
+import random
+
+
 def setup():
     cypher_text = open('studies\kmzi\cyphertext_hill.txt',
                        'r', encoding='utf-8').read()
@@ -5,6 +9,10 @@ def setup():
     alphabet_d = {i: alphabet_s[i] for i in range(len(alphabet_s))}
     alphabet_d_r = {alphabet_s[i]: i for i in range(len(alphabet_s))}
     return cypher_text, alphabet_s, alphabet_d, alphabet_d_r
+
+
+def transpose_matrix(m):
+    return [[m[i][j] for i in range(len(m))] for j in range(len(m))]
 
 
 def multiply_matrix(a, b, m):
@@ -52,10 +60,27 @@ def gcd_extended(a, b):
 def get_reverse(a, m):
     d, q, r = gcd_extended(a, m)
     if 1 % d != 0:
-        print('Не имеет решений')
+        return None
     else:
         x0 = (q * 1 // d) % m
         return x0
+
+
+def get_reverse_matrix(a, m):
+    det = get_matrix_determinant(a)
+    det_r = get_reverse(det, m)
+    if not det_r:
+        return None
+    else:
+        adjugate_matrix = [[0 for i in range(len(a))] for j in range(len(a))]
+        for i in range(len(a)):
+            for j in range(len(a[i])):
+                adjugate_matrix[i][j] = ((-1) ** (i + j)) * \
+                    get_matrix_determinant(get_matrix_minor(a, i, j)) * det_r
+
+        reversed_matrix = [[adjugate_matrix[i][j] % m for i in range(
+            len(adjugate_matrix))] for j in range(len(adjugate_matrix))]
+    return reversed_matrix
 
 
 def encrypt_by_hill(text, n, alphabet_d, alphabet_d_r, m):
@@ -84,42 +109,52 @@ def encrypt_by_hill(text, n, alphabet_d, alphabet_d_r, m):
 
 
 def decrypt(cryptogramm, n, alphabet_d, alphabet_d_r, m):
-    split_text = []
-    for i in range(0, len(cryptogramm), n):
-        slc = cryptogramm[i:i + n]
-        split_text.append(slc)
+    while True:
+        matrix_a_r = [[random.randint(0, 32)
+                       for i in range(n)] for j in range(n)]
+        if not get_reverse_matrix(matrix_a_r, m):
+            print_matrix(matrix_a_r)
+            print('Irreversable, skipping')
+            continue
+        else:
+            vectors = [[list(vec)] for vec in itertools.product(
+                list(range(33)), repeat=3)]
+            for vector_a in vectors:
+                split_text = []
+                for i in range(0, len(cryptogramm), n):
+                    slc = cryptogramm[i:i + n]
+                    split_text.append(slc)
 
-    split_text_n = []
-    for part in split_text:
-        split_text_n.append([[alphabet_d_r[c] for c in part]])
+                split_text_n = []
+                for part in split_text:
+                    split_text_n.append([[alphabet_d_r[c] for c in part]])
 
-    matrix_a_r = [[20, 32, 12], [25, 32, 30], [32, 12, 31]]
-    vector_a = [[11, 12, 13]]
+                decrypted_text_l = []
+                for y in split_text_n:
+                    decrypted_text_l.append(multiply_matrix(
+                        subtract_matrix(y, vector_a, m), matrix_a_r, m))
 
-    decrypted_text_l = []
-    for y in split_text_n:
-        decrypted_text_l.append(multiply_matrix(
-            subtract_matrix(y, vector_a, m), matrix_a_r, m))
+                decrypted_text = ''
+                for el in decrypted_text_l:
+                    decrypted_text += ''.join(
+                        map(lambda x: alphabet_d[x], *el))
 
-    decrypted_text = ''
-    for el in decrypted_text_l:
-        decrypted_text += ''.join(map(lambda x: alphabet_d[x], *el))
-
-    return decrypted_text
+                with open('studies\kmzi\hill_decrypt.txt', 'a+', encoding='utf-8') as f:
+                    f.write(f'{decrypted_text}\n')
 
 
 def main():
     cryptogramm, alphabet_s, alphabet_d, alphabet_d_r = setup()
     m = len(alphabet_s)
 
-    cypher_text = encrypt_by_hill(
-        'ТЕКСТ', 3, alphabet_d, alphabet_d_r, m)
     #[[1, 2, 3], [4, 1, 6], [7, 5, 1]]
     #[[20, 32, 12],[25, 32, 30],[32, 12, 31]]
-    print(cypher_text)
 
-    decrypted = decrypt(cypher_text, 3, alphabet_d, alphabet_d_r, m)
-    print(decrypted)
+    # print_matrix(get_reverse_matrix([[20, 32, 12],[25, 32, 30],[32, 12, 29]], m))
+
+    # decrypted =
+    decrypt(cryptogramm, 3, alphabet_d, alphabet_d_r, m)
+    # print(decrypted)
 
 
 if __name__ == '__main__':
