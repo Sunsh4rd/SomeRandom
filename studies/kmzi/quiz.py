@@ -7,18 +7,18 @@ def ceasar(message, rot):
 
 
 def main():
-    # alph_s = 'абвгдежзийклмнопрстуфхцчшщъыьэюя'
-    # alph = {alph_s[i]: i for i in range(len(alph_s))}
-    # n = len(alph)
-    # print(alph)
-    # ciphertetxt = 'ШМЦШЛЙЩКСЫЗЮЭЫЩОМНИРЪЙЫЯЖЖЖОМЛПЬХВЛ'.lower()
-    # print(len(ciphertetxt))
-    # key_part = 'ключшМЦШЛЙЩКСЫЗЮЭЫЩОМНИРЪЙЫЯЖЖЖОМЛП'.lower()
-    # print(len(key_part))    
-    # dc = ''
-    # for i in range(len(ciphertetxt)):
-    #     dc += alph_s[((alph[ciphertetxt[i]] - alph[key_part[i]])%n)-1]
-    # print(dc)
+    alph_s = 'абвгдежзийклмнопрстуфхцчшщъыьэюя'
+    alph = {alph_s[i]: i for i in range(len(alph_s))}
+    n = len(alph)
+    print(alph)
+    ciphertetxt = 'ШМЦШЛЙЩКСЫЗЮЭЫЩОМНИРЪЙЫЯЖЖЖОМЛПЬХВЛ'.lower()
+    print(len(ciphertetxt))
+    key_part = 'ключшМЦШЛЙЩКСЫЗЮЭЫЩОМНИРЪЙЫЯЖЖЖОМЛП'.lower()
+    print(len(key_part))    
+    dc = ''
+    for i in range(len(ciphertetxt)):
+        dc += alph_s[((alph[ciphertetxt[i]] - alph[key_part[i]])%n)-1]
+    print(dc,len(dc))
 
     text = 'жтьхршхршжтьщлчш'
 
