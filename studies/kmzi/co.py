@@ -11,15 +11,15 @@ russian_alphabet = russian_capitals + russian_capitals.lower()
 
 
 def generate_texts():
-    with open('studies\\kmzi\\arm.txt', 'a+', encoding='utf-16') as f:
+    with open('studies\\kmzi\\arm.txt', 'w', encoding='utf-16') as f:
         for _ in range(100000):
             f.write(random.choice(armenian_alphabet))
 
-    with open('studies\\kmzi\\eng.txt', 'a+', encoding='utf-8') as f:
+    with open('studies\\kmzi\\eng.txt', 'w', encoding='utf-8') as f:
         for _ in range(100000):
             f.write(random.choice(english_alphabet))
 
-    with open('studies\\kmzi\\rus.txt', 'a+', encoding='utf-8') as f:
+    with open('studies\\kmzi\\rus.txt', 'w', encoding='utf-8') as f:
         for _ in range(100000):
             f.write(random.choice(russian_alphabet))
 
@@ -54,22 +54,6 @@ def main():
     generate_texts()
     ci_arm, ci_eng, ci_rus = cout_ci()
     print(ci_arm, ci_eng, ci_rus)
-
-    # l1 = {i: str(i) for i in range(10)}
-    # l2 = {i: english_alphabet[i] for i in range(10)}
-
-    # dt1 = ''.join((random.choice(list(l1.values())) for _ in range(10)))
-    # dt2 = ''.join((random.choice(list(l2.values())) for _ in range(10)))
-
-    # count_dt1 = Counter(dt1)
-    # count_dt2 = Counter(dt2)
-
-    # ci_dt1 = reduce(lambda x, y: x + y, map(lambda x: x * x,
-    #                 count_dt1.values())) / (len(dt1) ** 2)
-    # ci_dt2 = reduce(lambda x, y: x + y, map(lambda x: x * x,
-    #                 count_dt2.values())) / (len(dt2) ** 2)
-    
-    # print(dt1, dt2, count_dt1, count_dt2, ci_dt1, ci_dt2)
 
 
 if __name__ == '__main__':
