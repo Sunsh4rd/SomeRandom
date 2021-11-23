@@ -129,6 +129,10 @@ def decrypt(cryptogramm, n, alphabet_d, alphabet_d_r, m):
                 for part in split_text:
                     split_text_n.append([[alphabet_d_r[c] for c in part]])
 
+                matrix_a = [[1, 2, 3], [4, 1, 6], [7, 5, 1]]
+                matrix_a_r = get_reverse_matrix(matrix_a, m)
+                vector_a = [[11, 12, 13]]
+
                 decrypted_text_l = []
                 for y in split_text_n:
                     decrypted_text_l.append(multiply_matrix(
@@ -153,8 +157,16 @@ def main():
     # print_matrix(get_reverse_matrix([[20, 32, 12],[25, 32, 30],[32, 12, 29]], m))
 
     # decrypted =
-    decrypt(cryptogramm, 3, alphabet_d, alphabet_d_r, m)
+    # decrypt(cryptogramm, 3, alphabet_d, alphabet_d_r, m)
     # print(decrypted)
+
+    te = 'КУДАТОТАМ'
+
+    encrypt = encrypt_by_hill(te, 3, alphabet_d, alphabet_d_r, m)
+
+    print(encrypt)
+
+    # print(decrypt(encrypt, 3, alphabet_d, alphabet_d_r, m))
 
 
 if __name__ == '__main__':
