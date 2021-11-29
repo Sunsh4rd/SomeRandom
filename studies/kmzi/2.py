@@ -1,4 +1,5 @@
 import random
+import pickle
 
 alphabet_s = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ'
 alphabet_d = {alphabet_s[i]: str(i) for i in range(len(alphabet_s))}
@@ -34,14 +35,24 @@ def split_text_by_kgrams(text, k):
     return [text[i: i + k] for i in range(len(text) - k + 1)]
 
 
+def decrypt(ciphertext, key):
+    return ''.join(key[c] for c in ciphertext)
+
 def main():
     text = read_text()
-    key = get_some_key()
-    key_s = ''.join(alphabet_dr[c] for c in key)
-    print(key, key_s)
-    for i in range(1, 6):
-        s = split_text_by_kgrams(text, i)
-        print(s, len(s))
+    trigrams = split_text_by_kgrams(text, 3)
+
+    # for t in trigrams:
+        # print(text.count(t))
+
+    # with open('studies\\kmzi\\trigrams', 'rb') as f:
+    #     print(pickle.load(f))
+    # key = get_some_key()
+    # key_s = ''.join(alphabet_dr[c] for c in key)
+    # print(key, key_s)
+    # for i in range(1, 6):
+        # s = split_text_by_kgrams(text, i)
+        # print(s, len(s))
 
 
 if __name__ == '__main__':

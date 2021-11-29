@@ -56,17 +56,19 @@ def main():
 
     #  1 0 2 3  5 4  7 6 8 9 11 10
     # -1 1 0 0 -1 1 -1 1 0 0 -1 1
-    opened_text = get_opened_text('input.txt')
+    opened_text = get_opened_text('studies\kmzi\input.txt')
     # block_length = get_block_length('block.txt')
-    perm1 = get_permutation('perm1.txt')
-    perm2 = get_permutation('perm2.txt')
+    perm1 = get_permutation('studies\kmzi\perm1.txt')
+    perm2 = get_permutation('studies\kmzi\perm2.txt')
     # print(type(perm1))
     # print(perm2)
-    # splitted = split_string(opened_text, block_length)
-    # encrypted1 = encrypt(splitted, perm1)
-    # encrypted2 = encrypt(splitted, perm2)
-    encrypted1 = apply_permutation(opened_text, perm1)
-    encrypted2 = apply_permutation(opened_text, perm2)
+    splitted = split_string(opened_text, 4)
+    encrypted1 = encrypt(splitted, perm1)
+    encrypted2 = encrypt(splitted, perm2)
+    # encrypted1 = apply_permutation(opened_text, perm1)
+    # encrypted2 = apply_permutation(opened_text, perm2)
+
+    print(encrypted1, encrypted2)
 
     check_block_length = 2
     while True:

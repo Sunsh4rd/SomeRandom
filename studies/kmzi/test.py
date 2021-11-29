@@ -123,4 +123,3 @@ print(curr)
     # currp1 = [list(splt[i]).index(tmp1[j][0]) for j in range(len(splt[i]))]
     # currp2 = [list(splt[i]).index(tmp2[j][1]) for j in range(len(splt[i]))]
     # print(currp1, currp2)
-
