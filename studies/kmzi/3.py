@@ -26,6 +26,9 @@ def main():
     for v, p in sample.items():
         print(v, p)
 
+    if not get_entropy(sample):
+        exit(0)
+
     print('Значение энтропии для данного распределения:', get_entropy(sample))
     print('Минимальное значение энтропии всегда 0')
     print('Максимальное значение энтропии:', math.log2(len(sample)))
