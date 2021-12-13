@@ -1,125 +1,73 @@
-import functools
-import itertools
-from math import pi
-import random
-from collections import OrderedDict
-from typing import Counter
+# t1 = 'aaabcbcead'
+# t2 = 'bcaaaadebc'
+
+# t1 = 'aaabcbcead'
+# t2 = 'bcaaabcead'
+
+# t1 = 'бавгедёжизйк'
+# t2 = 'багведжёизкй'
+
+# t1 = 'абвгдеёжзийк'
+t1 = 'бавгедёжизйк'
+t2 = 'авбедгёзжкйй'
+
+# t1 = 'вбаедгзжёкйи'
+# t2 = 'вбагёеджйизк'
+
+# t1 = 'aabcdeegfigk'
+# t2 = 'baaceedggifk'
 
 
-
-def apply_permutation(s, p):
-    return ''.join(s[i] for i in p)
-
-#3021
-
-msg = 'текстдляшифрования'
-l = 5
-splt_before_encrypt = [msg[i:i + l] + 'а' * (l-len(msg[i: i + l])) for i in range(0, len(msg), l)]
-splt_after_encrypt = [apply_permutation(part, [3,0,2,1,4]) for part in splt_before_encrypt]
-srtd = [''.join(sorted(prt)) for prt in splt_after_encrypt]
-
-print(splt_after_encrypt, srtd)
-
-# f = []
-# ls = [0,1,2,3,4]
-# r = list(filter(lambda x: x not in f, ls))
-# print(r)
-
-# to_splt = 'туеукуст'
-for part_of_crypt in splt_after_encrypt:    
-    encrypt_order = [(part_of_crypt[i], i) for i in range(len(part_of_crypt))]
-    print(encrypt_order)
-    srtd = sorted(encrypt_order) #[(splt[i], i) for i in range(len(splt))]
-    # srtd.sort(key=lambda x: x[0])
-    print(srtd)
-    alph = { srtd[i]: i for i in range(len(srtd)) }
-
-    print(alph)
-    perm = [alph[sym] for sym in encrypt_order]
-    print(perm)
+ps = []
 
 
-to_permute = 'туеукуст'
-alph = {'е': [0], 'к': [1], 'с': [2], 'т': [3, 4], 'у': [5, 6, 7]}
-poss = [alph[c] for c in to_permute]
-print(poss)
-all_p = []
-curr = []
-single = []
-last = [3,4]
-count = 0
-res = [0] * len(poss)
-print('res',res)
-for ind, e in enumerate(poss):
-
-    print(ind, e)
-    if len(e) == 1:
-        res[ind] = e[0]
-        single.append(ind)
+def check(t1, t2, p):
+    for o in range(0, len(t1), len(p)):
+        for i in range(len(p)):
+            if t1[o + i] != t2[o + p[i]]:
+                return False
+    return True
 
 
-    # print(res, single)
-    last = e
-    for ind1, e1 in enumerate(poss):
-        test = [list(p) for p in itertools.permutations(last)]
-        for p in test:
-            pass
+def get_permutations(x, y, p, i):
+    if i == len(p):
+        if check(t1, t2, p):
+            ps.append(p[:])
+        return
+    for j in range(len(x)):
+        if x[i] == y[j] and j not in p:
+            p[i] = j
+            get_permutations(x, y, p, i+1)
+    p[i] = None
 
-    
-    # if len(ind) > 1:
-        # curr.append(ind[i])
-        # print(i)
-        # i += 1
-    # else:
-        # curr.append(ind[0])
-    
-    # if len(ind) > 1:
-    #     test = [list(p) for p in itertools.permutations(ind)]
-    #     i = 0
-    #     for p in test:
-    #         while i < len(p):
 
-    #     # perms = list(itertools.permutations(ind))
-    #     # print(perms)
-    #     print('used', used)
-    #     pick = random.choice(list(filter(lambda x: x not in used, ind)))
-    #     curr.append(pick)
-    #     print('pick', pick)
-    #     used.append(pick)
-    #     print('used', used)
+def check_block(b1, b2):
+    get_permutations(b1, b2, [None] * len(b1), 0)
 
-    # else:
-    #     curr.append(ind[0])
 
-print(curr)
+if sorted(t1) != sorted(t2):
+    print('Невозможно получить одну перестановку из другой')
+    exit(0)
 
-#екст
-#текс
-#3012
-# for s in srtd:
-    
-    # alph = { srtd[i][j]: [] for j in range(len(srtd[i])) }
-    # alph = {}
-    # print(alph)
-    # for i in range(len(s)):
-    #     if s[i] not in alph:
-    #         alph[s[i]] = [i]
-    #     else:
-    #         alph[s[i]].append(i)
+for x in range(1, len(t1)+1):
+    split_text1 = [t1[i:i + x] for i in range(0, len(t1), x)]
+    split_text2 = [t2[i:i + x] for i in range(0, len(t2), x)]
 
-    # print(alph)
-    
-    # tmp2 = { j: splt[i][j] for j in range(len(splt[i])) }
-    # tmp3 = [(j, srtd[i][j]) for j in range(len(srtd[i]))]
-    
-    # print(splt[i], alph) #, tmp2, tmp3)
+    if len(split_text1[0]) == len(split_text1[-1]):
+        blocks_to_check = list(zip(split_text1, split_text2))
 
-    # currp = [alph[splt[i][j]] for j in range(len(splt[i]))]
-    
-    # print(currp)
+        for b1, b2 in blocks_to_check:
+            if sorted(b1) != sorted(b2):
+                break
+            try:
+                check_block(b1, b2)
+            except Exception:
+                print('pass')
 
-    # currp = [tmp1[tmp2[v]] for k, v in tmp1]
-    # print(currp)
-    # currp1 = [list(splt[i]).index(tmp1[j][0]) for j in range(len(splt[i]))]
-    # currp2 = [list(splt[i]).index(tmp2[j][1]) for j in range(len(splt[i]))]
-    # print(currp1, currp2)
+if ps:
+    if len(ps[0]) < len(t1):
+        print(f'Перестановки имеют длины блока { len(ps[0]) }')
+    else:
+        print(f'Перестановки имеют длины блока { len(t1) }')
+else:
+    print('Перестановки имеют разные длины блока')

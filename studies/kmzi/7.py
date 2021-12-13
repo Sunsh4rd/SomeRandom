@@ -24,7 +24,7 @@ def generate_texts():
             f.write(random.choice(russian_alphabet))
 
 
-def cout_ci():
+def count_ci():
     with open('studies\\kmzi\\arm.txt', 'r', encoding='utf-16') as f:
         armenian_text = f.read()
 
@@ -52,8 +52,9 @@ def cout_ci():
 
 def main():
     generate_texts()
-    ci_arm, ci_eng, ci_rus = cout_ci()
-    print(ci_arm, ci_eng, ci_rus)
+    ci_arm, ci_eng, ci_rus = count_ci()
+    print(
+        f'Индекс косовпадения армянского текста: {ci_arm}\nИндекс косовпадения английского текста:{ci_eng}\nИндекс косовпадения русского текста:{ci_rus}')
 
 
 if __name__ == '__main__':

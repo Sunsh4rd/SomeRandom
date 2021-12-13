@@ -22,7 +22,7 @@ def encrypt(msg, s):
 
 
 def compose(s1, s2):
-    return { k: s2[v] for k, v in s1.items()}
+    return {k: s2[v] for k, v in s1.items()}
 
 
 def main():
@@ -31,13 +31,14 @@ def main():
 
     if subs():
         s1, s2 = subs()
-        print('s1(m) =', encrypt(msg, s1))
-        print('s2(s1(m)) =', encrypt(encrypt(msg, s1), s2))
-        print('s3 = s2(s1)')
-        s3 = compose(s1, s2)
-        print('s3(m) =', encrypt(msg, s3))
-
-    
+        if len(s1) != len(s2) or sorted(s1.keys()) != sorted(s2.keys()) or sorted(s1.values()) != sorted(s2.values()):
+            print('Неверно заданы подстановки')
+        else:
+            print('s1(m) =', encrypt(msg, s1))
+            print('s2(s1(m)) =', encrypt(encrypt(msg, s1), s2))
+            print('s3 = s2(s1)')
+            s3 = compose(s1, s2)
+            print('s3(m) =', encrypt(msg, s3))
 
 
 if __name__ == '__main__':
