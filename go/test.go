@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	a := 5
-	b := 6
-	fmt.Printf("Hello, %d", a+b)
+	var a, b int
+	fmt.Scan(&a, &b)
+	fmt.Printf("a + b = %d\n", a+b)
 }
