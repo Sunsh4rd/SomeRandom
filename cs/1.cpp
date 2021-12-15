@@ -21,13 +21,13 @@ int main()
 		cin >> x >> y >> l;
 		x--;
 		y--;
-		if (l < 0)
+		// if (l < 0)
+		// 	g[x].push_back({y, l});
+		// else
+		// {
 			g[x].push_back({y, l});
-		else
-		{
-			g[x].push_back({y, l});
-			g[y].push_back({x, l});
-		}
+			// g[y].push_back({x, l});
+		// }
 	}
 
 	int *d = new int[n];
@@ -55,7 +55,7 @@ int main()
 		if (!F)
 			break;
 	}
-
+	
 	for (int i = 1; i < n; i++)
 		cout << d[i] << endl;
 

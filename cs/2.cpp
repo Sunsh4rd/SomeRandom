@@ -29,15 +29,15 @@ int main()
 		cin >> a >> b >> w;
 		a--;
 		b--;
-		if (w < 0)
-		{
+		// if (w < 0)
+		// {
+		// 	d[a][b] = w;
+		// }
+		// else
+		// {
 			d[a][b] = w;
-		}
-		else
-		{
-			d[a][b] = w;
-			d[b][a] = w;
-		}
+		// 	d[b][a] = w;
+		// }
 	}
 
 	for (int i = 0; i < n; i++)
@@ -58,12 +58,15 @@ int main()
 		{
 			for (int j = 0; j < n; j++)
 			{
-				if (d[i][j] == INF)
+				if (d[i][j] > 100)
 					cout << "inf"
 						 << " ";
-				cout << d[i][j] << " ";
+				else
+					cout << d[i][j] << " ";
 			}
+			cout << endl;
 		}
+		cout << t << " done" << endl;
 	}
 
 	for (int i = 0; i < n; i++)
