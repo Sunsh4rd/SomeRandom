@@ -2,8 +2,13 @@ package main
 
 import "fmt"
 
+type human struct {
+	name string
+	age  uint
+}
+
 func main() {
-	var a, b int
-	fmt.Scan(&a, &b)
-	fmt.Printf("a + b = %d\n", a+b)
+	var person human
+	fmt.Scan(&person.age, &person.name)
+	fmt.Printf(person.name + " " + string(rune(person.age)))
 }
