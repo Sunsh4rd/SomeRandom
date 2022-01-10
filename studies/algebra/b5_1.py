@@ -63,7 +63,6 @@ def facts(n):
     return dd
 
 
-
 def Kroneker():
     for i in range(0, int(n/2)+1):
         if f.subs(x, i) == 0:
