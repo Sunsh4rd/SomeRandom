@@ -19,7 +19,7 @@ def gf_sqf_list(f, p, K, all=False):
 
         if F != []:
             g = gf_gcd(f, F, p, K) 
-            h = gf_quo(f, g, p, K)#находим целу часть от деления
+            h = gf_quo(f, g, p, K)
 
             i = 1
 
