@@ -52,7 +52,6 @@ def gf_sqf_list(f, p, K, all=False):
 
     return lc, factors
 
-#f = [1, -1, -2, 2, 1, -1]
 f = [1, 5, 8, 4]
-#f = [1, 3]
+
 print(gf_sqf_list(f, 3, ZZ))
