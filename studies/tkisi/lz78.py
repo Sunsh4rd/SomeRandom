@@ -68,7 +68,7 @@ def decompression(input, output):
 def main():
     mode = input()  # 0 - Архивация, 1 - Разархивация
     if mode == "0":
-        input_t = parse('studies\\tkisi\\Тест_7.txt')
+        input_t = parse('studies\\tkisi\\Тест_3.txt')
         comp = open("res8.bin", mode='wb')
         start = int(round(time.time() * 1000))
         compression(input_t, comp)
