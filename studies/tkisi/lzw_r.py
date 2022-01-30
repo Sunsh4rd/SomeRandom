@@ -19,5 +19,5 @@ if oper == "0":
     quality = (101 - ((width * height) * 3) / size_compress)
     print("Качество сжатия: " + str(quality))
 if oper == "1":
-    decompressor = LZW(os.path.join("Compressed", "sample_compressed.lzw"))
+    decompressor = LZW('Compressed\sample_compressed.lzw')
     decompressor.decompress()
