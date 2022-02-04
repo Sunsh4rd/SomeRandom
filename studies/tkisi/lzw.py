@@ -112,7 +112,7 @@ class LZW:
 
     def saveImage(self, image):
         Split_file = str(os.path.basename(self.path)).split('.')
-        Name_file = Split_file[0] + "_decompressed.tiff"
+        Name_file = Split_file[0] + "_decompressed.tif"
         imagelist, imagesize = self.makeImageData(image[0], image[1], image[2])
         imagenew = Image.new('RGB', imagesize)
         imagenew.putdata(imagelist)

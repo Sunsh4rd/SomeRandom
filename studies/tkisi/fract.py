@@ -216,5 +216,5 @@ def test_rgb():
         plt.savefig('studies\\tkisi\\decomp_lena.png')
 
 if __name__ == '__main__':
-    # test_greyscale()
-    test_rgb()
+    test_greyscale()
+    # test_rgb()
