@@ -4,6 +4,8 @@ import time
 class bigint:
 
     def __init__(self, digits, b=10):
+        if digits[-1] == 0 and len(digits) >= 2:
+            digits.pop()
         self.digits = digits
         self.b = b
 
@@ -11,33 +13,53 @@ class bigint:
         return ''.join(str(x) for x in self.digits[::-1])
 
     def __add__(self, other):
-        n = len(self.digits)
+        n = max(len(self.digits), len(other.digits))
+        m = min(len(self.digits), len(other.digits))
+
+        if len(self.digits) == n:
+            more_digits, less_digits = self.digits[:], other.digits[:]
+        else:
+            more_digits, less_digits = other.digits[:], self.digits[:]
+
         j, k = 0, 0
         digits_sum = []
-        while j < n:
-            wj = (self.digits[j] + other.digits[j] + k) % self.b
+
+        while j < m:
+            wj = (more_digits[j] + less_digits[j] + k) % self.b
             digits_sum.append(wj)
-            k = (self.digits[j] + other.digits[j] + k) // self.b
+            k = (more_digits[j] + less_digits[j] + k) // self.b
             j += 1
+
+        while j < n:
+            wj = (more_digits[j] + k) % self.b
+            digits_sum.append(wj)
+            k = (more_digits[j] + k) // self.b
+            j += 1
+
         wn = k
         digits_sum.append(wn)
+
         return bigint(digits_sum)
 
 
 def main():
-    a = bigint([9, 1])
-    b = bigint([2, 1])
-    # a = bigint([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
-    # b = bigint([9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9])
-    start = time.perf_counter()
-    c = a+b
-    stop = time.perf_counter()
-    print(c, stop-start)
+    a = bigint(list(map(int, input('a = ')))[::-1])
+    b = bigint(list(map(int, input('b = ')))[::-1])
 
-    # start = time.perf_counter()
-    # d = 19+12
-    # stop = time.perf_counter()
-    # print(d, stop-start)
+    start = time.perf_counter_ns()
+    c = a + b
+    stop = time.perf_counter_ns()
+
+    print(c, stop - start)
+
+    d = int(str(a))
+    e = int(str(b))
+
+    start = time.perf_counter_ns()
+    f = d + e
+    stop = time.perf_counter_ns()
+    print(f, stop-start)
+
 
 if __name__ == '__main__':
     main()
