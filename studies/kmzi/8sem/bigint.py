@@ -25,15 +25,19 @@ class bigint:
 
 
 def main():
-    # a = bigint([8, 9])
-    # b = bigint([2, 1])
-    a = bigint([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
-    b = bigint([9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9])
+    a = bigint([9, 1])
+    b = bigint([2, 1])
+    # a = bigint([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+    # b = bigint([9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9])
     start = time.perf_counter()
     c = a+b
     stop = time.perf_counter()
     print(c, stop-start)
 
+    # start = time.perf_counter()
+    # d = 19+12
+    # stop = time.perf_counter()
+    # print(d, stop-start)
 
 if __name__ == '__main__':
     main()
