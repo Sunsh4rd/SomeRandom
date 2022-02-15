@@ -43,8 +43,43 @@ class bigint:
 
 
 def main():
-    a = bigint(list(map(int, input('a = ')))[::-1])
-    b = bigint(list(map(int, input('b = ')))[::-1])
+
+    try:
+        ina = list(map(int, input('a = ')))[::-1]
+        inb = list(map(int, input('b = ')))[::-1]
+    except Exception:
+        print('Ошибка ввода')
+        exit(0)
+
+    checka = ina[::-1]
+    checkb = inb[::-1]
+    countza = 0
+    countzb = 0
+    trail = False
+    for x in checka:
+        if countza >= 2:
+            trail = True
+            break
+        if x == 0:
+            countza += 1
+        else:
+            break
+
+    for x in checkb:
+        if countzb >= 2:
+            trail = True
+            break
+        if x == 0:
+            countzb += 1
+        else:
+            break
+
+    if trail:
+        print('Ошибка ввода')
+        exit(0)
+
+    a = bigint(ina)
+    b = bigint(inb)
 
     start = time.perf_counter_ns()
     c = a + b
@@ -58,7 +93,7 @@ def main():
     start = time.perf_counter_ns()
     f = d + e
     stop = time.perf_counter_ns()
-    print(f, stop-start)
+    print(f, stop - start)
 
 
 if __name__ == '__main__':
