@@ -41,6 +41,9 @@ class bigint:
 
         return bigint(digits_sum)
 
+    def __sub__(self, other):
+        pass
+
 
 def main():
 
