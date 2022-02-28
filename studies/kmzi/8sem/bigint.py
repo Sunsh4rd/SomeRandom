@@ -42,7 +42,38 @@ class bigint:
         return bigint(digits_sum)
 
     def __sub__(self, other):
-        pass
+        # 10020 -> [02001]
+        #  9287 -> [7829 ]
+        #          [337  ]
+        n = max(len(self.digits), len(other.digits))
+        m = min(len(self.digits), len(other.digits))
+
+        if len(self.digits) == n:
+            more_digits, less_digits = self.digits[:], other.digits[:]
+        else:
+            more_digits, less_digits = other.digits[:], self.digits[:]
+
+        j, k = 0, 0
+        digits_sub = []
+
+        while j < m:
+            if more_digits[j] >= less_digits[j]:
+                wj = (more_digits[j] - less_digits[j]) % self.b
+                digits_sub.append(wj)
+            j += 1
+            else:
+                print()
+
+        while j < n:
+            wj = (more_digits[j] + k) % self.b
+            digits_sum.append(wj)
+            k = (more_digits[j] + k) // self.b
+            j += 1
+
+        wn = k
+        digits_sum.append(wn)
+
+        return bigint(digits_sum)
 
 
 def main():
