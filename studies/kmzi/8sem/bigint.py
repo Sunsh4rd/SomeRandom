@@ -4,7 +4,7 @@ import time
 class bigint:
 
     def __init__(self, digits, b=10):
-        if digits[-1] == 0 and len(digits) >= 2:
+        while digits[-1] == 0 and len(digits) >= 2:
             digits.pop()
         self.digits = digits
         self.b = b
@@ -42,9 +42,6 @@ class bigint:
         return bigint(digits_sum)
 
     def __sub__(self, other):
-        # 10020 -> [00201]
-        #  9287 -> [7829 ]
-        #          [319  ]
         n = max(len(self.digits), len(other.digits))
         m = min(len(self.digits), len(other.digits))
 
@@ -57,23 +54,30 @@ class bigint:
         digits_sub = []
 
         while j < m:
-            if more_digits[j] >= less_digits[j]:
-                wj = (more_digits[j] - less_digits[j]) % self.b
+            if more_digits[j] >= less_digits[j] + k:
+                wj = (more_digits[j] - less_digits[j] - k) % self.b
                 digits_sub.append(wj)
-            j += 1
+                j += 1
+                k = 0
             else:
-                print()
+                wj = (more_digits[j] - less_digits[j] - k) % self.b
+                digits_sub.append(wj)
+                j += 1
+                k = 1
 
         while j < n:
-            wj = (more_digits[j] + k) % self.b
-            digits_sum.append(wj)
-            k = (more_digits[j] + k) // self.b
-            j += 1
+            if more_digits[j] - k >= 0:
+                wj = (more_digits[j] - k) % self.b
+                digits_sub.append(wj)
+                j += 1
+                k = 0
+            else:
+                wj = (more_digits[j] - k) % self.b
+                digits_sub.append(wj)
+                j += 1
+                k = 1
 
-        wn = k
-        digits_sum.append(wn)
-
-        return bigint(digits_sum)
+        return bigint(digits_sub)
 
 
 def main():
@@ -85,49 +89,57 @@ def main():
         print('Ошибка ввода')
         exit(0)
 
-    checka = ina[::-1]
-    checkb = inb[::-1]
-    countza = 0
-    countzb = 0
-    trail = False
-    for x in checka:
-        if countza >= 2:
-            trail = True
-            break
-        if x == 0:
-            countza += 1
-        else:
-            break
+    # checka = ina[::-1]
+    # checkb = inb[::-1]
+    # countza = 0
+    # countzb = 0
+    # trail = False
+    # for x in checka:
+    #     if countza >= 2:
+    #         trail = True
+    #         break
+    #     if x == 0:
+    #         countza += 1
+    #     else:
+    #         break
 
-    for x in checkb:
-        if countzb >= 2:
-            trail = True
-            break
-        if x == 0:
-            countzb += 1
-        else:
-            break
+    # for x in checkb:
+    #     if countzb >= 2:
+    #         trail = True
+    #         break
+    #     if x == 0:
+    #         countzb += 1
+    #     else:
+    #         break
 
-    if trail:
-        print('Ошибка ввода')
-        exit(0)
+    # if trail:
+    #     print('Ошибка ввода')
+    #     exit(0)
 
-    a = bigint(ina)
-    b = bigint(inb)
+    # a = bigint(ina)
+    # b = bigint(inb)
+
+    # start = time.perf_counter_ns()
+    # c = a + b
+    # stop = time.perf_counter_ns()
+
+    # print(c, stop - start)
+
+    # d = int(str(a))
+    # e = int(str(b))
+
+    # start = time.perf_counter_ns()
+    # f = d + e
+    # stop = time.perf_counter_ns()
+    # print(f, stop - start)
+
+    r1 = bigint(ina)
+    r2 = bigint(inb)
 
     start = time.perf_counter_ns()
-    c = a + b
+    r = r1 - r2
     stop = time.perf_counter_ns()
-
-    print(c, stop - start)
-
-    d = int(str(a))
-    e = int(str(b))
-
-    start = time.perf_counter_ns()
-    f = d + e
-    stop = time.perf_counter_ns()
-    print(f, stop - start)
+    print(r, stop - start)
 
 
 if __name__ == '__main__':
