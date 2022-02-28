@@ -136,10 +136,14 @@ def main():
     r1 = bigint(ina)
     r2 = bigint(inb)
 
+    r3 = int(str(r1))
+    r4 = int(str(r2))
+
     start = time.perf_counter_ns()
     r = r1 - r2
+    rr = r3 - r4
     stop = time.perf_counter_ns()
-    print(r, stop - start)
+    print(r, rr, stop - start)
 
 
 if __name__ == '__main__':
