@@ -42,9 +42,9 @@ class bigint:
         return bigint(digits_sum)
 
     def __sub__(self, other):
-        # 10020 -> [02001]
+        # 10020 -> [00201]
         #  9287 -> [7829 ]
-        #          [337  ]
+        #          [319  ]
         n = max(len(self.digits), len(other.digits))
         m = min(len(self.digits), len(other.digits))
 
