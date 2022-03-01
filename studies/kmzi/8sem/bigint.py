@@ -54,28 +54,28 @@ class bigint:
         digits_sub = []
 
         while j < m:
-            if more_digits[j] >= less_digits[j] + k:
-                wj = (more_digits[j] - less_digits[j] - k) % self.b
+            if more_digits[j] + k >= less_digits[j]:
+                wj = (more_digits[j] - less_digits[j] + k) % self.b
                 digits_sub.append(wj)
                 j += 1
                 k = 0
             else:
-                wj = (more_digits[j] - less_digits[j] - k) % self.b
+                wj = (more_digits[j] - less_digits[j] + k) % self.b
                 digits_sub.append(wj)
                 j += 1
-                k = 1
+                k = -1
 
         while j < n:
-            if more_digits[j] - k >= 0:
-                wj = (more_digits[j] - k) % self.b
+            if more_digits[j] + k >= 0:
+                wj = (more_digits[j] + k) % self.b
                 digits_sub.append(wj)
                 j += 1
                 k = 0
             else:
-                wj = (more_digits[j] - k) % self.b
+                wj = (more_digits[j] + k) % self.b
                 digits_sub.append(wj)
                 j += 1
-                k = 1
+                k = -1
 
         return bigint(digits_sub)
 
@@ -141,9 +141,13 @@ def main():
 
     start = time.perf_counter_ns()
     r = r1 - r2
+    stop = time.perf_counter_ns()
+    print(r, stop - start)
+
+    start = time.perf_counter_ns()
     rr = r3 - r4
     stop = time.perf_counter_ns()
-    print(r, rr, stop - start)
+    print(rr, stop - start)
 
 
 if __name__ == '__main__':

@@ -19,7 +19,6 @@ def hash(blocks):
 
 
 def main():
-    # print(hash(file_to_blocks('studies\\prog_security\\test\\b\\d\\Untitled-2.txt')))
     with open('studies\\prog_security\\last_state.json') as f:
         last_state = json.load(f)
         for root, dirs, files in os.walk('studies\\prog_security\\test'):
@@ -28,18 +27,16 @@ def main():
                 current_file_hash = hash(file_to_blocks(current_file))
                 if current_file in last_state:
                     if last_state[current_file] == current_file_hash:
-                        print('Не изменился')
+                        print(f'Файл {current_file} не изменился')
                     else:
-                        print('Изменился')
+                        print(f'Файл {current_file} изменился')
                 else:
-                    print('Новый файл')
+                    print(f'Новый файл {current_file}')
 
     with open('studies\\prog_security\\last_state.json', 'w') as f:
         state = {}
         for root, dirs, files in os.walk('studies\\prog_security\\test'):
             for name in files:
-                print(os.path.join(root, name))
-                print(hash(file_to_blocks(os.path.join(root, name))))
                 state[os.path.join(root, name)] = hash(
                     file_to_blocks(os.path.join(root, name)))
         json.dump(state, f, indent=2)
