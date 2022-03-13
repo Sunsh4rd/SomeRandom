@@ -79,6 +79,36 @@ class bigint:
 
         return bigint(digits_sub)
 
+    def __mul__(self, other):
+        # n = max(len(self.digits), len(other.digits))
+        # m = min(len(self.digits), len(other.digits))
+
+        # if len(self.digits) == n:
+        #     more_digits, less_digits = self.digits[:], other.digits[:]
+        # else:
+        #     more_digits, less_digits = other.digits[:], self.digits[:]
+
+        m, n = len(self.digits), len(other.digits)
+        digits_mul = [0] * (m + n)
+        # digits_mul[0:m - 1] = [0] * m
+        j = 0
+
+        while j < n:
+            if other.digits[j] == 0:
+                digits_mul[j+m] = 0
+                j += 1
+            i, k = 0, 0
+            while i < m:
+                t = self.digits[i] * other.digits[j] + digits_mul[i+j] + k
+                digits_mul[i+j] = t % self.b
+                k = t // self.b
+                i += 1
+            digits_mul[j+m] = k
+            j += 1
+            print(digits_mul)
+
+        return bigint(digits_mul)
+
 
 def main():
 
@@ -133,21 +163,33 @@ def main():
     # stop = time.perf_counter_ns()
     # print(f, stop - start)
 
-    r1 = bigint(ina)
-    r2 = bigint(inb)
+    # r1 = bigint(ina)
+    # r2 = bigint(inb)
 
-    r3 = int(str(r1))
-    r4 = int(str(r2))
+    # r3 = int(str(r1))
+    # r4 = int(str(r2))
 
-    start = time.perf_counter_ns()
-    r = r1 - r2
-    stop = time.perf_counter_ns()
-    print(r, stop - start)
+    # start = time.perf_counter_ns()
+    # r = r1 - r2
+    # stop = time.perf_counter_ns()
+    # print(r, stop - start)
 
-    start = time.perf_counter_ns()
-    rr = r3 - r4
-    stop = time.perf_counter_ns()
-    print(rr, stop - start)
+    # start = time.perf_counter_ns()
+    # rr = r3 - r4
+    # stop = time.perf_counter_ns()
+    # print(rr, stop - start)
+
+    m1 = bigint(ina)
+    m2 = bigint(inb)
+
+    m3 = int(str(m1))
+    m4 = int(str(m2))
+
+    m = m1 * m2
+    print(m)
+
+    mm = m3 * m4
+    print(mm)
 
 
 if __name__ == '__main__':
