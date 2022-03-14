@@ -176,11 +176,15 @@ def main():
     m3 = int(str(m1))
     m4 = int(str(m2))
 
+    start = time.perf_counter_ns()
     m = m1 * m2
-    print(m)
+    stop = time.perf_counter_ns()
+    print(m, stop-start)
 
+    start = time.perf_counter_ns()
     mm = m3 * m4
-    print(mm)
+    stop = time.perf_counter_ns()
+    print(mm, stop-start)
 
 
 if __name__ == '__main__':
