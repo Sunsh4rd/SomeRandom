@@ -80,32 +80,23 @@ class bigint:
         return bigint(digits_sub)
 
     def __mul__(self, other):
-        # n = max(len(self.digits), len(other.digits))
-        # m = min(len(self.digits), len(other.digits))
-
-        # if len(self.digits) == n:
-        #     more_digits, less_digits = self.digits[:], other.digits[:]
-        # else:
-        #     more_digits, less_digits = other.digits[:], self.digits[:]
-
         m, n = len(self.digits), len(other.digits)
         digits_mul = [0] * (m + n)
-        # digits_mul[0:m - 1] = [0] * m
         j = 0
 
         while j < n:
             if other.digits[j] == 0:
                 digits_mul[j+m] = 0
                 j += 1
-            i, k = 0, 0
-            while i < m:
-                t = self.digits[i] * other.digits[j] + digits_mul[i+j] + k
-                digits_mul[i+j] = t % self.b
-                k = t // self.b
-                i += 1
-            digits_mul[j+m] = k
-            j += 1
-            print(digits_mul)
+            else:
+                i, k = 0, 0
+                while i < m:
+                    t = self.digits[i] * other.digits[j] + digits_mul[i+j] + k
+                    digits_mul[i+j] = t % self.b
+                    k = t // self.b
+                    i += 1
+                digits_mul[j+m] = k
+                j += 1
 
         return bigint(digits_mul)
 
