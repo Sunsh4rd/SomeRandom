@@ -100,6 +100,9 @@ class bigint:
 
         return bigint(digits_mul)
 
+    def __truediv__(self, other):
+        return self
+
 
 def main():
 
@@ -170,21 +173,30 @@ def main():
     # stop = time.perf_counter_ns()
     # print(rr, stop - start)
 
-    m1 = bigint(ina)
-    m2 = bigint(inb)
+    # m1 = bigint(ina)
+    # m2 = bigint(inb)
 
-    m3 = int(str(m1))
-    m4 = int(str(m2))
+    # m3 = int(str(m1))
+    # m4 = int(str(m2))
 
-    start = time.perf_counter_ns()
-    m = m1 * m2
-    stop = time.perf_counter_ns()
-    print(m, stop-start)
+    # start = time.perf_counter_ns()
+    # m = m1 * m2
+    # stop = time.perf_counter_ns()
+    # print(m, stop-start)
 
-    start = time.perf_counter_ns()
-    mm = m3 * m4
-    stop = time.perf_counter_ns()
-    print(mm, stop-start)
+    # start = time.perf_counter_ns()
+    # mm = m3 * m4
+    # stop = time.perf_counter_ns()
+    # print(mm, stop-start)
+
+    d1 = bigint(ina)
+    d2 = bigint(inb)
+
+    d3 = bigint(str(d1))
+    d4 = bigint(str(d2))
+
+    d = d1 / d2
+    print(d)
 
 
 if __name__ == '__main__':
