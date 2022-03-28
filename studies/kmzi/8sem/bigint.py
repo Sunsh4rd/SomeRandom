@@ -100,8 +100,17 @@ class bigint:
 
         return bigint(digits_mul)
 
-    def __truediv__(self, other):
-        return self
+    def __divmod__(self, other):
+        if len(self.digits) == 1 and self.digits[0] == 0:
+            return bigint([0]), bigint([0])
+
+        n = len(other.digits) 
+        m = len(self.digits) - n
+
+        if m < 0:
+            return bigint([0]), self
+
+        # return self, other
 
 
 def main():
@@ -195,8 +204,8 @@ def main():
     d3 = bigint(str(d1))
     d4 = bigint(str(d2))
 
-    d = d1 / d2
-    print(d)
+    d = divmod(d1, d2)
+    print(*d)
 
 
 if __name__ == '__main__':
