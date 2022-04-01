@@ -1,18 +1,21 @@
 import argparse
 
 
-def linear_congruential(a, c, x0, m, n):
-    values = []
-    for i in range(1, n):
-        xn = (a*x0 + c) % m
-        values.append(xn)
-        x0 = xn
+class Generator():
 
-    return values
+    @staticmethod
+    def linear_congruential(n, a, c, m, x0):
+        values = []
+        for _ in range(n):
+            xn = (a*x0 + c) % m
+            values.append(xn)
+            x0 = xn
 
+        return values
 
-def additive():
-    pass
+    @staticmethod
+    def additive():
+        pass
 
 
 def main():
@@ -23,7 +26,7 @@ def main():
     # args = parser.parse_args()
     # print(args)
     # print(args.a + args.b + args.some)
-    print(linear_congruential(3, 5, 7, 10, 100))
+    print(Generator.linear_congruential(10, 3, 10, 64, 1))
 
 
 if __name__ == '__main__':
