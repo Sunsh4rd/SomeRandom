@@ -12,6 +12,17 @@ class bigint:
     def __str__(self):
         return ''.join(str(x) for x in self.digits[::-1])
 
+    def __lt__(self, other):
+        if len(self.digits) == len(other.digits):
+            for (s, o) in zip(self.digits[::-1], other.digits[::-1]):
+                print(s, o)
+                if s == o:
+                    continue
+                else:
+                    return s < o
+
+        return len(self.digits) < len(other.digits)
+
     def __add__(self, other):
         n = max(len(self.digits), len(other.digits))
         m = min(len(self.digits), len(other.digits))
@@ -44,6 +55,7 @@ class bigint:
     def __sub__(self, other):
         n = max(len(self.digits), len(other.digits))
         m = min(len(self.digits), len(other.digits))
+        minus_sign = self < other
 
         if len(self.digits) == n:
             more_digits, less_digits = self.digits[:], other.digits[:]
@@ -77,7 +89,7 @@ class bigint:
                 j += 1
                 k = -1
 
-        return bigint(digits_sub)
+        return bigint(digits_sub), minus_sign
 
     def __mul__(self, other):
         m, n = len(self.digits), len(other.digits)
@@ -101,6 +113,7 @@ class bigint:
         return bigint(digits_mul)
 
     def __divmod__(self, other):
+        q, r = [], []
         if len(self.digits) == 1 and self.digits[0] == 0:
             return bigint([0]), bigint([0])
 
@@ -110,7 +123,100 @@ class bigint:
         if m < 0:
             return bigint([0]), self
 
-        # return self, other
+        if n <= 1:
+            other.digits.append(0)
+            n += 1
+
+        d = self.b // (other.digits[n-1] + 1)
+        bigd = bigint([d])
+
+        if d == 1:
+            self.digits.append(0)
+        else:
+            self = self * bigd
+            self.digits.append(0)
+            other = other * bigd
+
+        j = m
+        qt, rt = None, None
+
+        while j >= 0:
+            qt = (self.digits[j+n] * self.b +
+                  self.digits[j+n-1]) // other.digits[n-1]
+            rt = (self.digits[j+n] * self.b +
+                  self.digits[j+n-1]) % other.digits[n-1]
+
+            dig = 2
+            while rt < self.b:
+                u = None
+                if j + n - dig < 0:
+                    u = 0
+                else:
+                    u = self.digits[j+n-dig]
+
+                v = None
+                if n - dig < 0:
+                    v = 0
+                else:
+                    v = other.digits[n-dig]
+
+                if qt == self.b or qt*v > self.b*rt + u:
+                    qt -= 1
+                    rt += other.digits[n-1]
+                else:
+                    if j+n-dig < len(self.digits) and j+n-dig > -1 and n-dig < len(other.digits) and n-dig > -1 and v == 0 and u == 0:
+                        dig += 1
+                    else:
+                        break
+
+            bigqt = bigint([qt])
+            mult = bigqt * other
+            divisable = bigint([self.digits[x] for x in range(j, j+n+1)])
+            before = divisable.digits[:]
+            sub_dm, minus = divisable - mult
+            after = sub_dm.digits[:]
+
+            if minus:
+                bb = bigint([self.b])
+                for _ in range(n+1):
+                    bb = bb * bigint([self.b])
+
+                divisable = divisable + bb
+                q.append(qt)
+                qt -= 1
+                other.digits.inset(0, 0)
+                divisable = divisable + other
+                divisable.digits.pop(0)
+            else:
+                divisable = sub_dm
+                q.append(qt)
+
+            count_zeroes = 0
+            if len(after) < len(before):
+                sub_dm.digits.extend([0]*(len(before)-len(after)))
+                # divisable.digits.extend([0]*(len(before)-len(after)))
+
+            if len(sub_dm.digits) == 1 and sub_dm.digits[0] == 0:
+                for x in range(j, j+n+1):
+                    self.digits[x] = 0
+            else:
+                for x in range(j, j+n+1):
+                    self.digits[x] = sub_dm.digits[count_zeroes]
+                    count_zeroes += 1
+
+            j -= 1
+
+        if rt == 0:
+            r = bigint([0])
+        else:
+            while self.digits[-1] == 0 and len(self.digits) >= 2:
+                self.digits.pop()
+            while bigd.digits[-1] == 0 and len(bigd.digits) >= 2:
+                bigd.digits.pop()
+            self.digits = self.digits[::-1]
+            q, r = divmod(self, bigd)
+
+        return bigint(q), bigint(r)
 
 
 def main():
@@ -175,7 +281,7 @@ def main():
     # start = time.perf_counter_ns()
     # r = r1 - r2
     # stop = time.perf_counter_ns()
-    # print(r, stop - start)
+    # print(*r)  # stop - start)
 
     # start = time.perf_counter_ns()
     # rr = r3 - r4
@@ -200,9 +306,6 @@ def main():
 
     d1 = bigint(ina)
     d2 = bigint(inb)
-
-    d3 = bigint(str(d1))
-    d4 = bigint(str(d2))
 
     d = divmod(d1, d2)
     print(*d)
