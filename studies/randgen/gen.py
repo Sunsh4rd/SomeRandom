@@ -18,17 +18,21 @@ class Generator():
     def additive(**iv):
         values = []
         n, s, a_s, xs, c, m = iv.values()
-        # print(n, s, a_s, xs, c, m)
-
         for i in range(n):
-            xis1 = 0
-            for j in range(1, s):
-                t = (a_s[j] * xs[i+j]) + c
-                xis1 += t
-            xis1 %= m
-            # print(xis1)
-            xs.append(xis1)
-            values.append(xis1)
+            xi = 0
+            for j in range(s):
+                xi += a_s[j] * xs[i+j]
+            xi += c
+            xi %= m
+            xs.append(xi)
+            values.append(xi)
+        return values
+
+    @staticmethod
+    def lfsr(**iv):
+        values = []
+        n, p, s, m, js, ys = iv.values()
+
         return values
 
 

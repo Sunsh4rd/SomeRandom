@@ -104,7 +104,7 @@ class bigint:
         if len(self.digits) == 1 and self.digits[0] == 0:
             return bigint([0]), bigint([0])
 
-        n = len(other.digits) 
+        n = len(other.digits)
         m = len(self.digits) - n
 
         if m < 0:
