@@ -1,12 +1,13 @@
+import random
 import time
 
 
-class bigint:
+class Bigint:
 
     def __init__(self, digits, b=10):
         while digits[-1] == 0 and len(digits) >= 2:
             digits.pop()
-        self.digits = digits
+        self.digits = list(digits)
         self.b = b
 
     def __str__(self):
@@ -15,7 +16,6 @@ class bigint:
     def __lt__(self, other):
         if len(self.digits) == len(other.digits):
             for (s, o) in zip(self.digits[::-1], other.digits[::-1]):
-                print(s, o)
                 if s == o:
                     continue
                 else:
@@ -50,7 +50,7 @@ class bigint:
         wn = k
         digits_sum.append(wn)
 
-        return bigint(digits_sum)
+        return Bigint(digits_sum)
 
     def __sub__(self, other):
         n = max(len(self.digits), len(other.digits))
@@ -89,7 +89,7 @@ class bigint:
                 j += 1
                 k = -1
 
-        return bigint(digits_sub), minus_sign
+        return Bigint(digits_sub), minus_sign
 
     def __mul__(self, other):
         m, n = len(self.digits), len(other.digits)
@@ -110,123 +110,141 @@ class bigint:
                 digits_mul[j+m] = k
                 j += 1
 
-        return bigint(digits_mul)
+        return Bigint(digits_mul)
+
+    def digit_divide(self, digit):
+        this = Bigint(self.digits)
+        r = 0
+        for i in range(len(this.digits)-1, -1, -1):
+            r = r * this.b + this.digits[i]
+            this.digits[i] = r // digit
+            r = r % digit
+        return Bigint(this.digits)
 
     def __divmod__(self, other):
+        this = Bigint(self.digits)
+        other = Bigint(other.digits)
         q, r = [], []
-        if len(self.digits) == 1 and self.digits[0] == 0:
-            return bigint([0]), bigint([0])
+
+        if len(other.digits) == 1 and other.digits[0] == 0:
+            raise ZeroDivisionError
+
+        if len(this.digits) == 1 and this.digits[0] == 0:
+            return Bigint([0]), Bigint([0])
 
         n = len(other.digits)
-        m = len(self.digits) - n
+        m = len(this.digits) - n
 
         if m < 0:
-            return bigint([0]), self
+            return Bigint([0]), this
 
-        if n <= 1:
-            other.digits.append(0)
-            n += 1
+        # if n <= 1:
+            # other.digits.append(0)
+            # n += 1
 
-        d = self.b // (other.digits[n-1] + 1)
-        bigd = bigint([d])
+        d = this.b // (other.digits[n-1] + 1)
+        bigd = Bigint([d])
 
         if d == 1:
-            self.digits.append(0)
+            this.digits.append(0)
         else:
-            self = self * bigd
-            self.digits.append(0)
+            this = this * bigd
+            if len(self.digits) == len(this.digits):
+                this.digits.append(0)
             other = other * bigd
 
         j = m
         qt, rt = None, None
 
         while j >= 0:
-            qt = (self.digits[j+n] * self.b +
-                  self.digits[j+n-1]) // other.digits[n-1]
-            rt = (self.digits[j+n] * self.b +
-                  self.digits[j+n-1]) % other.digits[n-1]
+            # print(other.digits)
+            qt = (this.digits[j+n] * this.b +
+                  this.digits[j+n-1]) // other.digits[n-1]
+            rt = (this.digits[j+n] * this.b +
+                  this.digits[j+n-1]) % other.digits[n-1]
 
-            dig = 2
-            while rt < self.b:
-                u = None
-                if j + n - dig < 0:
-                    u = 0
-                else:
-                    u = self.digits[j+n-dig]
+            # dig = 2
+            while rt < this.b:
+                # u = 0 if j + n - dig < 0 else this.digits[j+n-dig]
 
-                v = None
-                if n - dig < 0:
-                    v = 0
-                else:
-                    v = other.digits[n-dig]
+                # v = 0 if n - dig < 0 else other.digits[n-dig]
 
-                if qt == self.b or qt*v > self.b*rt + u:
+                if qt == this.b or qt*other.digits[n-2] > this.b*rt + this.digits[j+n-2]:
                     qt -= 1
                     rt += other.digits[n-1]
                 else:
-                    if j+n-dig < len(self.digits) and j+n-dig > -1 and n-dig < len(other.digits) and n-dig > -1 and v == 0 and u == 0:
-                        dig += 1
-                    else:
-                        break
+                    break
+                    # if j+n-dig < len(this.digits) and j+n-dig > -1 and n-dig < len(other.digits) and n-dig > -1 and v == 0 and u == 0:
+                    # dig += 1
+                    # else:
+                    # break
+            while True:
+                bigqt = Bigint([qt])
+                mult = bigqt * other
+                divisible = Bigint(this.digits[j:j+n+1])
+                # before = divisible.digits[:]
+                # print(divisible, mult)
+                sub_dm, minus = divisible - mult
+                # after = sub_dm.digits[:]
+                # print(
+                # f'q={bigqt}, mlt={mult}, div={divisible}, sub={sub_dm}, min={minus}')
+                if minus:
+                    qt -= 1
+                else:
+                    break
 
-            bigqt = bigint([qt])
-            mult = bigqt * other
-            divisable = bigint([self.digits[x] for x in range(j, j+n+1)])
-            before = divisable.digits[:]
-            sub_dm, minus = divisable - mult
-            after = sub_dm.digits[:]
+                # bb = Bigint([this.b])
+                # for _ in range(n):
+                    # bb = bb * Bigint([this.b])
 
-            if minus:
-                bb = bigint([self.b])
-                for _ in range(n+1):
-                    bb = bb * bigint([self.b])
+                # qt -= 1
 
-                divisable = divisable + bb
-                q.append(qt)
-                qt -= 1
-                other.digits.inset(0, 0)
-                divisable = divisable + other
-                divisable.digits.pop(0)
-            else:
-                divisable = sub_dm
-                q.append(qt)
+                # other.digits.insert(0, 0)
+                # divisible = bb + other - sub_dm
+                # divisible.digits.pop(0)
+            q.append(qt)
+            divisible = sub_dm
 
-            count_zeroes = 0
-            if len(after) < len(before):
-                sub_dm.digits.extend([0]*(len(before)-len(after)))
-                # divisable.digits.extend([0]*(len(before)-len(after)))
+            # count_zeroes = 0
+            # if len(after) < len(before):
+            # sub_dm.digits.extend([0]*(len(before)-len(after)))
+            # divisible.digits.extend([0]*(len(before)-len(after)))
 
-            if len(sub_dm.digits) == 1 and sub_dm.digits[0] == 0:
-                for x in range(j, j+n+1):
-                    self.digits[x] = 0
-            else:
-                for x in range(j, j+n+1):
-                    self.digits[x] = sub_dm.digits[count_zeroes]
-                    count_zeroes += 1
+            # if len(sub_dm.digits) == 1 and sub_dm.digits[0] == 0:
+            # for x in range(j, j+n+1):
+            # this.digits[x] = 0
+            # else:
+            for x in range(j, j+n+1):
+                this.digits[x] = sub_dm.digits[x -
+                                               j] if x-j < len(sub_dm.digits) else 0
+                # count_zeroes += 1
+            # print(this, sub_dm)
 
             j -= 1
 
-        if rt == 0:
-            r = bigint([0])
-        else:
-            while self.digits[-1] == 0 and len(self.digits) >= 2:
-                self.digits.pop()
-            while bigd.digits[-1] == 0 and len(bigd.digits) >= 2:
-                bigd.digits.pop()
-            self.digits = self.digits[::-1]
-            q, r = divmod(self, bigd)
+        # if rt == 0:
+        #     r = Bigint([0])
+        # else:
+        #     while this.digits[-1] == 0 and len(this.digits) >= 2:
+        #         this.digits.pop()
+        #     while bigd.digits[-1] == 0 and len(bigd.digits) >= 2:
+        #         bigd.digits.pop()
 
-        return bigint(q), bigint(r)
+        #     q, r = divmod(this, bigd)
+
+        r = this.digit_divide(d)
+
+        return Bigint(q[::-1]), r
 
 
 def main():
 
-    try:
-        ina = list(map(int, input('a = ')))[::-1]
-        inb = list(map(int, input('b = ')))[::-1]
-    except Exception:
-        print('Ошибка ввода')
-        exit(0)
+    # try:
+    #     ina = list(map(int, input('a = ')))[::-1]
+    #     inb = list(map(int, input('b = ')))[::-1]
+    # except Exception:
+    #     print('Ошибка ввода')
+    #     exit(0)
 
     # checka = ina[::-1]
     # checkb = inb[::-1]
@@ -255,8 +273,8 @@ def main():
     #     print('Ошибка ввода')
     #     exit(0)
 
-    # a = bigint(ina)
-    # b = bigint(inb)
+    # a = Bigint(ina)
+    # b = Bigint(inb)
 
     # start = time.perf_counter_ns()
     # c = a + b
@@ -272,8 +290,8 @@ def main():
     # stop = time.perf_counter_ns()
     # print(f, stop - start)
 
-    # r1 = bigint(ina)
-    # r2 = bigint(inb)
+    # r1 = Bigint(ina)
+    # r2 = Bigint(inb)
 
     # r3 = int(str(r1))
     # r4 = int(str(r2))
@@ -288,8 +306,8 @@ def main():
     # stop = time.perf_counter_ns()
     # print(rr, stop - start)
 
-    # m1 = bigint(ina)
-    # m2 = bigint(inb)
+    # m1 = Bigint(ina)
+    # m2 = Bigint(inb)
 
     # m3 = int(str(m1))
     # m4 = int(str(m2))
@@ -304,11 +322,24 @@ def main():
     # stop = time.perf_counter_ns()
     # print(mm, stop-start)
 
-    d1 = bigint(ina)
-    d2 = bigint(inb)
+    # d1 = Bigint(ina)
+    # d2 = Bigint(inb)
+    #
+    # d = divmod(d1, d2)
+    # print(*d)
 
-    d = divmod(d1, d2)
-    print(*d)
+    for _ in range(10000):
+        a = random.randint(0, 10000000000)
+        b = random.randint(10, 5000)
+
+        biga = Bigint(list(map(int, str(a)[::-1])))
+        bigb = Bigint(list(map(int, str(b)[::-1])))
+
+        if list(map(str, divmod(a, b))) != list(map(str, divmod(biga, bigb))):
+            print(a, b, biga, bigb, list(map(str, divmod(a, b))),
+                  list(map(str, divmod(biga, bigb))))
+
+        # assert(map(str, divmod(a, b)) == map(str, divmod(biga, bigb)))
 
 
 if __name__ == '__main__':
