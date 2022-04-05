@@ -239,12 +239,12 @@ class Bigint:
 
 def main():
 
-    # try:
-    #     ina = list(map(int, input('a = ')))[::-1]
-    #     inb = list(map(int, input('b = ')))[::-1]
-    # except Exception:
-    #     print('Ошибка ввода')
-    #     exit(0)
+    try:
+        ina = list(map(int, input('a = ')))[::-1]
+        inb = list(map(int, input('b = ')))[::-1]
+    except Exception:
+        print('Ошибка ввода')
+        exit(0)
 
     # checka = ina[::-1]
     # checkb = inb[::-1]
@@ -306,40 +306,40 @@ def main():
     # stop = time.perf_counter_ns()
     # print(rr, stop - start)
 
-    # m1 = Bigint(ina)
-    # m2 = Bigint(inb)
+    m1 = Bigint(ina)
+    m2 = Bigint(inb)
 
-    # m3 = int(str(m1))
-    # m4 = int(str(m2))
+    m3 = int(str(m1))
+    m4 = int(str(m2))
 
-    # start = time.perf_counter_ns()
-    # m = m1 * m2
-    # stop = time.perf_counter_ns()
-    # print(m, stop-start)
+    start = time.perf_counter_ns()
+    m = divmod(m1, m2)
+    stop = time.perf_counter_ns()
+    print(*m, stop-start)
 
-    # start = time.perf_counter_ns()
-    # mm = m3 * m4
-    # stop = time.perf_counter_ns()
-    # print(mm, stop-start)
+    start = time.perf_counter_ns()
+    mm = divmod(m3, m4)
+    stop = time.perf_counter_ns()
+    print(*mm, stop-start)
 
     # d1 = Bigint(ina)
     # d2 = Bigint(inb)
-    #
+
     # d = divmod(d1, d2)
     # print(*d)
 
-    for _ in range(10000):
-        a = random.randint(0, 10000000000)
-        b = random.randint(10, 5000)
+    # for _ in range(10000):
+    #     a = random.randint(0, 10000000000)
+    #     b = random.randint(10, 5000)
 
-        biga = Bigint(list(map(int, str(a)[::-1])))
-        bigb = Bigint(list(map(int, str(b)[::-1])))
+    #     biga = Bigint(list(map(int, str(a)[::-1])))
+    #     bigb = Bigint(list(map(int, str(b)[::-1])))
 
-        if list(map(str, divmod(a, b))) != list(map(str, divmod(biga, bigb))):
-            print(a, b, biga, bigb, list(map(str, divmod(a, b))),
-                  list(map(str, divmod(biga, bigb))))
+    #     if list(map(str, divmod(a, b))) != list(map(str, divmod(biga, bigb))):
+    #         print(a, b, biga, bigb, list(map(str, divmod(a, b))),
+    #               list(map(str, divmod(biga, bigb))))
 
-        # assert(map(str, divmod(a, b)) == map(str, divmod(biga, bigb)))
+    # assert(map(str, divmod(a, b)) == map(str, divmod(biga, bigb)))
 
 
 if __name__ == '__main__':
