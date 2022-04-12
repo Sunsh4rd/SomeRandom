@@ -59,6 +59,9 @@ class Bigint:
         m = min(len(self.digits), len(other.digits))
         minus_sign = self < other
 
+        if minus_sign:
+            return Bigint((other - self).digits), True
+
         if len(self.digits) == n:
             more_digits, less_digits = self.digits[:], other.digits[:]
         else:
@@ -286,6 +289,9 @@ def main():
                 print('Ошибка ввода')
                 exit(0)
             m = Bigint(inm)
+            if len(m.digits) == 1 and m.digits[0] == 0:
+                print('Модуль должен быть отличен от 0')
+                exit(0)
             start = time.perf_counter_ns()
             c = pow(a, b, m)
             stop = time.perf_counter_ns()
