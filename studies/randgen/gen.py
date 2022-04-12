@@ -31,9 +31,13 @@ class Generator():
     @staticmethod
     def lfsr(**iv):
         values = []
-        n, p, s, m, js, ys = iv.values()
-
-        return values
+        n, p, s, m, js, y1p = iv.values()
+        x_init = [int(d) for d in bin(y1p)[2:]]
+        a_s = [1 if i+1 in js else 0 for i in range(p)]
+        xs = []
+        for i in range(5):
+            pass
+        return a_s, x_init
 
 
 def main():
@@ -47,6 +51,7 @@ def main():
     print(Generator.linear_congruential(n=10, a=3, c=10, m=64, x0=1))
     print(Generator.additive(n=10, s=3, a_s=[
           1, 3, 5], xs=[2, 4, 6], c=7, m=93))
+    print(Generator.lfsr(n=None, p=5, s=None, m=None, js=[1, 5], y1p=12))
 
 
 if __name__ == '__main__':

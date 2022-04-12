@@ -1,4 +1,6 @@
+from ast import While
 import random
+from sys import flags
 import time
 
 
@@ -124,6 +126,7 @@ class Bigint:
     def __divmod__(self, other):
         this = Bigint(self.digits)
         other = Bigint(other.digits)
+        other_s = Bigint(other.digits)
         q, r = [], []
 
         if len(other.digits) == 1 and other.digits[0] == 0:
@@ -137,10 +140,6 @@ class Bigint:
 
         if m < 0:
             return Bigint([0]), this
-
-        # if n <= 1:
-            # other.digits.append(0)
-            # n += 1
 
         d = this.b // (other.digits[n-1] + 1)
         bigd = Bigint([d])
@@ -157,94 +156,144 @@ class Bigint:
         qt, rt = None, None
 
         while j >= 0:
-            # print(other.digits)
             qt = (this.digits[j+n] * this.b +
                   this.digits[j+n-1]) // other.digits[n-1]
             rt = (this.digits[j+n] * this.b +
                   this.digits[j+n-1]) % other.digits[n-1]
 
-            # dig = 2
             while rt < this.b:
-                # u = 0 if j + n - dig < 0 else this.digits[j+n-dig]
-
-                # v = 0 if n - dig < 0 else other.digits[n-dig]
-
                 if qt == this.b or qt*other.digits[n-2] > this.b*rt + this.digits[j+n-2]:
                     qt -= 1
                     rt += other.digits[n-1]
-                else:
-                    break
-                    # if j+n-dig < len(this.digits) and j+n-dig > -1 and n-dig < len(other.digits) and n-dig > -1 and v == 0 and u == 0:
-                    # dig += 1
-                    # else:
-                    # break
-            while True:
-                bigqt = Bigint([qt])
-                mult = bigqt * other
-                divisible = Bigint(this.digits[j:j+n+1])
-                # before = divisible.digits[:]
-                # print(divisible, mult)
-                sub_dm, minus = divisible - mult
-                # after = sub_dm.digits[:]
-                # print(
-                # f'q={bigqt}, mlt={mult}, div={divisible}, sub={sub_dm}, min={minus}')
-                if minus:
-                    qt -= 1
+                    if rt < this.b:
+                        if qt == this.b or qt*other.digits[n-2] > this.b*rt + this.digits[j+n-2]:
+                            qt -= 1
+                            rt += other.digits[n-1]
                 else:
                     break
 
-                # bb = Bigint([this.b])
-                # for _ in range(n):
-                    # bb = bb * Bigint([this.b])
+            bigqt = Bigint([qt])
+            mult = bigqt * other
+            divisible = Bigint(this.digits[j:j+n+1])
+            sub_dm, minus = divisible - mult
+            flag = False
+            if minus:
+                qt -= 1
+                flag = True
 
-                # qt -= 1
-
-                # other.digits.insert(0, 0)
-                # divisible = bb + other - sub_dm
-                # divisible.digits.pop(0)
+            bb = sub_dm
             q.append(qt)
-            divisible = sub_dm
+            while len(bb.digits) < n+1:
+                bb.digits.append(0)
 
-            # count_zeroes = 0
-            # if len(after) < len(before):
-            # sub_dm.digits.extend([0]*(len(before)-len(after)))
-            # divisible.digits.extend([0]*(len(before)-len(after)))
+            for i in range(len(bb.digits)):
+                this.digits[j+i] = bb.digits[i]
 
-            # if len(sub_dm.digits) == 1 and sub_dm.digits[0] == 0:
-            # for x in range(j, j+n+1):
-            # this.digits[x] = 0
-            # else:
-            for x in range(j, j+n+1):
-                this.digits[x] = sub_dm.digits[x -
-                                               j] if x-j < len(sub_dm.digits) else 0
-                # count_zeroes += 1
-            # print(this, sub_dm)
+            if flag:
+                bb = bb + other
+                bb.digits.pop()
+                for i in range(len(bb.digits)):
+                    this.digits[j+i] = bb.digits[i]
 
             j -= 1
 
-        # if rt == 0:
-        #     r = Bigint([0])
-        # else:
-        #     while this.digits[-1] == 0 and len(this.digits) >= 2:
-        #         this.digits.pop()
-        #     while bigd.digits[-1] == 0 and len(bigd.digits) >= 2:
-        #         bigd.digits.pop()
-
-        #     q, r = divmod(this, bigd)
-
         r = this.digit_divide(d)
+        quo = Bigint(q[::-1])
+        if int(str(r)) >= int(str(other_s)):
+            div, mod = int(str(r)) // int(str(other_s)
+                                          ), int(str(r)) % int(str(other_s))
+            quo = quo + Bigint([div])
+            r = Bigint([mod])
 
-        return Bigint(q[::-1]), r
+        return quo, r
+
+    def __pow__(self, d, m):
+        z = Bigint(self.digits)
+        n = d
+        y = Bigint([1])
+        while True:
+            n, mod_n = divmod(n, Bigint([2]))
+            if mod_n.digits[0] != 0:
+                y = divmod(y*z, m)[1]
+                if n.digits[0] == 0:
+                    return y
+            z = divmod(z*z, m)[1]
 
 
 def main():
 
-    try:
-        ina = list(map(int, input('a = ')))[::-1]
-        inb = list(map(int, input('b = ')))[::-1]
-    except Exception:
-        print('Ошибка ввода')
-        exit(0)
+    opt = input('Operation = ')
+
+    while True:
+
+        try:
+            ina = list(map(int, input('a = ')))[::-1]
+            inb = list(map(int, input('b = ')))[::-1]
+        except Exception:
+            print('Ошибка ввода')
+            exit(0)
+
+        a = Bigint(ina)
+        b = Bigint(inb)
+
+        if opt == 'a':
+            start = time.perf_counter_ns()
+            c = a + b
+            stop = time.perf_counter_ns()
+            print(c, stop - start)
+            start = time.perf_counter_ns()
+            c1 = int(str(a)) + int(str(b))
+            stop = time.perf_counter_ns()
+            print(c1, stop - start)
+
+        if opt == 's':
+            start = time.perf_counter_ns()
+            c = a - b
+            stop = time.perf_counter_ns()
+            print(c[0], stop - start)
+            start = time.perf_counter_ns()
+            c1 = int(str(a)) - int(str(b))
+            stop = time.perf_counter_ns()
+            print(c1, stop - start)
+
+        if opt == 'm':
+            start = time.perf_counter_ns()
+            c = a * b
+            stop = time.perf_counter_ns()
+            print(c, stop - start)
+            start = time.perf_counter_ns()
+            c1 = int(str(a)) * int(str(b))
+            stop = time.perf_counter_ns()
+            print(c1, stop - start)
+
+        if opt == 'd':
+            start = time.perf_counter_ns()
+            try:
+                c = divmod(a, b)
+            except ZeroDivisionError:
+                print('Ошибка, деление на 0')
+            stop = time.perf_counter_ns()
+            print(*c, stop - start)
+            start = time.perf_counter_ns()
+            c1 = divmod(int(str(a)), int(str(b)))
+            stop = time.perf_counter_ns()
+            print(*c1, stop - start)
+
+        if opt == 'e':
+            try:
+                inm = list(map(int, input('m = ')))[::-1]
+            except Exception:
+                print('Ошибка ввода')
+                exit(0)
+            m = Bigint(inm)
+            start = time.perf_counter_ns()
+            c = pow(a, b, m)
+            stop = time.perf_counter_ns()
+            print(c, stop - start)
+            start = time.perf_counter_ns()
+            c1 = pow(int(str(a)), int(str(b)), int(str(m)))
+            stop = time.perf_counter_ns()
+            print(c1, stop - start)
 
     # checka = ina[::-1]
     # checkb = inb[::-1]
@@ -276,12 +325,6 @@ def main():
     # a = Bigint(ina)
     # b = Bigint(inb)
 
-    # start = time.perf_counter_ns()
-    # c = a + b
-    # stop = time.perf_counter_ns()
-
-    # print(c, stop - start)
-
     # d = int(str(a))
     # e = int(str(b))
 
@@ -306,21 +349,23 @@ def main():
     # stop = time.perf_counter_ns()
     # print(rr, stop - start)
 
-    m1 = Bigint(ina)
-    m2 = Bigint(inb)
+    # m1 = Bigint(ina)
+    # m2 = Bigint(inb)
 
-    m3 = int(str(m1))
-    m4 = int(str(m2))
+    # print(*(m1-m2))
 
-    start = time.perf_counter_ns()
-    m = divmod(m1, m2)
-    stop = time.perf_counter_ns()
-    print(*m, stop-start)
+    # m3 = int(str(m1))
+    # m4 = int(str(m2))
 
-    start = time.perf_counter_ns()
-    mm = divmod(m3, m4)
-    stop = time.perf_counter_ns()
-    print(*mm, stop-start)
+    # start = time.perf_counter_ns()
+    # m = divmod(m1, m2)
+    # stop = time.perf_counter_ns()
+    # print(*m, stop-start)
+
+    # start = time.perf_counter_ns()
+    # mm = divmod(m3, m4)
+    # stop = time.perf_counter_ns()
+    # print(*mm, stop-start)
 
     # d1 = Bigint(ina)
     # d2 = Bigint(inb)
