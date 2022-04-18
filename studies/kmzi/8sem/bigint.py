@@ -1,4 +1,5 @@
 from ast import While
+from distutils.util import subst_vars
 import random
 from sys import flags
 import time
@@ -54,13 +55,51 @@ class Bigint:
 
         return Bigint(digits_sum)
 
+    def sub_negative(f, s):
+        n = max(len(f.digits), len(s.digits))
+        m = min(len(f.digits), len(s.digits))
+        if len(f.digits) == n:
+            more_digits, less_digits = f.digits[:], s.digits[:]
+        else:
+            more_digits, less_digits = s.digits[:], f.digits[:]
+
+        j, k = 0, 0
+        digits_sub = []
+
+        while j < m:
+            if more_digits[j] + k >= less_digits[j]:
+                wj = (more_digits[j] - less_digits[j] + k) % f.b
+                digits_sub.append(wj)
+                j += 1
+                k = 0
+            else:
+                wj = (more_digits[j] - less_digits[j] + k) % f.b
+                digits_sub.append(wj)
+                j += 1
+                k = -1
+
+        while j < n:
+            if more_digits[j] + k >= 0:
+                wj = (more_digits[j] + k) % f.b
+                digits_sub.append(wj)
+                j += 1
+                k = 0
+            else:
+                wj = (more_digits[j] + k) % f.b
+                digits_sub.append(wj)
+                j += 1
+                k = -1
+
+        return Bigint(digits_sub), True
+
     def __sub__(self, other):
+        this = Bigint(self.digits)
         n = max(len(self.digits), len(other.digits))
         m = min(len(self.digits), len(other.digits))
         minus_sign = self < other
 
         if minus_sign:
-            return Bigint((other - self).digits), True
+            return Bigint.sub_negative(other, this)
 
         if len(self.digits) == n:
             more_digits, less_digits = self.digits[:], other.digits[:]
@@ -184,8 +223,16 @@ class Bigint:
                 qt -= 1
                 flag = True
 
-            bb = sub_dm
+                bb = Bigint([self.b])
+                for _ in range(n):
+                    bb = bb * Bigint([self.b])
+
+                bb, sign = bb - sub_dm
+            else:
+                bb = sub_dm
+
             q.append(qt)
+
             while len(bb.digits) < n+1:
                 bb.digits.append(0)
 
@@ -211,15 +258,15 @@ class Bigint:
         return quo, r
 
     def __pow__(self, d, m):
-        z = Bigint(self.digits)
+        z = divmod(Bigint(self.digits), m)[1]
         n = d
         y = Bigint([1])
         while True:
             n, mod_n = divmod(n, Bigint([2]))
-            if mod_n.digits[0] != 0:
+            if mod_n.digits[-1] != 0:
                 y = divmod(y*z, m)[1]
-                if n.digits[0] == 0:
-                    return y
+            if n.digits[-1] == 0:
+                return y
             z = divmod(z*z, m)[1]
 
 
@@ -253,7 +300,7 @@ def main():
             start = time.perf_counter_ns()
             c = a - b
             stop = time.perf_counter_ns()
-            print(c[0], stop - start)
+            print(c[0], c[1], stop - start)
             start = time.perf_counter_ns()
             c1 = int(str(a)) - int(str(b))
             stop = time.perf_counter_ns()
@@ -300,97 +347,6 @@ def main():
             c1 = pow(int(str(a)), int(str(b)), int(str(m)))
             stop = time.perf_counter_ns()
             print(c1, stop - start)
-
-    # checka = ina[::-1]
-    # checkb = inb[::-1]
-    # countza = 0
-    # countzb = 0
-    # trail = False
-    # for x in checka:
-    #     if countza >= 2:
-    #         trail = True
-    #         break
-    #     if x == 0:
-    #         countza += 1
-    #     else:
-    #         break
-
-    # for x in checkb:
-    #     if countzb >= 2:
-    #         trail = True
-    #         break
-    #     if x == 0:
-    #         countzb += 1
-    #     else:
-    #         break
-
-    # if trail:
-    #     print('Ошибка ввода')
-    #     exit(0)
-
-    # a = Bigint(ina)
-    # b = Bigint(inb)
-
-    # d = int(str(a))
-    # e = int(str(b))
-
-    # start = time.perf_counter_ns()
-    # f = d + e
-    # stop = time.perf_counter_ns()
-    # print(f, stop - start)
-
-    # r1 = Bigint(ina)
-    # r2 = Bigint(inb)
-
-    # r3 = int(str(r1))
-    # r4 = int(str(r2))
-
-    # start = time.perf_counter_ns()
-    # r = r1 - r2
-    # stop = time.perf_counter_ns()
-    # print(*r)  # stop - start)
-
-    # start = time.perf_counter_ns()
-    # rr = r3 - r4
-    # stop = time.perf_counter_ns()
-    # print(rr, stop - start)
-
-    # m1 = Bigint(ina)
-    # m2 = Bigint(inb)
-
-    # print(*(m1-m2))
-
-    # m3 = int(str(m1))
-    # m4 = int(str(m2))
-
-    # start = time.perf_counter_ns()
-    # m = divmod(m1, m2)
-    # stop = time.perf_counter_ns()
-    # print(*m, stop-start)
-
-    # start = time.perf_counter_ns()
-    # mm = divmod(m3, m4)
-    # stop = time.perf_counter_ns()
-    # print(*mm, stop-start)
-
-    # d1 = Bigint(ina)
-    # d2 = Bigint(inb)
-
-    # d = divmod(d1, d2)
-    # print(*d)
-
-    # for _ in range(10000):
-    #     a = random.randint(0, 10000000000)
-    #     b = random.randint(10, 5000)
-
-    #     biga = Bigint(list(map(int, str(a)[::-1])))
-    #     bigb = Bigint(list(map(int, str(b)[::-1])))
-
-    #     if list(map(str, divmod(a, b))) != list(map(str, divmod(biga, bigb))):
-    #         print(a, b, biga, bigb, list(map(str, divmod(a, b))),
-    #               list(map(str, divmod(biga, bigb))))
-
-    # assert(map(str, divmod(a, b)) == map(str, divmod(biga, bigb)))
 
 
 if __name__ == '__main__':
