@@ -258,6 +258,8 @@ class Bigint:
         return quo, r
 
     def __pow__(self, d, m):
+        if len(self.digits) == 1 and self.digits[0] == 0:
+            return 0
         z = divmod(Bigint(self.digits), m)[1]
         n = d
         y = Bigint([1])
