@@ -17,6 +17,8 @@
 *.zip
 *.tar.gz
 *.rar
+*.class
+__pycache__/
 
 
 .exe
