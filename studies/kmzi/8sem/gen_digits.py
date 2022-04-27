@@ -2,7 +2,8 @@ from bigint import Bigint
 
 
 def main():
-    pass
+    k = int(input())
+    halfk = k // 2
 
 
 if __name__ == '__main__':
