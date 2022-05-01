@@ -22,6 +22,18 @@ class Bigint:
 
         return len(self.digits) < len(other.digits)
 
+    def __eq__(self, other):
+        if len(self.digits) != len(other.digits):
+            return False
+
+        for (s, o) in zip(self.digits[::-1], other.digits[::-1]):
+            if s != o:
+                return False
+            else:
+                continue
+
+        return True
+
     def __add__(self, other):
         n = max(len(self.digits), len(other.digits))
         m = min(len(self.digits), len(other.digits))
