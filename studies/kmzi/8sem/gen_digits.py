@@ -8,6 +8,9 @@ def int_to_list_of_digits(x):
 
 
 def miller_rabin(n, k):
+    if n == Bigint([3]):
+        return True
+
     n1 = (n - Bigint([1]))[0]
     # print(n)
     q = n1
@@ -48,16 +51,26 @@ def miller_rabin(n, k):
 
 
 def main():
+    # print(miller_rabin(Bigint([3]), 2))
     k = int(input('k = '))
     halfk = k // 2
     x1, x2 = 1 << halfk-1, (1 << halfk) - 1
-    # print(x1, x2)
-    # print(miller_rabin(Bigint([1, 2, 1]), k))
-
+    # print('xs', x1, x2)
+    k = 0
     while True:
+        if k == x2-x1:
+            print('Число не найдено')
+            break
         q = Bigint(int_to_list_of_digits(random.randint(x1, x2)))
         s = Bigint(int_to_list_of_digits(random.randint(x1, x2)))
         p = q*s + Bigint([1])
+        # print('p', p, s, q)
+        if divmod(q, Bigint([2]))[1] == Bigint([0]):
+            # print('q even')
+            continue
+        if q == Bigint([1]):
+            # print('q 1')
+            continue
         if miller_rabin(q, int(math.log2(int(str(q))))) and divmod(s, Bigint([2]))[1] == Bigint([0]) and p < (Bigint([2])*q + Bigint([1])) * (Bigint([2])*q + Bigint([1])) and pow(Bigint([2]), q*s, p) == Bigint([1]) and pow(Bigint([2]), s, p) != Bigint([1]):
             print(f'p = {p}, q = {q}, s = {s}')
             break
