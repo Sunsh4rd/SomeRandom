@@ -50,17 +50,15 @@ def miller_rabin(n, k):
     return True
 
 
-def main():
-    # print(miller_rabin(Bigint([3]), 2))
-    k = int(input('k = '))
+def gen_digits(k):
     halfk = k // 2
     x1, x2 = 1 << halfk-1, (1 << halfk) - 1
     # print('xs', x1, x2)
-    k = 0
+    it = 0
     while True:
-        if k == x2-x1:
+        if it == x2-x1:
             print('Число не найдено')
-            break
+            return None
         q = Bigint(int_to_list_of_digits(random.randint(x1, x2)))
         s = Bigint(int_to_list_of_digits(random.randint(x1, x2)))
         p = q*s + Bigint([1])
@@ -72,8 +70,14 @@ def main():
             # print('q 1')
             continue
         if miller_rabin(q, int(math.log2(int(str(q))))) and divmod(s, Bigint([2]))[1] == Bigint([0]) and p < (Bigint([2])*q + Bigint([1])) * (Bigint([2])*q + Bigint([1])) and pow(Bigint([2]), q*s, p) == Bigint([1]) and pow(Bigint([2]), s, p) != Bigint([1]):
-            print(f'p = {p}, q = {q}, s = {s}')
-            break
+            # print(f'p = {p}, q = {q}, s = {s}')
+            return p
+
+
+def main():
+    # print(miller_rabin(Bigint([3]), 2))
+    k = int(input('k = '))
+    print(gen_digits(k))
 
 
 if __name__ == '__main__':
