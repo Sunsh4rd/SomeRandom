@@ -59,6 +59,66 @@ class Generator():
 
         return values
 
+    @staticmethod
+    def five_parameters(nc, iv):
+        values = []
+        n = nc
+        p, w = iv[0], iv[1]
+        y1p = iv[-1]
+        q1, q2, q3 = iv[2], iv[3], iv[4]
+        x_init = [int(d) for d in bin(y1p)[2:]]
+        x_init = [0] * (p - len(x_init)) + x_init
+        x_all = x_init[:]
+        for _ in range(n):
+            for _ in range(w):
+                next_bit = x_all[0] ^ x_all[q1] ^ x_all[q2] ^ x_all[q3]
+                x_all.append(next_bit)
+                x_all.pop(0)
+            values.append(int(''.join(str(x)
+                          for x in x_all[-1:-w-1:-1][::-1]), 2))
+        return values
+
+    @staticmethod
+    def rsa(nc, iv):
+        values = []
+        c = nc
+        n, e, x0, w, l = iv
+        x_all = []
+        for _ in range(c):
+            x0 = pow(x0, e, n)
+            xi_b = [int(d) for d in bin(x0)[2:]]
+            xi_b = [0] * (w - len(xi_b)) + xi_b
+            xi_b = xi_b[::-1][:w][::-1]
+            x_all += xi_b
+            values.append(int(''.join(str(x) for x in x_all[:l]), 2))
+            x_all = x_all[l:]
+        return values
+
+    @staticmethod
+    def bbs(nc, iv):
+        values = []
+        c = nc
+        n, x0, l = iv
+        for _ in range(c):
+            x_bin = []
+            for _ in range(l):
+                x0 = pow(x0, 2, n)
+                x_bin.append(x0 % 2)
+            values.append(int(''.join(str(x) for x in x_bin), 2))
+        return values
+
+    @staticmethod
+    def rc4(nc, iv):
+        pass
+
+    @staticmethod
+    def nfsr(nc, iv):
+        pass
+
+    @staticmethod
+    def mersenne_twister(nc, iv):
+        pass
+
 
 def main():
     parser = argparse.ArgumentParser()
@@ -79,6 +139,30 @@ def main():
                 f.write(' '.join(str(x) for x in values))
         case 'lfsr':
             values = Generator.lfsr(args.n, args.i)
+            with open(args.f, 'w') as f:
+                f.write(' '.join(str(x) for x in values))
+        case '5p':
+            values = Generator.five_parameters(args.n, args.i)
+            with open(args.f, 'w') as f:
+                f.write(' '.join(str(x) for x in values))
+        case 'rsa':
+            values = Generator.rsa(args.n, args.i)
+            with open(args.f, 'w') as f:
+                f.write(' '.join(str(x) for x in values))
+        case 'bbs':
+            values = Generator.bbs(args.n, args.i)
+            with open(args.f, 'w') as f:
+                f.write(' '.join(str(x) for x in values))
+        case 'rc4':
+            values = Generator.rc4(args.n, args.i)
+            with open(args.f, 'w') as f:
+                f.write(' '.join(str(x) for x in values))
+        case 'nfsr':
+            values = Generator.nfsr(args.n, args.i)
+            with open(args.f, 'w') as f:
+                f.write(' '.join(str(x) for x in values))
+        case 'mt':
+            values = Generator.mersenne_twister(args.n, args.i)
             with open(args.f, 'w') as f:
                 f.write(' '.join(str(x) for x in values))
 
