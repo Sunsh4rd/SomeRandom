@@ -1,8 +1,14 @@
+import math
 import random
 from bigint import Bigint
 from gen_digits import gen_digits
 from gen_digits import int_to_list_of_digits
+from gen_digits import miller_rabin
 import json
+
+alph_s = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя.!, '
+alph_d = {alph_s[i]: i+10 for i in range(len(alph_s))}
+alph_dr = {v: k for (k, v) in alph_d.items()}
 
 
 def gcd_extended(a, b):
@@ -33,8 +39,8 @@ def inverse(a, n):
     return t
 
 
-def keygen(l):
-    p, q = gen_digits(l), gen_digits(l)
+def keygen(p, q):
+    # p, q = gen_digits(l), gen_digits(l)
     n = p * q
     euler = (p-Bigint([1]))[0] * (q-Bigint([1]))[0]
     e = Bigint(int_to_list_of_digits(random.randint(2, int(str(euler))-1)))
@@ -51,8 +57,12 @@ def keygen(l):
 def encrypt(plain_text_file, e, n):
     with open(plain_text_file, 'r', encoding='utf-8') as f:
         text = f.read()
+        for c in text:
+            if c not in alph_s:
+                print('В тексте есть недопустимые символы')
+                exit(0)
         cipher_text = ' '.join(
-            str(pow(Bigint(int_to_list_of_digits(ord(c))), e, n)) for c in text)
+            str(pow(Bigint(int_to_list_of_digits(alph_d[c])), e, n)) for c in text)
         return cipher_text
 
 
@@ -60,7 +70,7 @@ def decrypt(cipher_text_file, d, n):
     with open(cipher_text_file, 'r', encoding='utf-8') as f:
         text = list(map(int, f.read().split()))
         decipher_text = ''.join(
-            str(chr(int(str(pow(Bigint(int_to_list_of_digits((c))), d, n))))) for c in text)
+            str(alph_dr[int(str(pow(Bigint(int_to_list_of_digits((c))), d, n)))]) for c in text)
         return decipher_text
 
 
@@ -84,7 +94,14 @@ def main():
     opt = input(
         '0 - Генерация ключей, 1 - Зашифровать текст, 2 - Расшифровать текст: ')
     if opt == '0':
-        e, d, n = keygen(32)
+        p = Bigint(int_to_list_of_digits(int(input('p = '))))
+        q = Bigint(int_to_list_of_digits(int(input('q = '))))
+        while True:
+            if miller_rabin(p, int(math.log2(int(str(p))))) and miller_rabin(q, int(math.log2(int(str(q))))):
+                e, d, n = keygen(p, q)
+                break
+            print('p и q должны быть простыми')
+
         print(f'e = {e}, d = {d}, n = {n}')
         with open('public.json', 'w', encoding='utf-8') as f:
             json.dump({'e': int(str(e)), 'n': int(str(n))}, f)
