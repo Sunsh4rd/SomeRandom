@@ -109,7 +109,43 @@ class Generator():
 
     @staticmethod
     def rc4(nc, iv):
-        pass
+        values = []
+
+        n = nc
+        w, k = iv[0], iv[1:]
+        s = list(range(256))
+        j = 0
+        for i in range(256):
+            j = (j + s[i] + k[i]) % 256
+            s[i], s[j] = s[j], s[i]
+
+        i = 0
+        j = 0
+        bitSequence = ''
+
+        temp = (w * n)//8 + 1
+        for u in range(temp):
+            i = (i + 1) % 256
+            j = (j + s[i]) % 256
+            s[i], s[j] = s[j], s[i]
+            x = s[(s[i] + s[j]) % 256]
+
+            xBin = format(x, 'b')
+            while len(xBin) < 8:
+                xBin = '0' + xBin
+
+            bitSequence += xBin
+
+        xBin = ''
+
+        for i in range(0, len(bitSequence)):
+            xBin += bitSequence[i]
+
+            if (i + 1) % w == 0:
+                values.append(int(xBin, 2))
+                xBin = ''
+
+        return values
 
     @staticmethod
     def nfsr(nc, iv):
