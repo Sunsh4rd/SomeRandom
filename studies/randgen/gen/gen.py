@@ -123,8 +123,8 @@ class Generator():
         j = 0
         bitSequence = ''
 
-        temp = (w * n)//8 + 1
-        for u in range(temp):
+        t = (w * n)//8 + 1
+        for _ in range(t):
             i = (i + 1) % 256
             j = (j + s[i]) % 256
             s[i], s[j] = s[j], s[i]
