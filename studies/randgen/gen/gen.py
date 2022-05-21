@@ -110,7 +110,6 @@ class Generator():
     @staticmethod
     def rc4(nc, iv):
         values = []
-
         n = nc
         w, k = iv[0], iv[1:]
         s = list(range(256))
@@ -121,8 +120,8 @@ class Generator():
 
         i = 0
         j = 0
-        bitSequence = ''
 
+        x_all = []
         t = (w * n)//8 + 1
         for _ in range(t):
             i = (i + 1) % 256
@@ -130,30 +129,74 @@ class Generator():
             s[i], s[j] = s[j], s[i]
             x = s[(s[i] + s[j]) % 256]
 
-            xBin = format(x, 'b')
-            while len(xBin) < 8:
-                xBin = '0' + xBin
+            xi_b = [int(d) for d in bin(x)[2:]]
+            xi_b = [0] * (8 - len(xi_b)) + xi_b
+            # print(xi_b)
+            x_all += xi_b
 
-            bitSequence += xBin
-
-        xBin = ''
-
-        for i in range(0, len(bitSequence)):
-            xBin += bitSequence[i]
-
+        xi_b = []
+        for i in range(0, len(x_all)):
+            xi_b.append(x_all[i])
             if (i + 1) % w == 0:
-                values.append(int(xBin, 2))
-                xBin = ''
+                values.append(int(''.join(str(x) for x in xi_b), 2))
+                xi_b = []
 
         return values
 
     @staticmethod
     def nfsr(nc, iv):
-        pass
+        values = []
+        c = nc
+        w, p, x, m, j = iv
+        x1 = Generator.lfsr(c, (p[0], w, m[0], j[0], x[0]))
+        x2 = Generator.lfsr(c, (p[1], w, m[1], j[1], x[1]))
+        x3 = Generator.lfsr(c, (p[2], w, m[2], j[2], x[2]))
+
+        for i in range(c):
+            x1Element = x1[i]
+            x2Element = x2[i]
+            x3Element = x3[i]
+
+            resultTemp = (x1Element & x2Element) ^ (
+                x2Element & x3Element) ^ x3Element
+            values.append(resultTemp)
+
+        return values
 
     @staticmethod
     def mersenne_twister(nc, iv):
-        pass
+        values = []
+        n = nc
+        p = iv[0]
+        xs = iv[-1:-p-1:-1][::-1]
+        w, r, q, a, u, s, t, l, b, c = iv[1:11]
+
+        t1 = [1]*(w-r) + [0]*r
+        t2 = [0]*(w-r) + [1]*r
+
+        d1 = int(''.join(str(x) for x in t1), 2)
+        d2 = int(''.join(str(x) for x in t2), 2)
+
+        for i in range(n):
+            t12 = xs[i] & d1
+            t13 = (xs[i + 1]) & d2
+            Y = t12 | t13
+
+            x = 0
+            if (Y % 2 != 0):
+                x = (xs[i + q] % 2 ** w) ^ (Y >> 1) ^ a
+            else:
+                x = (xs[i + q] % 2 ** w) ^ (Y >> 1) ^ 0
+
+            Y = x
+            Y = (Y ^ (Y >> u))
+            Y = Y ^ ((Y << s) & b)
+            Y = Y ^ ((Y << t) & c)
+            Z = (Y ^ (Y >> l))
+
+            xs.append(x)
+            values.append(Z)
+        return values
 
 
 def main():
