@@ -40,6 +40,7 @@ class Generator():
         p, s, m = iv[0], iv[1], iv[2]
         js = iv[3:m+3]
         y1p = iv[-1]
+        print('param', p, s, m, js, y1p)
         x_init = [int(d) for d in bin(y1p)[2:]]
         x_init = [0] * (p - len(x_init)) + x_init
         x_all = []
@@ -58,6 +59,60 @@ class Generator():
                 x_init.pop(0)
 
         return values
+
+    @staticmethod
+    def dopoln(str_key, p):
+        if len(str_key) < p:
+            for i in range(p - len(str_key)):
+                str_key = '0' + str_key
+        return str_key
+
+    @staticmethod
+    def _lfsr(n, p, s, m, j_mas, y):
+        a = []
+
+        for i in range(p):
+            a.append(0)
+        for i in range(m):
+            a[int(j_mas[i]) - 1] = 1
+
+        potok = ''
+        str_key = format(y, 'b')
+        str_key = Generator.dopoln(str_key, p)
+        potok += str_key
+        x = 0
+        indicator = 0
+        indicator2 = 0
+
+        # Алгоритм
+        for i in range(s * n):
+            x = 0
+            indicator2 = indicator
+            for j in range(p):
+                if int(a[j]) == 1:
+                    x += int(potok[indicator2])
+                indicator2 += 1
+
+            x = x % 2
+            potok += str(x)
+            indicator += 1
+
+        res = []
+
+        amount = (len(potok) - p) // s
+        help = ''
+        k = p
+        for i in range(amount):
+            help = ''
+            for j in range(s):
+                help += potok[k]
+                k += 1
+            res.append(int(help, 2))
+
+        # for i in res:
+        #     print(i)
+
+        return res
 
     @staticmethod
     def five_parameters(nc, iv):
@@ -147,19 +202,27 @@ class Generator():
     def nfsr(nc, iv):
         values = []
         c = nc
-        w, p, x, m, j = iv
-        x1 = Generator.lfsr(c, (p[0], w, m[0], j[0], x[0]))
-        x2 = Generator.lfsr(c, (p[1], w, m[1], j[1], x[1]))
-        x3 = Generator.lfsr(c, (p[2], w, m[2], j[2], x[2]))
+        k, w = iv[0], iv[1]
+        p, x = [iv[2]], [iv[3]]
+        m = [iv[4]]
+        j = [iv[5:5+m[0]]]
+        p.append(iv[5+m[0]])
+        x.append(iv[6+m[0]])
+        m.append(iv[7+m[0]])
+        j.append(iv[8+m[0]:8+m[0]+m[1]])
+        p.append(iv[8+m[0]+m[1]])
+        x.append(iv[9+m[0]+m[1]])
+        m.append(iv[10+m[0]+m[1]])
+        j.append(iv[11+m[0]+m[1]:11+m[0]+m[1]+m[2]])
+
+        lfsr1 = Generator._lfsr(c, p[0], w, m[0], j[0], x[0])
+        lfsr2 = Generator._lfsr(c, p[1], w, m[1], j[1], x[1])
+        lfsr3 = Generator._lfsr(c, p[2], w, m[2], j[2], x[2])
 
         for i in range(c):
-            x1Element = x1[i]
-            x2Element = x2[i]
-            x3Element = x3[i]
-
-            resultTemp = (x1Element & x2Element) ^ (
-                x2Element & x3Element) ^ x3Element
-            values.append(resultTemp)
+            v = (lfsr1[i] & lfsr2[i]) ^\
+                (lfsr2[i] & lfsr3[i]) ^ lfsr3[i]
+            values.append(v)
 
         return values
 
