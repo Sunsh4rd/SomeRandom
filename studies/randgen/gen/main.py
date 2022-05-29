@@ -1,8 +1,8 @@
 import random
 import math
 import matplotlib.pyplot as plt
-from array import *
-import numpy as np
+# from array import *
+# import numpy as np
 import random
 
 n = 10000
@@ -15,7 +15,7 @@ def toFixed(f: float, n=0):
     return '{}.{}{}'.format(a, b[:n], '0'*(n-len(b)))
 
 
-print(toFixed(1234.3434, 3))
+# print(toFixed(1234.3434, 3))
 
 
 i = 0
@@ -292,6 +292,8 @@ def statistic():
         plt.scatter(arr_q[i], arr_n[i], c='b', s=1)
     plt.show()
 
+
+print('preobr', preobr([0.1, 0.2, 0.3, 0.4]))
 
 statistic()
 

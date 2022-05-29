@@ -61,7 +61,7 @@ class Distributor():
 
     @staticmethod
     def ls(x, a, b, m):
-        return [a + b*math.log((x[i]/m) / (1 - x[i]/m))
+        return [a + b*math.log(math.fabs((x[i]/m) / (1 - x[i]/m)))
                 for i in range(len(x))]
 
     @staticmethod

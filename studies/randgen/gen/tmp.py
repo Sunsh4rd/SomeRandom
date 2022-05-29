@@ -68,7 +68,6 @@ class CriterionChecker:
             (d3 / (count)) + (d4 / (count))
         return s
 
-    @staticmethod
     def interval(seq):
         t = 2
         r = 0
@@ -207,45 +206,45 @@ def main():
 
     chi = CriterionChecker.chi_squared(cc.sequence)
     if ((chi > 0.0158) and (chi < 3.8415)):
-        print("Критерий Хи-квадрат подтвержден  " + str(chi))
+        print("Критерий Хи-квадрат подтвержден и он равен " + str(chi))
     else:
-        print("Критерий Хи-квадрат не подтвержден  " + str(chi))
+        print("Критерий Хи-квадрат не подтвержден и он равен " + str(chi))
 
     series = CriterionChecker.series(cc.sequence)
     if ((series > 0.5844) and (series < 7.8147)):
-        print("Критерий Cерий подтвержден  " + str(series))
+        print("Критерий Cерий подтвержден и он равен " + str(series))
     else:
-        print("Критерий Cерий не подтвержден  " + str(series))
+        print("Критерий Cерий не подтвержден и он равен " + str(series))
 
     interval = CriterionChecker.interval(cc.sequence)
     if ((interval > 0.5844) and (interval < 7.8147)):
-        print("Критерий Интервалов подтвержден  " + str(interval))
+        print("Критерий Интервалов подтвержден и он равен " + str(interval))
     else:
-        print("Критерий Интервалов не подтвержден  " + str(interval))
+        print("Критерий Интервалов не подтвержден и он равен " + str(interval))
 
     split = CriterionChecker.splitting(cc.sequence)
     if ((split > 0.2107) and (split < 5.9915)):
-        print("Критерий Разбиений подтвержден  " + str(split))
+        print("Критерий Разбиений подтвержден и он равен " + str(split))
     else:
-        print("Критерий Разбиений не подтвержден  " + str(split))
+        print("Критерий Разбиений не подтвержден и он равен " + str(split))
 
     permut = CriterionChecker.permutation(cc.sequence)
     if ((permut > 0.0158) and (permut < 3.8415)):
-        print("Критерий Перестановок подтвержден  " + str(permut))
+        print("Критерий Перестановок подтвержден и он равен " + str(permut))
     else:
-        print("Критерий Перестановок не подтвержден  " + str(permut))
+        print("Критерий Перестановок не подтвержден и он равен " + str(permut))
 
     monotone = CriterionChecker.monotone(cc.sequence)
     if ((monotone > 0.2107) and (monotone < 5.9915)):
-        print("Критерий Монотонности подтвержден  " + str(monotone))
+        print("Критерий Монотонности подтвержден и он равен " + str(monotone))
     else:
-        print("Критерий Монотонности не подтвержден  " + str(monotone))
+        print("Критерий Монотонности не подтвержден и он равен " + str(monotone))
 
     confl = CriterionChecker.conflict(cc.sequence_aux)
     if ((confl > 0.0158) and (confl < 3.8415)):
-        print("Критерий Кофликтов подтвержден  " + str(confl))
+        print("Критерий Кофликтов подтвержден и он равен " + str(confl))
     else:
-        print("Критерий Конфликтов не подтвержден  " + str(confl))
+        print("Критерий Конфликтов не подтвержден и он равен " + str(confl))
 
 
 if __name__ == '__main__':

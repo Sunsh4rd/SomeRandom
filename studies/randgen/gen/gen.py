@@ -21,7 +21,6 @@ class Generator():
         s = iv[0]
         c, m = iv[-2], iv[-1]
         a_s, xs, = iv[1:s+1], iv[s+1:2*s+1]
-        print(a_s, xs)
         for i in range(n):
             xi = 0
             for j in range(s):
@@ -40,7 +39,6 @@ class Generator():
         p, s, m = iv[0], iv[1], iv[2]
         js = iv[3:m+3]
         y1p = iv[-1]
-        print('param', p, s, m, js, y1p)
         x_init = [int(d) for d in bin(y1p)[2:]]
         x_init = [0] * (p - len(x_init)) + x_init
         x_all = []
@@ -84,7 +82,6 @@ class Generator():
         indicator = 0
         indicator2 = 0
 
-        # Алгоритм
         for i in range(s * n):
             x = 0
             indicator2 = indicator
@@ -108,9 +105,6 @@ class Generator():
                 help += potok[k]
                 k += 1
             res.append(int(help, 2))
-
-        # for i in res:
-        #     print(i)
 
         return res
 
@@ -274,39 +268,39 @@ def main():
         case 'lc':
             values = Generator.linear_congruential(args.n, args.i)
             with open(args.f, 'w') as f:
-                f.write(' '.join(str(x) for x in values))
+                f.write('\n'.join(str(x) for x in values))
         case 'add':
             values = Generator.additive(args.n, args.i)
             with open(args.f, 'w') as f:
-                f.write(' '.join(str(x) for x in values))
+                f.write('\n'.join(str(x) for x in values))
         case 'lfsr':
             values = Generator.lfsr(args.n, args.i)
             with open(args.f, 'w') as f:
-                f.write(' '.join(str(x) for x in values))
+                f.write('\n'.join(str(x) for x in values))
         case '5p':
             values = Generator.five_parameters(args.n, args.i)
             with open(args.f, 'w') as f:
-                f.write(' '.join(str(x) for x in values))
+                f.write('\n'.join(str(x) for x in values))
         case 'rsa':
             values = Generator.rsa(args.n, args.i)
             with open(args.f, 'w') as f:
-                f.write(' '.join(str(x) for x in values))
+                f.write('\n'.join(str(x) for x in values))
         case 'bbs':
             values = Generator.bbs(args.n, args.i)
             with open(args.f, 'w') as f:
-                f.write(' '.join(str(x) for x in values))
+                f.write('\n'.join(str(x) for x in values))
         case 'rc4':
             values = Generator.rc4(args.n, args.i)
             with open(args.f, 'w') as f:
-                f.write(' '.join(str(x) for x in values))
+                f.write('\n'.join(str(x) for x in values))
         case 'nfsr':
             values = Generator.nfsr(args.n, args.i)
             with open(args.f, 'w') as f:
-                f.write(' '.join(str(x) for x in values))
+                f.write('\n'.join(str(x) for x in values))
         case 'mt':
             values = Generator.mersenne_twister(args.n, args.i)
             with open(args.f, 'w') as f:
-                f.write(' '.join(str(x) for x in values))
+                f.write('\n'.join(str(x) for x in values))
 
 
 if __name__ == '__main__':
