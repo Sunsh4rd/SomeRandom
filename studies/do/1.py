@@ -59,15 +59,18 @@
 # print(nm + 1)
 
 
-a, b = map(int, input().split())
-d, d1, d2 = 1, 0, 0
-while a < 1000000:
-    a *= 3
-    d += 1
-    if a == b:
-        d1 = d
-    d2 = d
-print(d1, d2)
+# a, b = map(int, input().split())
+# d, d1, d2 = 1, 0, 0
+# while a < b:
+#     a *= 3
+#     d += 1
+# d1 = d
+# # print(d, a)
+# while a < 1000000:
+#     a *= 3
+#     d += 1
+# d2 = d
+# print(d1, d2)
 
 
 # n = int(input())
@@ -98,4 +101,22 @@ print(d1, d2)
 
 # n = int(input())
 # m = list(map(int, input().split()))
-# x = max(m)
+# m[m.index(max(m))] = -m[m.index(max(m))]
+# print(*m)
+
+
+# n, m, k = map(int, input().split())
+# print(sum(filter(lambda x: abs(x) % 10 == k and abs(x) %
+#       m != 0, map(int, input().split()))))
+
+from math import pi
+d = input()
+p, s = d[0], float(d[2:])
+print(p, s)
+if p == 'k':
+    print(f'{2 * pi * s:.4f} {pi * s * s:.4f}')
+if p == 'p':
+    print(f'{4 * s:.4f} {s * s:.4f}')
+if p == 't':
+    halfp = 3*s / 2
+    print(f'{2*halfp:.4f} {(halfp*(halfp-s)**3)**0.5:.4f}')
