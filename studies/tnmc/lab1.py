@@ -152,7 +152,6 @@ def main():
     # print(euclid(a, b))
     # print(euclid_extended(a, b))
     # print(euclid_binary(a, b))
-    # print(modular_multiplicative_inverse(14, 5))
     print(gcrt([5, 3, 10], [7, 11, 13]))
     print(gcrt([5, 7, 9], [9, 2, 1]))
     print(gcrt([5, 17, 23], [11, 2, 13]))
