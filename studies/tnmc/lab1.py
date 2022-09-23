@@ -102,7 +102,9 @@ def gauss(matrix, m):
         # print(matrix[i])
         # matrix[i] = [x % m for x in matrix[i]]
 
-        for j in range(i + 1, size):
+        ind = list(range(size))
+        ind.remove(i)
+        for j in ind:
             subrow = [(a * matrix[j][i]) % m for a in matrix[i]]
             matrix[j] = [(a - s) % m for a, s in zip(matrix[j], subrow)]
             # matrix[j] -= (matrix[i] * matrix[j][i]) % m
@@ -180,7 +182,7 @@ def main():
                         tempRes += f' + {rowEl} * x{i + 1}'
                     else:
                         tempRes += f' = {rowEl}\n'
-        result += tempRes
+        result += f'{tempRes}\n'
     print(result)
 
 

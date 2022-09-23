@@ -1,5 +1,6 @@
 # (v1, v3, 1), (v2, v3, 2)
 import json
+from pprint import pprint
 import re
 
 
@@ -78,6 +79,9 @@ def main():
 
     print(g.is_acyclic())
     print(g1.is_acyclic())
+
+    for k, v in g.__dict__:
+        print(k.__dict__)
 
 
 if __name__ == '__main__':
