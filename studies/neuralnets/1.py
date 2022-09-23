@@ -60,6 +60,7 @@ class Graph:
 
 
 def main():
+    # adasds
     # v1 = Vertex("v1")
     # v2 = Vertex("v1")
     # print(v1 == v2)
