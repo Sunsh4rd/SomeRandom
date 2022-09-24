@@ -88,15 +88,15 @@ def gauss(matrix, m):
     #         matrix[i][j] %= m
 
     matrix = [[a % m for a in row] for row in matrix]
-    print(matrix)
+    # print(matrix)
 
     # print(matrix, '\n', mod_matrix)
 
     for i in range(size - 1):
         diagonal_element = matrix[i][i]
-        print(matrix[i])
+        # print(matrix[i])
         inverse = modular_multiplicative_inverse(diagonal_element, m)
-        print(diagonal_element, inverse)
+        # print(diagonal_element, inverse)
         # matrix[i] *= inverseToDiagonalElement
         matrix[i] = [(a * inverse) % m for a in matrix[i]]
         # print(matrix[i])
@@ -113,58 +113,41 @@ def gauss(matrix, m):
     return matrix
 
 
-# def main():
-#     count = int(input("Введите число уравнений системы: "))
-#     m = int(input("Введите количество переменных в уравнениях: "))
-#     p = int(input("Введите модуль: "))
-
-#     print("Введите матрицу, составленную из коэффициентов a и b:")
-#     matrix = []
-#     for i in range(count):
-#         row = []
-#         for s in input().split():
-#             row.append(int(s))
-#         matrix.append(row)
-
-#     resMatrix = gaussAlgorithm(np.array(matrix), p)
-
-#     print("Согласно алгоритму Гаусса система уравнений приведена к виду:")
-#     result = ""
-#     for row in resMatrix:
-#         rowSize = len(row)
-#         tempRes = ""
-#         for i in range(rowSize):
-#             rowEl = row[i]
-#             if rowEl != 0:
-#                 if not tempRes:
-#                     tempRes += f'{rowEl} * x{i + 1}'
-#                 else:
-#                     if i != rowSize - 1:
-#                         tempRes += f' + {rowEl} * x{i + 1}'
-#                     else:
-#                         tempRes += f' = {rowEl}\n'
-#         result += tempRes
-#     print(result)
-
-
 def main():
-    # a, b = map(int, input().split())
-    # print(euclid(a, b))
-    # print(euclid_extended(a, b))
-    # print(euclid_binary(a, b))
-    print(gcrt([5, 3, 10], [7, 11, 13]))
-    print(gcrt([5, 7, 9], [9, 2, 1]))
-    print(gcrt([5, 17, 23], [11, 2, 13]))
-    print(gcrt([11, 16, 27, 41, 65], [19, 34, 55, 71, 79]))
-    print(gcrt([10, 5, 8], [3, 7, 17]))
-    print(garner([5, 3, 10], [7, 11, 13]))
-    print(garner([5, 7, 9], [9, 2, 1]))
-    print(garner([5, 17, 23], [11, 2, 13]))
-    print(garner([11, 16, 27, 41, 65], [19, 34, 55, 71, 79]))
-    print(garner([10, 5, 8], [3, 7, 17]))
+    # a, b = map(int, input(
+    #     'Числа a и b, для которых требуется найти НОД\n').split())
+    # print(f'Стандартный Алгоритм Евклида: {euclid(a, b)}')
+    # print(f'Расширенный Алгоритм Евклида: {euclid_extended(a, b)}')
+    # print(f'Бинарный Алгоритм Евклида: {euclid_binary(a, b)}')
 
-    resMatrix = gauss(
-        [[3, 2, -5, -1], [2, -1, 3, 13], [1, 2, -1, 9]], 5)
+    # k = int(input("Введите число k: "))
+
+    # print("Введите набор чисел (u1, ..., uk): ")
+    # u = []
+    # for s in input().split():
+    #     u.append(int(s))
+
+    # print("Введите набор чисел (m1, ..., mk): ")
+    # m = []
+    # for s in input().split():
+    #     m.append(int(s))
+
+    # print("Решение системы сравнений согласно китайской теореме об остатках:", gcrt(u, m))
+    # print("Решение системы сравнений согласно алгоритму Гарнера:", garner(u, m))
+
+    count = int(input("Введите число уравнений системы:"))
+    m = int(input("Введите количество переменных в уравнениях:"))
+    p = int(input("Введите модуль:"))
+
+    print("Введите матрицу, составленную из коэффициентов a и b:")
+    matrix = []
+    for i in range(count):
+        row = []
+        for s in input().split():
+            row.append(int(s))
+        matrix.append(row)
+
+    resMatrix = gauss(matrix, p)
 
     print("Согласно алгоритму Гаусса система уравнений приведена к виду:")
     result = ""
@@ -184,6 +167,36 @@ def main():
         result += f'{tempRes}\n'
     print(result)
 
+    # print(gcrt([5, 3, 10], [7, 11, 13]))
+    # print(gcrt([5, 7, 9], [9, 2, 1]))
+    # print(gcrt([5, 17, 23], [11, 2, 13]))
+    # print(gcrt([11, 16, 27, 41, 65], [19, 34, 55, 71, 79]))
+    # print(gcrt([10, 5, 8], [3, 7, 17]))
+    # print(garner([5, 3, 10], [7, 11, 13]))
+    # print(garner([5, 7, 9], [9, 2, 1]))
+    # print(garner([5, 17, 23], [11, 2, 13]))
+    # print(garner([11, 16, 27, 41, 65], [19, 34, 55, 71, 79]))
+    # print(garner([10, 5, 8], [3, 7, 17]))
 
+
+    # resMatrix = gauss(
+    #     [[3, 2, -5, -1], [2, -1, 3, 13], [1, 2, -1, 9]], 5)
+    # print("Согласно алгоритму Гаусса система уравнений приведена к виду:")
+    # result = ""
+    # for row in resMatrix:
+    #     rowSize = len(row)
+    #     tempRes = ""
+    #     for i in range(rowSize):
+    #         rowEl = row[i]
+    #         if rowEl != 0:
+    #             if not tempRes:
+    #                 tempRes += f'{rowEl} * x{i + 1}'
+    #             else:
+    #                 if i != rowSize - 1:
+    #                     tempRes += f' + {rowEl} * x{i + 1}'
+    #                 else:
+    #                     tempRes += f' = {rowEl}\n'
+    #     result += f'{tempRes}\n'
+    # print(result)
 if __name__ == '__main__':
     main()
