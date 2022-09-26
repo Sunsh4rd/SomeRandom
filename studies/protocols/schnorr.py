@@ -1,5 +1,5 @@
 import random
-from math import gcd, log
+from math import gcd, log, sqrt
 from sympy import isprime
 
 
@@ -25,7 +25,7 @@ def logarithm(q, p):
 
 
 def keygen():
-    q = get_random_prime(32)
+    q = get_random_prime(16)
     k = 10
     p = (2**k) * q + 1
     while True:
