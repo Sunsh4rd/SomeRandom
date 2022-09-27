@@ -1,4 +1,5 @@
 import random
+from time import perf_counter_ns
 from sympy import isprime
 import json
 
@@ -8,6 +9,18 @@ def get_random_prime(n):
         number = random.getrandbits(n)
         if isprime(number):
             return number
+
+
+def fast_mod_exp(a, b, m):
+    r = 1
+    while b > 0:
+        if b & 1:
+            r *= a
+            r %= m
+        a *= a
+        a %= m
+        b >>= 1
+    return r
 
 
 def logarithm(q, p):
@@ -21,10 +34,11 @@ def logarithm(q, p):
     #     a = 2**k * q - 1
     while True:
         # print(a, q, p)
-        a = random.randint(2, p-1)
+        # a = random.randint(2, p-1)
         # print(a)
-        if pow(a, q, p) == 1:
-            return a
+        for a in range(2, p):
+            if fast_mod_exp(a, q, p) == 1:
+                return a
     # k = 0
     # while True:
     #     a = log((2**k) * p + 1, q)
@@ -34,7 +48,7 @@ def logarithm(q, p):
 
 
 def gen_shared_parameters():
-    q = get_random_prime(32)
+    q = get_random_prime(16)
     k = 0
     p = (2**k) * q + 1
     while True:
@@ -51,6 +65,14 @@ def gen_shared_parameters():
 
 def main():
     # print(get_random_prime(128))
+    # s = perf_counter_ns()
+    # print(pow(12124, 15235112, 253235))
+    # f = perf_counter_ns()
+    # print(f-s)
+    # s = perf_counter_ns()
+    # print(fast_mod_exp(12124, 15235112, 253235))
+    # f = perf_counter_ns()
+    # print(f-s)
 
     with open('schnorr_parameters/shared_parameters.json', 'w') as sp:
         p, q, a = gen_shared_parameters()
