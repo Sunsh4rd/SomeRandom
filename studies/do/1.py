@@ -109,14 +109,72 @@
 # print(sum(filter(lambda x: abs(x) % 10 == k and abs(x) %
 #       m != 0, map(int, input().split()))))
 
-from math import pi
-d = input()
-p, s = d[0], float(d[2:])
-print(p, s)
-if p == 'k':
-    print(f'{2 * pi * s:.4f} {pi * s * s:.4f}')
-if p == 'p':
-    print(f'{4 * s:.4f} {s * s:.4f}')
-if p == 't':
-    halfp = 3*s / 2
-    print(f'{2*halfp:.4f} {(halfp*(halfp-s)**3)**0.5:.4f}')
+# from math import pi
+# d = input()
+# p, s = d[0], d[2:]
+# if p == 'k':
+#     r = float(s)
+#     print(f'{2 * pi * r:.4f} {pi * r * r:.4f}')
+# if p == 'p':
+#     a, b = map(float, s.split())
+#     print(f'{2 * (a + b):.4f} {a * b:.4f}')
+# if p == 't':
+#     a, b, c = map(float, s.split())
+#     halfp = (a + b + c) / 2
+#     print(f'{2*halfp:.4f} {(halfp*(halfp-a)*(halfp-b)*(halfp-c))**0.5:.4f}')
+
+# print(len(set(input().lower())))
+
+
+# if len(set(input())) == 4:
+#     print('NO')
+# else:
+#     print('YES')
+
+
+# s1 = input()
+# s2 = input()
+# print(not set(s2)-set(s1))
+
+
+# n = int(input())
+# l = list(map(int, input().split()))
+# print(*list(filter(lambda x: len(str(abs(x))) != len(set(str(abs(x)))), l)))
+
+
+# roman_numbers = {
+#     'I': 1,
+#     'V': 5,
+#     'X': 10,
+#     'L': 50,
+#     'C': 100,
+#     'D': 500,
+#     'M': 1000
+# }
+
+# print(roman_numbers.get(input(), 0))
+
+# suits = ['spades', 'clubs', 'diamonds', 'hearts']
+# suitsd = {i+1: suits[i] for i in range(4)}
+
+# ranks = ['six', 'seven', 'eight', 'nine',
+#          'ten', 'jack', 'queen', 'king', 'ace']
+# ranksd = {i+6: ranks[i] for i in range(len(ranks))}
+
+# s, r = map(int, input().split())
+# print(f'the {ranksd[r]} of {suitsd[s]}')
+
+
+# c1 = Counter(input())
+# c2 = Counter(input())
+
+# for k, v in c2.items():
+#     if v > c1[k]:
+#         print(False)
+#         break
+# else:
+#     print(True)
+
+from typing import Counter
+print(''.join(sorted(k for k, _ in filter(
+    lambda x: x[1] == 1, Counter(input()).items()))))
