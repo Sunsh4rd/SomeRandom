@@ -30,14 +30,25 @@
 # else:
 #     print(28)
 
+# my, v = [], []
+# for k in range(121):
+#     if k == 1 or k % 10 == 1 and k != 11 and k % 100 != 11:
+#         my.append(f'Мне {k} год')
+#     elif 2 <= k % 10 <= 4 and not 11 <= k <= 14 and not 11 <= k % 100 <= 14:
+#         my.append(f'Мне {k} года')
+#     else:
+#         my.append(f'Мне {k} лет')
 
-# k = int(input())
-# if k == 1 or k % 10 == 1 and k != 11 and k % 100 != 11:
-#     print(f'Мне {k} год')
-# elif 2 <= k % 10 <= 4 and not 11 <= k <= 14 and not 11 <= k % 100 <= 14:
-#     print(f'Мне {k} года')
-# else:
-#     print(f'Мне {k} лет')
+# for i in range(121):
+#     k = str(i)
+#     if k[-1] == '1' and (len(k) == 1 or 11 < int(k) < 111):
+#         v.append(f'Мне {k} год')
+#     elif k[-1] in ['2', '3', '4'] and (len(k) == 1 or 14 < int(k) < 105):
+#         v.append(f'Мне {k} года')
+#     else:
+#         v.append(f'Мне {k} лет')
+
+# print(my == v)
 
 # m = 1
 # while True:
@@ -60,17 +71,19 @@
 
 
 # a, b = map(int, input().split())
-# d, d1, d2 = 1, 0, 0
-# while a < b:
-#     a *= 3
-#     d += 1
-# d1 = d
-# # print(d, a)
-# while a < 1000000:
-#     a *= 3
-#     d += 1
-# d2 = d
-# print(d1, d2)
+# leaves, k = a, 1
+# while leaves < b:
+#     leaves *= 3
+#     k += 1
+# n = 1
+# leaves = a
+# s = a
+# while s < 10 ** 6:
+#     leaves *= 3
+#     s += leaves
+#     n += 1
+
+# print(k, n)
 
 
 # n = int(input())
@@ -165,10 +178,14 @@
 # print(f'the {ranksd[r]} of {suitsd[s]}')
 
 
+from collections import Counter, defaultdict
+
+
 # c1 = Counter(input())
 # c2 = Counter(input())
 
 # for k, v in c2.items():
+#     print(k, v)
 #     if v > c1[k]:
 #         print(False)
 #         break
@@ -177,6 +194,16 @@
 
 # afasfasssdds
 
-from typing import Counter
-print(''.join(sorted(k for k, _ in filter(
-    lambda x: x[1] == 1, Counter(input()).items()))))
+# from typing import Counter
+# print(''.join(sorted(k for k, _ in filter(
+#     lambda x: x[1] == 1, Counter(input()).items()))))
+
+
+# a = Counter('anjafa')
+# b = {'b': 1}
+
+# print(a['b'])
+# print(b['a'])
+
+# d = defaultdict(int)
+# print(d)
