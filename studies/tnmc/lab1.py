@@ -1,5 +1,7 @@
+import argparse
 from functools import reduce
 from time import perf_counter_ns
+import numpy as np
 
 
 def euclid(a, b):
@@ -63,9 +65,8 @@ def garner(us, ms):
             tmp.append(modular_multiplicative_inverse(ms[i], ms[j]))
         rs.append(tmp)
 
-    # print(rs)
     xs = [0] * k
-    # print(xs)
+
     for i in range(k):
         xs[i] = us[i]
         for j in range(i):
@@ -73,130 +74,92 @@ def garner(us, ms):
             xs[i] = xs[i] % ms[i]
             if xs[i] < 0:
                 xs[i] += ms[i]
-    # print(xs, ms)
     res = 0
     for i in range(len(xs)):
         res += xs[i] * reduce(lambda x, y: x * y, ms[:i], 1)
-    return res  # xs[0]+xs[1]*ms[0]+xs[2]*ms[0]*ms[1]
+    return res
 
 
 def gauss(matrix, m):
     size = len(matrix)
-
-    # for i in range(size):  # если числа в матрице не приведены по модулю
-    #     for j in range(len(matrix[i])):
-    #         matrix[i][j] %= m
-
     matrix = [[a % m for a in row] for row in matrix]
-    # print(matrix)
-
-    # print(matrix, '\n', mod_matrix)
 
     for i in range(size - 1):
         diagonal_element = matrix[i][i]
-        # print(matrix[i])
         inverse = modular_multiplicative_inverse(diagonal_element, m)
-        # print(diagonal_element, inverse)
-        # matrix[i] *= inverseToDiagonalElement
         matrix[i] = [(a * inverse) % m for a in matrix[i]]
-        # print(matrix[i])
-        # matrix[i] = [x % m for x in matrix[i]]
 
-        ind = list(range(size))
-        ind.remove(i)
-        for j in ind:
+        for j in range(i+1, size):
             subrow = [(a * matrix[j][i]) % m for a in matrix[i]]
             matrix[j] = [(a - s) % m for a, s in zip(matrix[j], subrow)]
-            # matrix[j] -= (matrix[i] * matrix[j][i]) % m
-            # matrix[j] %= m
 
     return matrix
 
 
 def main():
-    # a, b = map(int, input(
-    #     'Числа a и b, для которых требуется найти НОД\n').split())
-    # print(f'Стандартный Алгоритм Евклида: {euclid(a, b)}')
-    # print(f'Расширенный Алгоритм Евклида: {euclid_extended(a, b)}')
-    # print(f'Бинарный Алгоритм Евклида: {euclid_binary(a, b)}')
+    main_parser = argparse.ArgumentParser()
+    main_parser.add_argument(
+        '--alg', choices=['euclid', 'lcs', 'gauss'], required=True)
+    algs_subparsers = main_parser.add_subparsers(title='algorithms')
 
-    # k = int(input("Введите число k: "))
+    euclid_parser = algs_subparsers.add_parser('euclid')
+    euclid_parser.add_argument(
+        '--type', choices=['common', 'ext', 'bin'], required=True)
+    euclid_parser.add_argument('-a', type=int, required=True)
+    euclid_parser.add_argument('-b', type=int, required=True)
 
-    # print("Введите набор чисел (u1, ..., uk): ")
-    # u = []
-    # for s in input().split():
-    #     u.append(int(s))
+    gcrt_garner_parser = algs_subparsers.add_parser('lcs')
+    gcrt_garner_parser.add_argument(
+        '--type', choices=['gcrt', 'garner'], required=True)
+    gcrt_garner_parser.add_argument('-u', type=int, nargs='+', required=True)
+    gcrt_garner_parser.add_argument('-m', type=int, nargs='+', required=True)
 
-    # print("Введите набор чисел (m1, ..., mk): ")
-    # m = []
-    # for s in input().split():
-    #     m.append(int(s))
+    gauss_parser = algs_subparsers.add_parser('gauss')
+    gauss_parser.add_argument('-n', type=int, required=True)
+    gauss_parser.add_argument('-v', type=int, required=True)
+    gauss_parser.add_argument('-m', type=int, required=True)
 
-    # print("Решение системы сравнений согласно китайской теореме об остатках:", gcrt(u, m))
-    # print("Решение системы сравнений согласно алгоритму Гарнера:", garner(u, m))
+    args = main_parser.parse_args()
 
-    count = int(input("Введите число уравнений системы:"))
-    m = int(input("Введите количество переменных в уравнениях:"))
-    p = int(input("Введите модуль:"))
+    match args.alg:
+        case 'euclid':
+            match args.type:
+                case 'common':
+                    s = perf_counter_ns()
+                    print(euclid(args.a, args.b))
+                    f = perf_counter_ns()
+                    print(f'Время работы (10^-9 с.) {f-s}')
+                case 'ext':
+                    s = perf_counter_ns()
+                    print(euclid_extended(args.a, args.b))
+                    f = perf_counter_ns()
+                    print(f'Время работы (10^-9 с.) {f-s}')
+                case 'bin':
+                    s = perf_counter_ns()
+                    print(euclid_binary(args.a, args.b))
+                    f = perf_counter_ns()
+                    print(f'Время работы (10^-9 с.) {f-s}')
 
-    print("Введите матрицу, составленную из коэффициентов a и b:")
-    matrix = []
-    for i in range(count):
-        row = []
-        for s in input().split():
-            row.append(int(s))
-        matrix.append(row)
+        case 'lcs':
+            match args.type:
+                case 'gcrt':
+                    s = perf_counter_ns()
+                    print(gcrt(args.u, args.m))
+                    f = perf_counter_ns()
+                    print(f'Время работы (10^-9 с.) {f-s}')
+                case 'garner':
+                    s = perf_counter_ns()
+                    print(garner(args.u, args.m))
+                    f = perf_counter_ns()
+                    print(f'Время работы (10^-9 с.) {f-s}')
 
-    resMatrix = gauss(matrix, p)
-
-    print("Согласно алгоритму Гаусса система уравнений приведена к виду:")
-    result = ""
-    for row in resMatrix:
-        rowSize = len(row)
-        tempRes = ""
-        for i in range(rowSize):
-            rowEl = row[i]
-            if rowEl != 0:
-                if not tempRes:
-                    tempRes += f'{rowEl} * x{i + 1}'
-                else:
-                    if i != rowSize - 1:
-                        tempRes += f' + {rowEl} * x{i + 1}'
-                    else:
-                        tempRes += f' = {rowEl}\n'
-        result += f'{tempRes}\n'
-    print(result)
-
-    # print(gcrt([5, 3, 10], [7, 11, 13]))
-    # print(gcrt([5, 7, 9], [9, 2, 1]))
-    # print(gcrt([5, 17, 23], [11, 2, 13]))
-    # print(gcrt([11, 16, 27, 41, 65], [19, 34, 55, 71, 79]))
-    # print(gcrt([10, 5, 8], [3, 7, 17]))
-    # print(garner([5, 3, 10], [7, 11, 13]))
-    # print(garner([5, 7, 9], [9, 2, 1]))
-    # print(garner([5, 17, 23], [11, 2, 13]))
-    # print(garner([11, 16, 27, 41, 65], [19, 34, 55, 71, 79]))
-    # print(garner([10, 5, 8], [3, 7, 17]))
+        case 'gauss':
+            matrix = [list(map(int, input().split())) for _ in range(args.n)]
+            s = perf_counter_ns()
+            print(*gauss(matrix, args.m), sep='\n')
+            f = perf_counter_ns()
+            print(f'Время работы (10^-9 с.) {f-s}')
 
 
-    # resMatrix = gauss(
-    #     [[3, 2, -5, -1], [2, -1, 3, 13], [1, 2, -1, 9]], 5)
-    # print("Согласно алгоритму Гаусса система уравнений приведена к виду:")
-    # result = ""
-    # for row in resMatrix:
-    #     rowSize = len(row)
-    #     tempRes = ""
-    #     for i in range(rowSize):
-    #         rowEl = row[i]
-    #         if rowEl != 0:
-    #             if not tempRes:
-    #                 tempRes += f'{rowEl} * x{i + 1}'
-    #             else:
-    #                 if i != rowSize - 1:
-    #                     tempRes += f' + {rowEl} * x{i + 1}'
-    #                 else:
-    #                     tempRes += f' = {rowEl}\n'
-    #     result += f'{tempRes}\n'
-    # print(result)
 if __name__ == '__main__':
     main()
