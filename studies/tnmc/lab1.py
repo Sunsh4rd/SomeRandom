@@ -1,7 +1,6 @@
 import argparse
 from functools import reduce
 from time import perf_counter_ns
-import numpy as np
 
 
 def euclid(a, b):
