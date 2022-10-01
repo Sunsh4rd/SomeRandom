@@ -1,6 +1,7 @@
 import argparse
 from functools import reduce
 from time import perf_counter_ns
+import numpy as np
 
 
 def euclid(a, b):
@@ -86,13 +87,34 @@ def gauss(matrix, m):
     for i in range(size - 1):
         diagonal_element = matrix[i][i]
         inverse = modular_multiplicative_inverse(diagonal_element, m)
-        matrix[i] = [(a * inverse) % m for a in matrix[i]]
+        matrix[i] = [(a % m * inverse) % m for a in matrix[i]]
+        # print(matrix[i])
 
         for j in range(i+1, size):
-            subrow = [(a * matrix[j][i]) % m for a in matrix[i]]
+            subrow = [(a % m * matrix[j][i] % m) % m for a in matrix[i]]
             matrix[j] = [(a - s) % m for a, s in zip(matrix[j], subrow)]
 
     return matrix
+
+
+def Ext_Euclid(num1, num2):
+    if num1 == 0:
+        return (num2, 0, 1)
+    else:
+        div, x, y = Ext_Euclid(num2 % num1, num1)
+    return (div, y - (num2 // num1) * x, x)
+
+
+def Gauss(A, m):
+    for i in range(len(A)):
+        g, a_, y = Ext_Euclid(A[i][i], m)
+        A[i] = (A[i] % m * a_) % m
+        # print(A[i])
+        if i != len(A) - 1:
+            for j in range(i+1, len(A)):
+                A[j] -= (A[i] % m * A[j][i] % m) % m
+                A[j] = A[j] % m
+    return A
 
 
 def main():
@@ -155,7 +177,8 @@ def main():
         case 'gauss':
             matrix = [list(map(int, input().split())) for _ in range(args.n)]
             s = perf_counter_ns()
-            print(*gauss(matrix, args.m), sep='\n')
+            print(*gauss(matrix, args.m), sep='\n')  # чет не так
+            print(*Gauss(np.array(matrix), args.m), sep='\n')  # норм
             f = perf_counter_ns()
             print(f'Время работы (10^-9 с.) {f-s}')
 
