@@ -30,6 +30,9 @@ def main():
             else:
                 print(
                     'Обнаружены изменения в аппаратном окружении, записаны в файл changes.json')
+                changes = list(filter(lambda x: x[0] != x[1], zip(
+                    current_system_info, system_info_from_file)))
+                print(changes)
                 # print(system_info_from_file)
                 # print(current_system_info)
                 # for i in range(len(current_system_info)):
