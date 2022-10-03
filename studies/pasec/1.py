@@ -5,10 +5,14 @@ from os import popen, stat
 
 def get_system_info():
     output = popen('cat /sys/class/dmi/id/bios*').read().splitlines()
-    bios_parts = ['release_date', 'revision', 'vendor', 'version']
-    system_info = {"bios": dict(zip(bios_parts, output))}
-    system_info.update(json.loads(popen('lscpu -J').read()))
-    system_info.update({'net': popen('lspci').read().splitlines()})
+    system_info = {'bios': popen(
+        'sudo dmidecode -t 0').read().replace('\t', '').splitlines()[4:-1]}
+    system_info.update(
+        {'cpu': popen('sudo dmidecode -t 4').read().replace('\t', '').splitlines()[4:-1]})
+    system_info.update(
+        {'board': popen('sudo dmidecode -t 2').read().replace('\t', '').splitlines()[4:-1]})
+    system_info.update(
+        {'net': popen('ifconfig -a | grep ether').read().replace('        ', '').splitlines()})
     return system_info
 
 
