@@ -8,7 +8,7 @@ def get_system_info():
     bios_parts = ['release_date', 'revision', 'vendor', 'version']
     system_info = {"bios": dict(zip(bios_parts, output))}
     system_info.update(json.loads(popen('lscpu -J').read()))
-    system_info.update({'net': popen('lspci').read()})
+    system_info.update({'net': popen('lspci').read().splitlines()})
     return system_info
 
 
@@ -30,19 +30,13 @@ def main():
             else:
                 print(
                     'Обнаружены изменения в аппаратном окружении, записаны в файл changes.json')
-                changes = list(filter(lambda x: x[0] != x[1], zip(
-                    current_system_info, system_info_from_file)))
-                print(changes)
-                # print(system_info_from_file)
-                # print(current_system_info)
-                # for i in range(len(current_system_info)):
-                #     if current_system_info[i] == system_info_from_file[i]:
-                #         print(current_system_info[i], sep=' ')
-                #     else:
-                #         break
-                # print(*zip(current_system_info, system_info_in_file))
-                # print(list(filter(lambda x: x[0] != x[1], zip(
-                # system_info_in_file, current_system_info))))
+                changes = {}
+                for k, v in current_system_info.items():
+                    if v != system_info_from_file[k]:
+                        changes.update({k: v})
+                with open('changes.json', 'w', encoding='utf-8') as ch:
+                    json.dump(changes, ch, indent=4)
+
     else:
         print('Необходимый файл не найден')
 

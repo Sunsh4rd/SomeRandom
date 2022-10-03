@@ -1,9 +1,9 @@
 {
     "bios": {
-        "release_date": "03/30/2017",
-        "revision": "5.12",
-        "vendor": "American Megatrends Inc.",
-        "version": "3402"
+        "release_date": "03/14/2022",
+        "revision": "1.32",
+        "vendor": "LENOVO",
+        "version": "R0YET49W (1.32 )"
     },
     "lscpu": [
         {
@@ -36,7 +36,7 @@
         },
         {
             "field": "\u0418\u043c\u044f \u043c\u043e\u0434\u0435\u043b\u0438:",
-            "data": "Intel(R) Core(TM) i7-7700 CPU @ 3.60GHz"
+            "data": "Intel(R) Core(TM) i5-8265U CPU @ 1.60GHz"
         },
         {
             "field": "\u0421\u0435\u043c\u0435\u0439\u0441\u0442\u0432\u043e \u0426\u041f\u0423:",
@@ -44,7 +44,7 @@
         },
         {
             "field": "\u041c\u043e\u0434\u0435\u043b\u044c:",
-            "data": "158"
+            "data": "142"
         },
         {
             "field": "\u041f\u043e\u0442\u043e\u043a\u043e\u0432 \u043d\u0430 \u044f\u0434\u0440\u043e:",
@@ -60,23 +60,23 @@
         },
         {
             "field": "\u0421\u0442\u0435\u043f\u043f\u0438\u043d\u0433:",
-            "data": "9"
+            "data": "12"
         },
         {
             "field": "CPU max MHz:",
-            "data": "4200,0000"
+            "data": "3900,0000"
         },
         {
             "field": "CPU min MHz:",
-            "data": "800,0000"
+            "data": "400,0000"
         },
         {
             "field": "BogoMIPS:",
-            "data": "7200.00"
+            "data": "3600.00"
         },
         {
             "field": "\u0424\u043b\u0430\u0433\u0438:",
-            "data": "fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault invpcid_single pti ssbd ibrs ibpb stibp tpr_shadow vnmi flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx rdseed adx smap clflushopt intel_pt xsaveopt xsavec xgetbv1 xsaves dtherm ida arat pln pts hwp hwp_notify hwp_act_window hwp_epp md_clear flush_l1d arch_capabilities"
+            "data": "fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault epb invpcid_single ssbd ibrs ibpb stibp ibrs_enhanced tpr_shadow vnmi flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx rdseed adx smap clflushopt intel_pt xsaveopt xsavec xgetbv1 xsaves dtherm ida arat pln pts hwp hwp_notify hwp_act_window hwp_epp md_clear flush_l1d arch_capabilities"
         },
         {
             "field": "\u0412\u0438\u0440\u0442\u0443\u0430\u043b\u0438\u0437\u0430\u0446\u0438\u044f:",
@@ -96,7 +96,7 @@
         },
         {
             "field": "L3 cache:",
-            "data": "8 MiB (1 instance)"
+            "data": "6 MiB (1 instance)"
         },
         {
             "field": "NUMA node(s):",
@@ -112,15 +112,15 @@
         },
         {
             "field": "Vulnerability L1tf:",
-            "data": "Mitigation; PTE Inversion; VMX conditional cache flushes, SMT vulnerable"
+            "data": "Not affected"
         },
         {
             "field": "Vulnerability Mds:",
-            "data": "Mitigation; Clear CPU buffers; SMT vulnerable"
+            "data": "Not affected"
         },
         {
             "field": "Vulnerability Meltdown:",
-            "data": "Mitigation; PTI"
+            "data": "Not affected"
         },
         {
             "field": "Vulnerability Mmio stale data:",
@@ -128,7 +128,7 @@
         },
         {
             "field": "Vulnerability Retbleed:",
-            "data": "Mitigation; IBRS"
+            "data": "Mitigation; Enhanced IBRS"
         },
         {
             "field": "Vulnerability Spec store bypass:",
@@ -140,7 +140,7 @@
         },
         {
             "field": "Vulnerability Spectre v2:",
-            "data": "Mitigation; IBRS, IBPB conditional, RSB filling"
+            "data": "Mitigation; Enhanced IBRS, IBPB conditional, RSB filling"
         },
         {
             "field": "Vulnerability Srbds:",
@@ -148,8 +148,30 @@
         },
         {
             "field": "Vulnerability Tsx async abort:",
-            "data": "Mitigation; TSX disabled"
+            "data": "Not affected"
         }
     ],
-    "net": "00:00.0 Host bridge: Intel Corporation Xeon E3-1200 v6/7th Gen Core Processor Host Bridge/DRAM Registers (rev 05)\n00:01.0 PCI bridge: Intel Corporation 6th-10th Gen Core Processor PCIe Controller (x16) (rev 05)\n00:14.0 USB controller: Intel Corporation 100 Series/C230 Series Chipset Family USB 3.0 xHCI Controller (rev 31)\n00:16.0 Communication controller: Intel Corporation 100 Series/C230 Series Chipset Family MEI Controller #1 (rev 31)\n00:17.0 SATA controller: Intel Corporation Q170/Q150/B150/H170/H110/Z170/CM236 Chipset SATA Controller [AHCI Mode] (rev 31)\n00:1c.0 PCI bridge: Intel Corporation 100 Series/C230 Series Chipset Family PCI Express Root Port #5 (rev f1)\n00:1c.5 PCI bridge: Intel Corporation 100 Series/C230 Series Chipset Family PCI Express Root Port #6 (rev f1)\n00:1c.7 PCI bridge: Intel Corporation 100 Series/C230 Series Chipset Family PCI Express Root Port #8 (rev f1)\n00:1d.0 PCI bridge: Intel Corporation 100 Series/C230 Series Chipset Family PCI Express Root Port #9 (rev f1)\n00:1f.0 ISA bridge: Intel Corporation H110 Chipset LPC/eSPI Controller (rev 31)\n00:1f.2 Memory controller: Intel Corporation 100 Series/C230 Series Chipset Family Power Management Controller (rev 31)\n00:1f.3 Audio device: Intel Corporation 100 Series/C230 Series Chipset Family HD Audio Controller (rev 31)\n00:1f.4 SMBus: Intel Corporation 100 Series/C230 Series Chipset Family SMBus (rev 31)\n01:00.0 VGA compatible controller: NVIDIA Corporation GP106 [GeForce GTX 1060 6GB] (rev a1)\n01:00.1 Audio device: NVIDIA Corporation GP106 High Definition Audio Controller (rev a1)\n03:00.0 Network controller: Intel Corporation Wireless 7265 (rev 59)\n04:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8111/8168/8411 PCI Express Gigabit Ethernet Controller (rev 15)\n"
+    "net": [
+        "00:00.0 Host bridge: Intel Corporation Coffee Lake HOST and DRAM Controller (rev 0c)",
+        "00:02.0 VGA compatible controller: Intel Corporation WhiskeyLake-U GT2 [UHD Graphics 620] (rev 02)",
+        "00:04.0 Signal processing controller: Intel Corporation Xeon E3-1200 v5/E3-1500 v5/6th Gen Core Processor Thermal Subsystem (rev 0c)",
+        "00:08.0 System peripheral: Intel Corporation Xeon E3-1200 v5/v6 / E3-1500 v5 / 6th/7th/8th Gen Core Processor Gaussian Mixture Model",
+        "00:12.0 Signal processing controller: Intel Corporation Cannon Point-LP Thermal Controller (rev 30)",
+        "00:14.0 USB controller: Intel Corporation Cannon Point-LP USB 3.1 xHCI Controller (rev 30)",
+        "00:14.2 RAM memory: Intel Corporation Cannon Point-LP Shared SRAM (rev 30)",
+        "00:16.0 Communication controller: Intel Corporation Cannon Point-LP MEI Controller #1 (rev 30)",
+        "00:17.0 SATA controller: Intel Corporation Cannon Point-LP SATA Controller [AHCI Mode] (rev 30)",
+        "00:1c.0 PCI bridge: Intel Corporation Cannon Point-LP PCI Express Root Port #1 (rev f0)",
+        "00:1d.0 PCI bridge: Intel Corporation Cannon Point-LP PCI Express Root Port #9 (rev f0)",
+        "00:1d.2 PCI bridge: Intel Corporation Cannon Point-LP PCI Express Root Port #1 (rev f0)",
+        "00:1d.4 PCI bridge: Intel Corporation Cannon Point-LP PCI Express Root Port #13 (rev f0)",
+        "00:1f.0 ISA bridge: Intel Corporation Cannon Point-LP LPC Controller (rev 30)",
+        "00:1f.3 Audio device: Intel Corporation Cannon Point-LP High Definition Audio Controller (rev 30)",
+        "00:1f.4 SMBus: Intel Corporation Cannon Point-LP SMBus Controller (rev 30)",
+        "00:1f.5 Serial bus controller: Intel Corporation Cannon Point-LP SPI Controller (rev 30)",
+        "02:00.0 Unassigned class [ff00]: Realtek Semiconductor Co., Ltd. RTS522A PCI Express Card Reader (rev 01)",
+        "04:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8111/8168/8411 PCI Express Gigabit Ethernet Controller (rev 10)",
+        "05:00.0 Network controller: Intel Corporation Wireless-AC 9260 (rev 29)",
+        "07:00.0 Non-Volatile memory controller: Silicon Motion, Inc. SM2263EN/SM2263XT SSD Controller (rev 03)"
+    ]
 }
