@@ -1,0 +1,173 @@
+{
+    "bios": {
+        "release_date": "03/30/2017",
+        "revision": "5.12",
+        "vendor": "American Megatrends Inc.",
+        "version": "3402"
+    },
+    "lscpu": [
+        {
+            "field": "\u0410\u0440\u0445\u0438\u0442\u0435\u043a\u0442\u0443\u0440\u0430:",
+            "data": "x86_64"
+        },
+        {
+            "field": "CPU op-mode(s):",
+            "data": "32-bit, 64-bit"
+        },
+        {
+            "field": "Address sizes:",
+            "data": "39 bits physical, 48 bits virtual"
+        },
+        {
+            "field": "\u041f\u043e\u0440\u044f\u0434\u043e\u043a \u0431\u0430\u0439\u0442:",
+            "data": "Little Endian"
+        },
+        {
+            "field": "CPU(s):",
+            "data": "8"
+        },
+        {
+            "field": "On-line CPU(s) list:",
+            "data": "0-7"
+        },
+        {
+            "field": "ID \u043f\u0440\u0440\u043e\u0438\u0437\u0432\u043e\u0434\u0438\u0442\u0435\u043b\u044f:",
+            "data": "GenuineIntel"
+        },
+        {
+            "field": "\u0418\u043c\u044f \u043c\u043e\u0434\u0435\u043b\u0438:",
+            "data": "Intel(R) Core(TM) i7-7700 CPU @ 3.60GHz"
+        },
+        {
+            "field": "\u0421\u0435\u043c\u0435\u0439\u0441\u0442\u0432\u043e \u0426\u041f\u0423:",
+            "data": "6"
+        },
+        {
+            "field": "\u041c\u043e\u0434\u0435\u043b\u044c:",
+            "data": "158"
+        },
+        {
+            "field": "\u041f\u043e\u0442\u043e\u043a\u043e\u0432 \u043d\u0430 \u044f\u0434\u0440\u043e:",
+            "data": "2"
+        },
+        {
+            "field": "\u042f\u0434\u0435\u0440 \u043d\u0430 \u0441\u043e\u043a\u0435\u0442:",
+            "data": "4"
+        },
+        {
+            "field": "\u0421\u043e\u043a\u0435\u0442\u043e\u0432:",
+            "data": "1"
+        },
+        {
+            "field": "\u0421\u0442\u0435\u043f\u043f\u0438\u043d\u0433:",
+            "data": "9"
+        },
+        {
+            "field": "CPU max MHz:",
+            "data": "4200,0000"
+        },
+        {
+            "field": "CPU min MHz:",
+            "data": "800,0000"
+        },
+        {
+            "field": "BogoMIPS:",
+            "data": "7200.00"
+        },
+        {
+            "field": "\u0424\u043b\u0430\u0433\u0438:",
+            "data": "fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault invpcid_single pti ssbd ibrs ibpb stibp tpr_shadow vnmi flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx rdseed adx smap clflushopt intel_pt xsaveopt xsavec xgetbv1 xsaves dtherm ida arat pln pts hwp hwp_notify hwp_act_window hwp_epp md_clear flush_l1d arch_capabilities"
+        },
+        {
+            "field": "\u0412\u0438\u0440\u0442\u0443\u0430\u043b\u0438\u0437\u0430\u0446\u0438\u044f:",
+            "data": "VT-x"
+        },
+        {
+            "field": "L1d cache:",
+            "data": "128 KiB (4 instances)"
+        },
+        {
+            "field": "L1i cache:",
+            "data": "128 KiB (4 instances)"
+        },
+        {
+            "field": "L2 cache:",
+            "data": "1 MiB (4 instances)"
+        },
+        {
+            "field": "L3 cache:",
+            "data": "8 MiB (1 instance)"
+        },
+        {
+            "field": "NUMA node(s):",
+            "data": "1"
+        },
+        {
+            "field": "NUMA node0 CPU(s):",
+            "data": "0-7"
+        },
+        {
+            "field": "Vulnerability Itlb multihit:",
+            "data": "KVM: Mitigation: VMX disabled"
+        },
+        {
+            "field": "Vulnerability L1tf:",
+            "data": "Mitigation; PTE Inversion; VMX conditional cache flushes, SMT vulnerable"
+        },
+        {
+            "field": "Vulnerability Mds:",
+            "data": "Mitigation; Clear CPU buffers; SMT vulnerable"
+        },
+        {
+            "field": "Vulnerability Meltdown:",
+            "data": "Mitigation; PTI"
+        },
+        {
+            "field": "Vulnerability Mmio stale data:",
+            "data": "Mitigation; Clear CPU buffers; SMT vulnerable"
+        },
+        {
+            "field": "Vulnerability Retbleed:",
+            "data": "Mitigation; IBRS"
+        },
+        {
+            "field": "Vulnerability Spec store bypass:",
+            "data": "Mitigation; Speculative Store Bypass disabled via prctl and seccomp"
+        },
+        {
+            "field": "Vulnerability Spectre v1:",
+            "data": "Mitigation; usercopy/swapgs barriers and __user pointer sanitization"
+        },
+        {
+            "field": "Vulnerability Spectre v2:",
+            "data": "Mitigation; IBRS, IBPB conditional, RSB filling"
+        },
+        {
+            "field": "Vulnerability Srbds:",
+            "data": "Mitigation; Microcode"
+        },
+        {
+            "field": "Vulnerability Tsx async abort:",
+            "data": "Mitigation; TSX disabled"
+        }
+    ],
+    "net": [
+        "00:00.0 Host bridge: Intel Corporation Xeon E3-1200 v6/7th Gen Core Processor Host Bridge/DRAM Registers (rev 05)",
+        "00:01.0 PCI bridge: Intel Corporation 6th-10th Gen Core Processor PCIe Controller (x16) (rev 05)",
+        "00:14.0 USB controller: Intel Corporation 100 Series/C230 Series Chipset Family USB 3.0 xHCI Controller (rev 31)",
+        "00:16.0 Communication controller: Intel Corporation 100 Series/C230 Series Chipset Family MEI Controller #1 (rev 31)",
+        "00:17.0 SATA controller: Intel Corporation Q170/Q150/B150/H170/H110/Z170/CM236 Chipset SATA Controller [AHCI Mode] (rev 31)",
+        "00:1c.0 PCI bridge: Intel Corporation 100 Series/C230 Series Chipset Family PCI Express Root Port #5 (rev f1)",
+        "00:1c.5 PCI bridge: Intel Corporation 100 Series/C230 Series Chipset Family PCI Express Root Port #6 (rev f1)",
+        "00:1c.7 PCI bridge: Intel Corporation 100 Series/C230 Series Chipset Family PCI Express Root Port #8 (rev f1)",
+        "00:1d.0 PCI bridge: Intel Corporation 100 Series/C230 Series Chipset Family PCI Express Root Port #9 (rev f1)",
+        "00:1f.0 ISA bridge: Intel Corporation H110 Chipset LPC/eSPI Controller (rev 31)",
+        "00:1f.2 Memory controller: Intel Corporation 100 Series/C230 Series Chipset Family Power Management Controller (rev 31)",
+        "00:1f.3 Audio device: Intel Corporation 100 Series/C230 Series Chipset Family HD Audio Controller (rev 31)",
+        "00:1f.4 SMBus: Intel Corporation 100 Series/C230 Series Chipset Family SMBus (rev 31)",
+        "01:00.0 VGA compatible controller: NVIDIA Corporation GP106 [GeForce GTX 1060 6GB] (rev a1)",
+        "01:00.1 Audio device: NVIDIA Corporation GP106 High Definition Audio Controller (rev a1)",
+        "03:00.0 Network controller: Intel Corporation Wireless 7265 (rev 59)",
+        "04:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8111/8168/8411 PCI Express Gigabit Ethernet Controller (rev 15)"
+    ]
+}
