@@ -284,12 +284,49 @@
 #     n, m = len(matrix), len(matrix[0])
 #     matrix = [[matrix[j][i] for i in range(m)] for j in range(n)]
 
-def transpose(m):
-    return [[m[i][j] for i in range(len(m))] for j in range(len(m))]
+# def transpose(m):
+#     return list(zip(*m))
 
 
-n, m = map(int, input().split())
-matrix = [list(map(int, input().split())) for _ in range(n)]
-transpose(matrix)
-print(matrix)
+# n, m = map(int, input().split())
+# matrix = [list(map(int, input().split())) for _ in range(n)]
+
+# for row in transpose(matrix):
+#     print(*row)
 # matrix = [[matrix[i][j] for i in range(n)] for j in range(m)]
+
+
+# def mult(a, b):
+#     return [[sum(x * y for x, y in zip(a_row, b_col)) for b_col in zip(*b)] for a_row in a]
+
+
+# n = int(input())
+# matrix = [list(map(float, input().split())) for _ in range(n)]
+
+# orig_m = [[e for e in row] for row in matrix]
+# for i in range(n-1):
+#     matrix = mult(matrix, orig_m)
+
+# for row in matrix:
+#     print(''.join(f'{e:.3f} ' for e in row))
+
+
+# def del_par(s):
+#     while '(' in s:
+#         s = s.replace(s[s.index('('):s.index(')')+1], '')
+#     return s
+
+
+# n = int(input())
+# l = [input() for _ in range(n)]
+# print(*map(del_par, l), sep='\n')
+
+
+def fib(n):
+    f, s = 0, 1
+    for _ in range(n):
+        f, s = s, f+s
+    return f
+
+
+print(fib(int(input())))
