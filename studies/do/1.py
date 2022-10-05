@@ -178,7 +178,7 @@
 # print(f'the {ranksd[r]} of {suitsd[s]}')
 
 
-from collections import Counter, defaultdict
+# from collections import Counter, defaultdict
 
 
 # c1 = Counter(input())
@@ -207,3 +207,89 @@ from collections import Counter, defaultdict
 
 # d = defaultdict(int)
 # print(d)
+
+
+# def is_power_of_five(n):
+#     while n > 1:
+#         if n % 5 != 0:
+#             return False
+#         n //= 5
+#     return True
+
+
+# n = int(input())
+# l = map(int, input().split())
+
+# print(len(list(filter(lambda x: is_power_of_five(x), l))))
+
+
+# def is_prime(n):
+#     if n == 1:
+#         return False
+#     for i in range(2, int(n**0.5)+1):
+#         if n % i == 0:
+#             return False
+#     return True
+
+
+# n = int(input())
+# # for n in filter(lambda x: not x % 2, range(4, 1001)):
+# #     print(f'{n}:')
+# for i in range(1, n):
+#     if is_prime(i) and is_prime(n-i):
+#         print(i, n-i)
+#         break
+
+
+# print(*(filter(lambda x: is_prime(x), range(4, 1000))))
+
+
+# def swap_min_last(l):
+#     l[l.index(min(l))], l[-1] = l[-1], l[l.index(min(l))]
+
+
+# n, m = map(int, input().split())
+# matrix = [list(map(int, input().split())) for _ in range(n)]
+# matrix = [[matrix[i][j] for i in range(n)] for j in range(m)]
+
+# for col in matrix:
+#     swap_min_last(col)
+
+# matrix = [[matrix[i][j] for i in range(m)] for j in range(n)]
+
+# for row in matrix:
+#     print(*row)
+
+# def swap(m):
+#     for i in range(len(m)):
+#         for j in range(len(m[i])):
+#             if not m[i][j] % 2:
+#                 m[i][j] = 0
+
+
+# n, m = map(int, input().split())
+# matrix1 = [list(map(int, input().split())) for _ in range(n)]
+# matrix2 = [list(map(int, input().split())) for _ in range(n)]
+
+# swap(matrix1)
+# swap(matrix2)
+
+# if matrix1 == matrix2:
+#     print('YES')
+# else:
+#     print('NO')
+
+
+# def transpose(matrix):
+#     n, m = len(matrix), len(matrix[0])
+#     matrix = [[matrix[j][i] for i in range(m)] for j in range(n)]
+
+def transpose(m):
+    return [[m[i][j] for i in range(len(m))] for j in range(len(m))]
+
+
+n, m = map(int, input().split())
+matrix = [list(map(int, input().split())) for _ in range(n)]
+transpose(matrix)
+print(matrix)
+# matrix = [[matrix[i][j] for i in range(n)] for j in range(m)]
