@@ -91,13 +91,39 @@ class Graph:
 
         return True
 
+    def get_children_of_vertex(self, vertex: Vertex) -> list | Vertex:
+        return [e.dest for e in self.edges if e.source == vertex] or vertex
+
+    def get_function_by_graph(self, current_vertex: Vertex = Vertex('E')) -> str:
+        if not self.is_acyclic():
+            return None
+        start = current_vertex
+        acc = f'{start.name}('
+        print(start)
+        children = self.get_children_of_vertex(start)
+        print('before if', children)
+        if isinstance(children, list):
+            for v in children:
+                acc += v.name
+                print(acc)
+                self.get_function_by_graph(v)
+        else:
+            print('else', children)
+            acc += children.name
+            print(acc)
+
+        return acc
+        # print(fun)
+        # fun += ')'
+        # fun += ')'
+
 
 def main():
     # adasds
     # v1 = Vertex("v1")
     # v2 = Vertex("v1")
     # print(v1 == v2)
-    # g = Graph.get_graph_from_file('graph.txt')
+    g = Graph(*Graph.get_graph_from_file('graph.txt'))
     # print(list(g))
     # for s in g:
     # print(s[1:-1].split(','))
@@ -105,8 +131,8 @@ def main():
     # [(i[0], i[1], int(i[2])) for i in (i[1:-1].split(',')
     #                                    for i in re.findall(rg, '(a,b,1),(d,e,2)'))]
 
-    g = Graph([Vertex('v1'), Vertex('v2'), Vertex('v3')], [
-              Edge(Vertex('v1'), Vertex('v3'), 1), Edge(Vertex('v2'), Vertex('v3'), 2)])
+    # g = Graph([Vertex('v1'), Vertex('v2'), Vertex('v3')], [
+    #           Edge(Vertex('v1'), Vertex('v3'), 1), Edge(Vertex('v2'), Vertex('v3'), 2)])
 
     g1 = Graph([Vertex('v1'), Vertex('v2'), Vertex('v3')], [
         Edge(Vertex('v1'), Vertex('v2'), 1), Edge(Vertex('v2'), Vertex('v3'), 1), Edge(Vertex('v3'), Vertex('v1'), 1)])
@@ -126,6 +152,13 @@ def main():
     print(*rg.vertices)
     print(*rg.edges)
     rg.save_graph_as_json('test.json')
+
+    v_names = 'ABCDEF'
+    g2 = Graph(list(map(Vertex, v_names)), [Edge(Vertex('E'), Vertex('D'), 1), Edge(Vertex('D'), Vertex('A'), 1), Edge(
+        Vertex('E'), Vertex('B'), 1), Edge(Vertex('B'), Vertex('C'), 1), Edge(Vertex('E'), Vertex('F'), 1)])
+    print(g2.is_acyclic())
+    print(g2.get_function_by_graph())
+
     # print(type(rg[0]), type(rg[1]))
     # for verts in Graph.get_graph_from_file('graph.txt'):
     #     for v in verts:
