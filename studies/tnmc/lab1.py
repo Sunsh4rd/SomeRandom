@@ -70,7 +70,7 @@ def garner(us, ms):
     for i in range(k):
         xs[i] = us[i]
         for j in range(i):
-            xs[i] = rs[j][i] * (xs[i]-xs[j])
+            xs[i] = rs[j][i] * (xs[i] - xs[j])
             xs[i] = xs[i] % ms[i]
             if xs[i] < 0:
                 xs[i] += ms[i]
@@ -90,19 +90,19 @@ def gauss(matrix, m):
         matrix[i] = [(a % m * inverse) % m for a in matrix[i]]
         # print(matrix[i])
 
-        for j in range(i+1, size):
+        for j in range(i + 1, size):
             subrow = [(a % m * matrix[j][i] % m) % m for a in matrix[i]]
             matrix[j] = [(a - s) % m for a, s in zip(matrix[j], subrow)]
 
     return matrix
 
 
-def Ext_Euclid(num1, num2):
+def ext_euclid(num1, num2):
     if num1 == 0:
-        return (num2, 0, 1)
+        return num2, 0, 1
     else:
         div, x, y = Ext_Euclid(num2 % num1, num1)
-    return (div, y - (num2 // num1) * x, x)
+    return div, y - (num2 // num1) * x, x
 
 
 def Gauss(A, m):
@@ -111,7 +111,7 @@ def Gauss(A, m):
         A[i] = (A[i] % m * a_) % m
         # print(A[i])
         if i != len(A) - 1:
-            for j in range(i+1, len(A)):
+            for j in range(i + 1, len(A)):
                 A[j] -= (A[i] % m * A[j][i] % m) % m
                 A[j] = A[j] % m
     return A
@@ -149,17 +149,17 @@ def main():
                     s = perf_counter_ns()
                     print(euclid(args.a, args.b))
                     f = perf_counter_ns()
-                    print(f'Время работы (10^-9 с.) {f-s}')
+                    print(f'Время работы (10^-9 с.) {f - s}')
                 case 'ext':
                     s = perf_counter_ns()
                     print(euclid_extended(args.a, args.b))
                     f = perf_counter_ns()
-                    print(f'Время работы (10^-9 с.) {f-s}')
+                    print(f'Время работы (10^-9 с.) {f - s}')
                 case 'bin':
                     s = perf_counter_ns()
                     print(euclid_binary(args.a, args.b))
                     f = perf_counter_ns()
-                    print(f'Время работы (10^-9 с.) {f-s}')
+                    print(f'Время работы (10^-9 с.) {f - s}')
 
         case 'lcs':
             match args.type:
@@ -167,12 +167,12 @@ def main():
                     s = perf_counter_ns()
                     print(gcrt(args.u, args.m))
                     f = perf_counter_ns()
-                    print(f'Время работы (10^-9 с.) {f-s}')
+                    print(f'Время работы (10^-9 с.) {f - s}')
                 case 'garner':
                     s = perf_counter_ns()
                     print(garner(args.u, args.m))
                     f = perf_counter_ns()
-                    print(f'Время работы (10^-9 с.) {f-s}')
+                    print(f'Время работы (10^-9 с.) {f - s}')
 
         case 'gauss':
             matrix = [list(map(int, input().split())) for _ in range(args.n)]
@@ -180,7 +180,7 @@ def main():
             print(*gauss(matrix, args.m), sep='\n')  # чет не так
             print(*Gauss(np.array(matrix), args.m), sep='\n')  # норм
             f = perf_counter_ns()
-            print(f'Время работы (10^-9 с.) {f-s}')
+            print(f'Время работы (10^-9 с.) {f - s}')
 
 
 if __name__ == '__main__':
