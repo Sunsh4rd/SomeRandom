@@ -1,3 +1,4 @@
+from os.path import exists
 from hashlib import md5
 from json import dump, load, loads
 
@@ -5,10 +6,15 @@ from json import dump, load, loads
 def get_db_content():
     with open('skey_parameters/db.json', 'r', encoding='utf-8') as db_read:
         db = db_read.read()
-        return loads(db) if db else dict()
+        if not db or db == 'null':
+            return {}
+        else:
+            return loads(db)
 
 
 def user_is_in_database(user):
+    if not get_db_content():
+        return False
     return user in get_db_content().keys()
 
 
@@ -24,7 +30,8 @@ def generate_hashes(number):
 
 
 def save_user_in_db(user, hash):
-    updated_db_content = get_db_content().update({user: hash})
+    updated_db_content = get_db_content()
+    updated_db_content.update({user: hash})
     with open('skey_parameters/db.json', 'w', encoding='utf-8') as db_write:
         dump(updated_db_content, db_write, indent=4)
 
@@ -36,24 +43,28 @@ def get_user_hashes(user):
 
 
 def save_user_hashes(user, hashes):
-    user_hashes = get_user_hashes(user).get('hashes')
-    user_hashes.append(*hashes)
-    with open(f'skey_parameters/{user}.json', 'w', encoding='utf-8') as hashes_write:
-        dump({user: user_hashes}, hashes_write, indent=4)
+    if not exists(f'skey_parameters/{user}.json'):
+        with open(f'skey_parameters/{user}.json', 'w', encoding='utf-8') as hashes_write:
+            dump({'hashes': hashes}, hashes_write, indent=4)
+    else:
+        user_hashes = get_user_hashes(user).get('hashes')
+        with open(f'skey_parameters/{user}.json', 'w', encoding='utf-8') as hashes_write:
+            dump({'hashes': [*hashes]}, hashes_write, indent=4)
 
 
 def register_user():
     user = input('Введите имя пользователя: ')
-    if user_is_in_database(user):
-        print('Пользователь с таким именем уже зарегестрирован')
+    if not user_is_in_database(user):
+        number = int(input('Введите число: '))
+        hashes = generate_hashes(number)
+        save_user_in_db(user, hashes[-1])
+        save_user_hashes(user, hashes[:-1])
+        print(f'Пользователь {user} зарегистрирован')
         return
 
-    number = int(input('Введите число: '))
-    hashes = generate_hashes(number)
-    save_user_in_db(user, hashes[-1])
-    save_user_hashes(user, hashes[:-1])
-    print(f'Пользователь {user} зарегистрирован')
-    return
+    if user_is_in_database(user) and get_user_hashes(user)['hashes']:
+        print('Пользователь с таким именем уже зарегестрирован')
+        return
 
 
 def login():
@@ -62,11 +73,18 @@ def login():
         print('Пользователь с таким именем не зарегистрирован')
         return
 
-    _hash = get_user_hashes(user)['hashes'][-1]
-    if _hash == get_db_content['user']:
+    if not get_user_hashes(user)['hashes']:
+        print('Для данного пользователя исчерпан запас ключей, повторите регистрацию')
+        return
+
+    last = get_user_hashes(user)['hashes'][-1]
+    _hash = md5(last.encode()).hexdigest()
+    if _hash == get_db_content()[f'{user}']:
         print('Вход выполнен успешно')
-        save_user_hashes(user, get_user_hashes(user)['hashes'].remove(_hash))
-        save_user_in_db(user, _hash)
+        updhashes = get_user_hashes(user)['hashes']
+        updhashes.remove(last)
+        save_user_hashes(user, updhashes)
+        save_user_in_db(user, last)
     else:
         print('Вход не выполнен')
 
