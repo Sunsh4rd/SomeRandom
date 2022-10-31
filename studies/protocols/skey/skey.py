@@ -1,6 +1,7 @@
 from os.path import exists
 from hashlib import md5
 from json import dump, load, loads
+from random import getrandbits, randint
 
 
 def get_db_content():
@@ -18,11 +19,11 @@ def user_is_in_database(user):
     return user in get_db_content().keys()
 
 
-def generate_hashes(number):
+def generate_hashes(number, n):
     hashes = []
     first = md5(bytes(number)).hexdigest()
     hashes.append(first)
-    for _ in range(5):
+    for _ in range(n):
         new = md5(first.encode()).hexdigest()
         hashes.append(new)
         first = new
@@ -55,8 +56,11 @@ def save_user_hashes(user, hashes):
 def register_user():
     user = input('Введите имя пользователя: ')
     if not user_is_in_database(user):
-        number = int(input('Введите число: '))
-        hashes = generate_hashes(number)
+        number = getrandbits(int(input('Введите длину случайного числа: ')))
+        with open(f'skey_parameters/{user}_number.json', 'w', encoding='utf-8') as n:
+            dump({'number':number}, n, indent=4)
+        n = int(input('Введите параметр n: '))
+        hashes = generate_hashes(number, n)
         save_user_in_db(user, hashes[-1])
         save_user_hashes(user, hashes[:-1])
         print(f'Пользователь {user} зарегистрирован')
