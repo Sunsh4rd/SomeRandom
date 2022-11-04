@@ -34,12 +34,12 @@ class Edge:
 
 class Graph:
 
-    def __init__(self, vertices: list, edges: list):
+    def __init__(self, vertices: list[Vertex], edges: list[Edge]) -> None:
         self.vertices = vertices
         self.edges = edges
 
     @staticmethod
-    def get_graph_from_file(path: str):
+    def get_graph_from_file(path: str) -> tuple[list[Vertex], list[Edge]]:
         with open(path, 'r') as f:
             graph_edges = [[e[0], e[1][1:], int(e[2])] for e in map(
                 lambda x: x[1:-1].split(','), re.findall(r'\([^\)]*\)', f.read()))]
@@ -91,10 +91,10 @@ class Graph:
 
         return True
 
-    def get_children_of_vertex(self, vertex: Vertex) -> list | Vertex:
+    def get_children_of_vertex(self, vertex: Vertex) -> list[Vertex] | Vertex:
         return [e.dest for e in self.edges if e.source == vertex] or vertex
 
-    def get_function_by_graph(self, current_vertex: Vertex = Vertex('E')) -> str:
+    def get_function_by_graph(self, current_vertex: Vertex = Vertex('E')) -> str | None:
         if not self.is_acyclic():
             return None
         start = current_vertex
