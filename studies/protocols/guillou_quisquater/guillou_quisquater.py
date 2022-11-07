@@ -8,8 +8,6 @@ from sympy import isprime
 def get_attributes_as_j():
     with open('gq_parameters/attributes.json', 'r', encoding='utf-8') as attr:
         attributes = ''.join(load(attr)['attributes'])
-        # print(hash(''.join(data['attributes'])))
-        print(attributes)
         return int.from_bytes(bytes(attributes.encode()), byteorder='big')
 
 
@@ -23,21 +21,21 @@ def key_gen():
             p, q = getrandbits(len_p), getrandbits(len_q)
         else:
             break
-    # print(p, q, isprime(p), isprime(q))
+    print(f'Сгенерированные числа p = {p}, q = {q}')
     n = p * q
-    # print(n, isprime(n))
+    print(f'n = p*q = {n}')
     phi = (p-1) * (q-1)
-    # print('phi', phi)
+    print(f'phi(n) = {phi}')
     e = randint(0, phi-1)
     while not gcd(e, phi) == 1:
         e = randint(0, phi-1)
-    # print('e', e)
+    print(f'e = {e}')
     s = pow(e, -1, phi)
-    # print('s', s)
+    print(f's = {s}')
     x = pow(j, -s, n)
-    # print('x', x)
+    print(f'x = {x}')
     y = pow(x, e, n)
-    # print('y', y)
+    print(f'y = {y}')
     with open('gq_parameters/public_key.json', 'w', encoding='utf-8') as pubk:
         dump({'n': n, 'e': e, 'y': y}, pubk, indent=4)
     with open('gq_parameters/x.json', 'w', encoding='utf-8') as privk:
@@ -50,9 +48,11 @@ def step1():
         data = load(pubk)
         n, e = data['n'], data['e']
     r = randint(2, n-2)
+    print(f'r = {r}')
     with open('gq_parameters/r.json', 'w', encoding='utf-8') as rw:
         dump({'r': r}, rw, indent=4)
     a = pow(r, e, n)
+    print(f'a = {a}')
     with open('gq_parameters/a.json', 'w', encoding='utf-8') as aw:
         dump({'a': a}, aw, indent=4)
     return
@@ -63,6 +63,7 @@ def step2():
         data = load(pubk)
         e = data['e']
     c = randint(1, e-2)
+    print(f'c = {c}')
     with open('gq_parameters/c.json', 'w', encoding='utf-8') as cw:
         dump({'c': c}, cw, indent=4)
     return
@@ -82,6 +83,7 @@ def step3():
         data = load(xr)
         x = data['x']
     z = (r % n * pow(x, c, n)) % n
+    print(f'z = {z}')
     with open('gq_parameters/z.json', 'w', encoding='utf-8') as zw:
         dump({'z': z}, zw, indent=4)
     return
@@ -100,7 +102,7 @@ def step4():
     with open('gq_parameters/c.json', 'r', encoding='utf-8') as cr:
         data = load(cr)
         c = data['c']
-    print('ok' if pow(z, e, n) == (a % n * pow(y, c, n)) % n else 'not ok')
+    print('Подлинность подтверждена' if pow(z, e, n) == (a % n * pow(y, c, n)) % n else 'Подлинность не подтверждена')
     return
 
 
