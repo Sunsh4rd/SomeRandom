@@ -42,8 +42,8 @@ from sympy import isprime
 
 def gen_char_n_bits(n):
     begin = 1 << n-1
-    end = 1 << n
-    print(begin, end, bin(begin), bin(end-1))
+    end = (1 << n)-1
+    print(begin, end, bin(begin), bin(end))
     while True:
         p = randint(begin, end)
         if p % 4 == 1 and isprime(p):
