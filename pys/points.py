@@ -3,7 +3,7 @@ def pp(x1, y1, x2, y2, a, p):
         alpha = ((3*x1*x1 + a) * pow(2*y1, -1, p)) % p
     else:
         alpha = ((y1 - y2) * pow(x1 - x2, -1, p)) % p
-    # print(alpha)
+    print(alpha, end=' ')
     x3 = (pow(alpha, 2, p)-x1-x2) % p
     y3 = (alpha*(x1-x3) - y1) % p
     return x3, y3
@@ -35,15 +35,18 @@ def ysfromy2s():
 # print(pp(10,3,1,5,7,11))
 
 
-p = (0, 1)
+p = (1, 5)
 o = 1
 print(o, p)
 while o <= 8:
     try:
-        np = pp(*p, 0, 1, 2, 11)
+        np = pp(*p, 1, 5, 7, 11)
         p = (np[0], np[1])
         o += 1
         print(o, p)
     except Exception as e:
         print('...')
         break
+
+
+# print(pp(4,5,2,3,2,11))
