@@ -138,7 +138,7 @@ def pp(x1, y1, x2, y2, a, p):
     return x3, y3
 
 def main():
-    m = 1
+    m = 5
     l = int(input('Длина числа p: '))
     while True:
         p = gen_char_n_bits(l)
