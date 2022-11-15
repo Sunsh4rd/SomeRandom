@@ -58,6 +58,7 @@ def factorize(p):
 
 def verify_n(p, a, b):
     ns = [p + 1 + 2*a, p + 1 + 2*b, p + 1 - 2*a, p + 1 - 2*b]
+    print(ns)
     opts = []
     for n in ns:
         if n % 2 == 0:
@@ -72,6 +73,9 @@ def verify_n(p, a, b):
             if isprime(r):
                 # print(r)
                 opts.append((n,r,4))
+    print(opts)
+    if len(opts) == 0:
+        return None
     return choice(opts)
 
 
@@ -97,10 +101,10 @@ def legendre(a, p):
     # if a % 2 == 1 and a != 1:
     #     return legendre(p % a, a) * (-1) ** ((a - 1) * ((p - 1) // 4))
 
-def gen_point(p):
-    a, b = factorize(65129)
-    n,r,k = verify_n(65129, a, b) # verify_n(p,a,b)
-    print(n,r)
+def gen_point(p,n,r):
+    # a, b = factorize(65129)
+    # n,r,k = verify_n(65129, a, b) # verify_n(p,a,b)
+    # print(n,r)
     # while True:
         # x0, y0 = randint(1,p-1), randint(1,p-1)
     for x0 in range(1,p):
@@ -117,9 +121,13 @@ def gen_point(p):
                     print('is')
                     break
         break
-    return x0, y0
+    else:
+        return None, None, None
+    return x0, y0, a_c
 
 def pp(x1, y1, x2, y2, a, p):
+    if x1 == x2 and -y1 % p == y2:
+        return None
     if x1 == x2:
         alpha = ((3*x1*x1 + a) * pow(2*y1, -1, p)) % p
     else:
@@ -130,25 +138,44 @@ def pp(x1, y1, x2, y2, a, p):
     return x3, y3
 
 def main():
-    # p = gen_char_n_bits(16)
-    # print(p)
-
-    # a, b = factorize(65129)
-    # print(a, b)
-
-    # print(verify_n(65129, a, b))
-
-    # print(gen_point(65129))
-
-    p = (1, 2)
-    for _ in range(2):
-        try:
-            np = pp(*p, 1, 2, 3, 65129)
-            p = (np[0], np[1])
-            print(p)
-        except Exception as e:
-            print('...')
-            break
+    m = 1
+    l = int(input('Длина числа p: '))
+    while True:
+        p = gen_char_n_bits(l)
+        print(p)
+        a, b = factorize(p)
+        print(a, b)
+        ver_n = verify_n(p, a, b)
+        print(ver_n)
+        if ver_n is None:
+            continue
+        n = ver_n[0]
+        r = ver_n[1]
+        print(r)
+        ver_p = verify_p(p,r,m)
+        print(ver_p)
+        if not ver_p:
+            continue
+        break
+        
+    print(p, ver_n, ver_p, 'steps 1-4 ok')
+    
+    while True:
+        x0,y0, a_c = gen_point(p, n,r)
+        print(x0,y0)
+        if x0 is None and y0 is None:
+            continue
+        p0 = (x0,y0)
+        for _ in range(n):
+            try:
+                np = pp(*p0,x0, y0, a_c, p)
+                p0 = (np[0], np[1])
+                print(p0)
+            except Exception as e:
+                print('...')
+                break
+        print(f'mod {p}, p0 = {x0},{y0}, pinf = {p0}')
+        break
 
     
 
