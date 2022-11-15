@@ -1,35 +1,22 @@
 # # (v1, v3, 1), (v2, v3, 2)
+from dataclasses import dataclass
 import json
 import re
 
 
+@dataclass(frozen=True, order=True, repr=True)
 class Vertex:
-
-    def __init__(self, name: str) -> None:
-        self.name = name
-
-    def __hash__(self) -> int:
-        return hash(self.name)
-
-    def __eq__(self, other) -> bool:
-        return self.name == other.name
+    name: str
 
     def __str__(self) -> str:
         return self.name
 
-    def __lt__(self, other) -> bool:
-        return self.name < other.name
 
-
+@dataclass(frozen=True)
 class Edge:
-
-    def __init__(self, source: Vertex, dest: Vertex, order: int) -> None:
-        self.source = source
-        self.dest = dest
-        self.order = order
-
-    def __str__(self) -> str:
-        return f'({self.source}, {self.dest}, {self.order})'
+    source: Vertex
+    dest: Vertex
+    order: int
 
 
 class Graph:
@@ -57,7 +44,7 @@ class Graph:
 
             return vertices_list, edges_list
 
-    def save_graph_as_json(self, path: str):
+    def save_graph_as_json(self, path: str) -> None:
         with open(path, 'w') as f:
             json.dump(
                 {
@@ -91,48 +78,86 @@ class Graph:
 
         return True
 
-    def get_children_of_vertex(self, vertex: Vertex) -> list[Vertex] | Vertex:
-        return [e.dest for e in self.edges if e.source == vertex] or vertex
+    def get_function_by_graph(self) -> str | None:
 
-    def get_function_by_graph(self, current_vertex: Vertex = Vertex('E')) -> str | None:
+        used = []
+        fun = []
+        def get_function_as_string(sink: Vertex) -> None:
+            fun.append(str(sink))
+            used.append(sink)
+            flag = False
+            ansectors = 0
+            for e in self.edges:
+                if e.dest == sink and e.source not in used:
+                    ansectors += 1
+                    flag = True
+                    if ansectors == 1:
+                        fun.append('(')
+                    if ansectors >= 2:
+                        fun.append(',')
+                    get_function_as_string(e.source)
+            if flag and ansectors <= 1:
+                fun.append(')')
+            elif flag and ansectors >= 2:
+                fun.append(')')
+
         if not self.is_acyclic():
             return None
-        start = current_vertex
-        acc = f'{start.name}('
-        print(start)
-        children = self.get_children_of_vertex(start)
-        print('before if', children)
-        if isinstance(children, list):
-            for v in children:
-                acc += v.name
-                print(acc)
-                self.get_function_by_graph(v)
-        else:
-            print('else', children)
-            acc += children.name
-            print(acc)
+        
+        vertices_from, vertices_to = [],[]
+        for e in self.edges:
+            if e.source not in vertices_from:
+                vertices_from.append(e.source)
+            if e.dest not in vertices_to:
+                vertices_to.append(e.dest)
+            
+        vertices_from.sort()
+        vertices_to.sort()
 
-        return acc
+        if len(self.vertices) == len(vertices_from):
+            print('no sinks')
+            return None
+        
+        sinks = [v for v in self.vertices if v not in vertices_from and v in vertices_to]
+        print(sinks)
+
+        for s in sinks:
+            get_function_as_string(s)
+            print(''.join(fun))
+            fun = []
+            used = []
+
+    # def get_children_of_vertex(self, vertex: Vertex) -> list[Vertex] | Vertex:
+    #     return [e.dest for e in self.edges if e.source == vertex] or vertex
+
+    # def get_function_by_graph(self, current_vertex: Vertex = Vertex('E')) -> str | None:
+    #     if not self.is_acyclic():
+    #         return None
+    #     start = current_vertex
+    #     acc = f'{start.name}('
+    #     print(start)
+    #     children = self.get_children_of_vertex(start)
+    #     print('before if', children)
+    #     if isinstance(children, list):
+    #         for v in children:
+    #             acc += v.name
+    #             print(acc)
+    #             self.get_function_by_graph(v)
+    #     else:
+    #         print('else', children)
+    #         acc += children.name
+    #         print(acc)
+
+    #     return acc
         # print(fun)
         # fun += ')'
         # fun += ')'
 
 
 def main():
-    # adasds
-    # v1 = Vertex("v1")
-    # v2 = Vertex("v1")
-    # print(v1 == v2)
+    
     g = Graph(*Graph.get_graph_from_file('graph.txt'))
-    # print(list(g))
-    # for s in g:
-    # print(s[1:-1].split(','))
-
-    # [(i[0], i[1], int(i[2])) for i in (i[1:-1].split(',')
-    #                                    for i in re.findall(rg, '(a,b,1),(d,e,2)'))]
-
-    # g = Graph([Vertex('v1'), Vertex('v2'), Vertex('v3')], [
-    #           Edge(Vertex('v1'), Vertex('v3'), 1), Edge(Vertex('v2'), Vertex('v3'), 2)])
+    
 
     g1 = Graph([Vertex('v1'), Vertex('v2'), Vertex('v3')], [
         Edge(Vertex('v1'), Vertex('v2'), 1), Edge(Vertex('v2'), Vertex('v3'), 1), Edge(Vertex('v3'), Vertex('v1'), 1)])
@@ -149,25 +174,22 @@ def main():
     print(g3.is_acyclic())
 
     rg = Graph(*Graph.get_graph_from_file('graph.txt'))
-    print(*rg.vertices)
-    print(*rg.edges)
-    rg.save_graph_as_json('test.json')
+    # print(*rg.vertices)
+    # print(*rg.edges)
+    # rg.save_graph_as_json('test.json')
+    print(rg.is_acyclic())
+    rg.get_function_by_graph()
 
-    v_names = 'ABCDEF'
-    g2 = Graph(list(map(Vertex, v_names)), [Edge(Vertex('E'), Vertex('D'), 1), Edge(Vertex('D'), Vertex('A'), 1), Edge(
-        Vertex('E'), Vertex('B'), 1), Edge(Vertex('B'), Vertex('C'), 1), Edge(Vertex('E'), Vertex('F'), 1)])
-    print(g2.is_acyclic())
-    print(g2.get_function_by_graph())
 
-    # print(type(rg[0]), type(rg[1]))
-    # for verts in Graph.get_graph_from_file('graph.txt'):
-    #     for v in verts:
-    #         print(v)
-    # for e in ed:
-    #     print(e)
+    # v_names = 'ABCDEF'
+    # g2 = Graph(list(map(Vertex, v_names)), [Edge(Vertex('E'), Vertex('D'), 1), Edge(Vertex('D'), Vertex('A'), 1), Edge(
+    #     Vertex('E'), Vertex('B'), 1), Edge(Vertex('B'), Vertex('C'), 1), Edge(Vertex('E'), Vertex('F'), 1)])
+    # print(g2.is_acyclic())
+    # print(g2.get_function_by_graph())
 
-    # for k, v in g.__dict__:
-    #     print(k.__dict__)
+    
+
+
 
 
 if __name__ == '__main__':

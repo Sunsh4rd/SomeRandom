@@ -1,19 +1,42 @@
 {
     "vertices": [
-        "v1",
-        "v2",
-        "v3"
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
     ],
     "edges": [
         {
-            "source": "v1",
-            "dest": "v3",
+            "source": "A",
+            "dest": "D",
             "order": 1
         },
         {
-            "source": "v2",
-            "dest": "v3",
+            "source": "D",
+            "dest": "E",
+            "order": 1
+        },
+        {
+            "source": "C",
+            "dest": "F",
+            "order": 1
+        },
+        {
+            "source": "D",
+            "dest": "A",
+            "order": 1
+        },
+        {
+            "source": "B",
+            "dest": "E",
             "order": 2
+        },
+        {
+            "source": "F",
+            "dest": "E",
+            "order": 3
         }
     ]
 }
