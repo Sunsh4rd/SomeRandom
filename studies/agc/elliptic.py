@@ -1,5 +1,5 @@
 from itertools import product
-from random import randint
+from random import randint, choice
 
 from sympy import isprime
 
@@ -58,18 +58,99 @@ def factorize(p):
 
 def verify_n(p, a, b):
     ns = [p + 1 + 2*a, p + 1 + 2*b, p + 1 - 2*a, p + 1 - 2*b]
-    return ns
+    opts = []
+    for n in ns:
+        if n % 2 == 0:
+            # print(n)
+            r = n // 2
+            if isprime(r):
+                # print(r)
+                opts.append((n,r,2))
+        if n % 4 == 0:
+            # print(n)
+            r = n // 4
+            if isprime(r):
+                # print(r)
+                opts.append((n,r,4))
+    return choice(opts)
 
+
+def verify_p(p,r,m):
+    return p != r and bool(sum((pow(p,i,r) != 1 for i in range(1,m+1))))
+
+def legendre(a, p):
+    res = pow(a, (p-1)//2, p)
+    if res == p-1:
+        return -1
+    if res == 1:
+        return 1
+    # if a > p or a < 0:
+    #     r = a % p
+    #     return legendre(r,p)
+    
+    # if 0 < a < p
+
+    # if a == 1:
+    #     return 1
+    # if a % 2 == 0:
+    #     return legendre(a // 2, p) * (-1) ** ((p * 2 - 1) // 8)
+    # if a % 2 == 1 and a != 1:
+    #     return legendre(p % a, a) * (-1) ** ((a - 1) * ((p - 1) // 4))
+
+def gen_point(p):
+    a, b = factorize(65129)
+    n,r,k = verify_n(65129, a, b) # verify_n(p,a,b)
+    print(n,r)
+    # while True:
+        # x0, y0 = randint(1,p-1), randint(1,p-1)
+    for x0 in range(1,p):
+        for y0 in range(2,p):
+            a_c = (((pow(y0,2,p) - pow(x0,3,p)) % p) * pow(x0,-1,p)) % p
+            if n == 2*r:
+                print(2, a_c)
+                if legendre(a_c, p) == -1:
+                    print(a_c,'not')
+                    break
+            if n == 4*r:
+                print(4, a_c)
+                if legendre(a_c,p) == 1:
+                    print('is')
+                    break
+        break
+    return x0, y0
+
+def pp(x1, y1, x2, y2, a, p):
+    if x1 == x2:
+        alpha = ((3*x1*x1 + a) * pow(2*y1, -1, p)) % p
+    else:
+        alpha = ((y1 - y2) * pow(x1 - x2, -1, p)) % p
+    # print(alpha, end=' ')
+    x3 = (pow(alpha, 2, p)-x1-x2) % p
+    y3 = (alpha*(x1-x3) - y1) % p
+    return x3, y3
 
 def main():
-    p = gen_char_n_bits(16)
-    print(p)
+    # p = gen_char_n_bits(16)
+    # print(p)
 
-    a, b = factorize(65129)
-    print(a, b)
+    # a, b = factorize(65129)
+    # print(a, b)
 
-    print(verify_n(65129, a, b))
+    # print(verify_n(65129, a, b))
 
+    # print(gen_point(65129))
+
+    p = (1, 2)
+    for _ in range(2):
+        try:
+            np = pp(*p, 1, 2, 3, 65129)
+            p = (np[0], np[1])
+            print(p)
+        except Exception as e:
+            print('...')
+            break
+
+    
 
 if __name__ == '__main__':
     main()
