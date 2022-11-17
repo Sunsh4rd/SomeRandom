@@ -101,13 +101,13 @@ def ext_euclid(num1, num2):
     if num1 == 0:
         return num2, 0, 1
     else:
-        div, x, y = Ext_Euclid(num2 % num1, num1)
+        div, x, y = ext_euclid(num2 % num1, num1)
     return div, y - (num2 // num1) * x, x
 
 
 def Gauss(A, m):
     for i in range(len(A)):
-        g, a_, y = Ext_Euclid(A[i][i], m)
+        g, a_, y = ext_euclid(A[i][i], m)
         A[i] = (A[i] % m * a_) % m
         # print(A[i])
         if i != len(A) - 1:
