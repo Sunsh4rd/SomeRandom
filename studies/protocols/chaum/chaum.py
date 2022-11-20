@@ -3,6 +3,7 @@ from math import gcd
 from random import getrandbits
 from sympy import isprime
 
+
 def generator(p):
     fact = []
     phi = p-1
@@ -26,6 +27,7 @@ def generator(p):
             return res
     return None
 
+
 def gen_shared_params():
     l = int(input('length of prime: '))
     p = getrandbits(l)
@@ -34,59 +36,63 @@ def gen_shared_params():
             break
         p = getrandbits(l)
     g = generator(p)
-    with open('chaum_parameters/p.json','w',encoding='utf-8') as pw:
-        dump({'p':p},pw,indent=4)
-    with open('chaum_parameters/g.json','w',encoding='utf-8') as gw:
-        dump({'g':g},gw,indent=4)
+    with open('chaum_parameters/p.json', 'w', encoding='utf-8') as pw:
+        dump({'p': p}, pw, indent=4)
+    with open('chaum_parameters/g.json', 'w', encoding='utf-8') as gw:
+        dump({'g': g}, gw, indent=4)
+
 
 def gen_private_params():
     l = int(input('length of x: '))
     x = getrandbits(l)
-    with open('chaum_parameters/p.json','r',encoding='utf-8') as pr:
+    with open('chaum_parameters/p.json', 'r', encoding='utf-8') as pr:
         p = load(pr)['p']
-    with open('chaum_parameters/g.json','r',encoding='utf-8') as gr:
+    with open('chaum_parameters/g.json', 'r', encoding='utf-8') as gr:
         g = load(gr)['g']
     while True:
-        if gcd(x,p-1) == 1:
+        if gcd(x, p-1) == 1:
             break
         x = getrandbits(l)
-    y = pow(g,x,p)
-    with open('chaum_parameters/public_key.json','w',encoding='utf-8') as pubw:
-        dump({'p':p,'g':g,'y':y},pubw,indent=4)
-    with open('chaum_parameters/private_key.json','w',encoding='utf-8') as privw:
-        dump({'x':x},privw,indent=4)
+    y = pow(g, x, p)
+    with open('chaum_parameters/public_key.json', 'w', encoding='utf-8') as pubw:
+        dump({'p': p, 'g': g, 'y': y}, pubw, indent=4)
+    with open('chaum_parameters/private_key.json', 'w', encoding='utf-8') as privw:
+        dump({'x': x}, privw, indent=4)
 
 
 def sign():
     me = 'message'
     m = hash(me)
-    with open('chaum_parameters/p.json','r',encoding='utf-8') as pr:
+    with open('chaum_parameters/p.json', 'r', encoding='utf-8') as pr:
         p = load(pr)['p']
-    with open('chaum_parameters/private_key.json','r',encoding='utf-8') as privr:
+    with open('chaum_parameters/private_key.json', 'r', encoding='utf-8') as privr:
         x = load(privr)['x']
-    sign = pow(m,x,p)
-    with open('chaum_parameters/signed.json','w',encoding='utf-8') as signedw:
-        dump({'message':m,'signature':sign},signedw,indent=4)
+    sign = pow(m, x, p)
+    with open('chaum_parameters/signed.json', 'w', encoding='utf-8') as signedw:
+        dump({'message': m, 'signature': sign}, signedw, indent=4)
+
 
 def verify():
     la = int(input('length of a: '))
     lb = int(input('length of b: '))
     a = getrandbits(la)
     b = getrandbits(lb)
-    print('a',a)
-    print('b',b)
-    with open('chaum_parameters/signed.json','r',encoding='utf-8') as signedr:
+    print('a', a)
+    print('b', b)
+    with open('chaum_parameters/signed.json', 'r', encoding='utf-8') as signedr:
         data = load(signedr)
-        m, z = data['message'],data['signature']
-    with open('chaum_parameters/public_key.json','r',encoding='utf-8') as pubr:
+        m, z = data['message'], data['signature']
+    with open('chaum_parameters/public_key.json', 'r', encoding='utf-8') as pubr:
         data = load(pubr)
-        p,g,y = data['p'],data['g'],data['y']
-    c = (pow(z,a,p) * pow(y,b,p)) % p
-    with open('chaum_parameters/private_key.json','r',encoding='utf-8') as privr:
+        p, g, y = data['p'], data['g'], data['y']
+    c = (pow(z, a, p) * pow(y, b, p)) % p
+    with open('chaum_parameters/private_key.json', 'r', encoding='utf-8') as privr:
         x = load(privr)['x']
-    t = pow(x,-1,p-1)
-    d = pow(c,t,p)
-    print('verified' if d%p == (pow(m,a,p)*pow(g,b,p))%p else 'not verified')
+    t = pow(x, -1, p-1)
+    d = pow(c, t, p)
+    print('verified' if d % p == (pow(m, a, p)*pow(g, b, p)) %
+          p else 'not verified')
+
 
 def main():
     gen_shared_params()
