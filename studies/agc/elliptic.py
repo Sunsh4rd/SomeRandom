@@ -2,6 +2,7 @@ from itertools import product
 from random import randint, choice
 
 from sympy import isprime
+import matplotlib.pyplot as plt
 
 
 # def miller_rabin(n, k):
@@ -89,18 +90,6 @@ def legendre(a, p):
         return -1
     if res == 1:
         return 1
-    # if a > p or a < 0:
-    #     r = a % p
-    #     return legendre(r,p)
-
-    # if 0 < a < p
-
-    # if a == 1:
-    #     return 1
-    # if a % 2 == 0:
-    #     return legendre(a // 2, p) * (-1) ** ((p * 2 - 1) // 8)
-    # if a % 2 == 1 and a != 1:
-    #     return legendre(p % a, a) * (-1) ** ((a - 1) * ((p - 1) // 4))
 
 
 def gen_point(p, n, r):
@@ -110,17 +99,17 @@ def gen_point(p, n, r):
     # while True:
     # x0, y0 = randint(1,p-1), randint(1,p-1)
     for x0 in range(1, p):
-        for y0 in range(2, p):
+        for y0 in range(1, p):
             a_c = (((pow(y0, 2, p) - pow(x0, 3, p)) % p) * pow(x0, -1, p)) % p
             if n == 2*r:
                 print(2, a_c)
-                if legendre(a_c, p) == -1:
+                if legendre(-a_c, p) == -1:
                     print(a_c, 'not')
                     break
             if n == 4*r:
                 print(4, a_c)
-                if legendre(a_c, p) == 1:
-                    print('is')
+                if legendre(-a_c, p) == 1:
+                    print(a_c,'is')
                     break
         break
     else:
@@ -136,6 +125,7 @@ def pp(x1, y1, x2, y2, a, p):
     else:
         alpha = ((y1 - y2) * pow(x1 - x2, -1, p)) % p
     # print(alpha, end=' ')
+    print(alpha)
     x3 = (pow(alpha, 2, p)-x1-x2) % p
     y3 = (alpha*(x1-x3) - y1) % p
     return x3, y3
@@ -165,20 +155,43 @@ def main():
     print(p, ver_n, ver_p, 'steps 1-4 ok')
 
     while True:
+        i = 0
+        xs, ys = [], []
         x0, y0, a_c = gen_point(p, n, r)
-        print(x0, y0)
+        print(x0, y0, a_c)
         if x0 is None and y0 is None:
             continue
         p0 = (x0, y0)
-        for _ in range(n):
+        q0 = (x0,y0)
+        print('1 x0 y0', x0,y0)
+        xs.append(x0)
+        ys.append(y0)
+        print(f'n = {n}')
+        if n == 2*r:
+            np = pp(*q0, x0, y0, a_c, p)
+            q0 = (np[0], np[1])
+        if n == 4*r:
+            for _ in range(3):
+                np = pp(*q0, x0, y0, a_c, p)
+                q0 = (np[0], np[1])
+        print(q0)
+        for i in range(n):
             try:
-                np = pp(*p0, x0, y0, a_c, p)
-                p0 = (np[0], np[1])
-                print(p0)
+                np = pp(*q0, x0, y0, a_c, p)
+                q0 = (np[0], np[1])
+                print(f'{i+2} x0 y0',q0)
+                xs.append(q0[0])
+                ys.append(q0[1])
             except Exception as e:
                 print('...')
                 break
+        print(i)
+        # if i+2 != n:
+        #     continue
         print(f'mod {p}, p0 = {x0},{y0}, pinf = {p0}')
+        print(r, len(xs), len(ys))
+        plt.scatter(xs, ys)
+        plt.show()
         break
 
 
