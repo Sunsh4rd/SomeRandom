@@ -322,11 +322,24 @@
 # print(*map(del_par, l), sep='\n')
 
 
-def fib(n):
-    f, s = 0, 1
-    for _ in range(n):
-        f, s = s, f+s
-    return f
+# def fib(n):
+#     f, s = 0, 1
+#     for _ in range(n):
+#         f, s = s, f+s
+#     return f
 
 
-print(fib(int(input())))
+# print(fib(int(input())))
+
+# import numpy as np
+
+# n = int(input())
+# a = np.array([list(map(int, input().split())) for _ in range(n)])
+# print(*np.max(a, axis=0))
+
+# import numpy as np
+
+# n = int(input())
+# a = np.array([list(map(float, input().split())) for _ in range(n)])
+# for l in np.linalg.inv(a):
+#     print(*l)

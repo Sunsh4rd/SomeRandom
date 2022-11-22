@@ -35,15 +35,14 @@ def ysfromy2s():
 # print(pp(10,3,1,5,7,11))
 
 
-p = (1, 5)
-o = 1
-print(o, p)
-while o <= 8:
+p = (64032, 10)
+b = 101
+m = 64033
+for i in range(2):
     try:
-        np = pp(*p, 1, 5, 7, 11)
+        np = pp(*p, 64032, 10, b, m)
         p = (np[0], np[1])
-        o += 1
-        print(o, p)
+        print(p)
     except Exception as e:
         print('...')
         break
