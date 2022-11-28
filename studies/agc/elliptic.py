@@ -96,24 +96,23 @@ def gen_point(p, n, r):
     # a, b = factorize(65129)
     # n,r,k = verify_n(65129, a, b) # verify_n(p,a,b)
     # print(n,r)
-    # while True:
-    # x0, y0 = randint(1,p-1), randint(1,p-1)
-    for x0 in range(1, p):
-        for y0 in range(1, p):
-            a_c = (((pow(y0, 2, p) - pow(x0, 3, p)) % p) * pow(x0, -1, p)) % p
-            if n == 2*r:
-                print(2, a_c)
-                if legendre(-a_c, p) == -1:
-                    print(a_c, 'not')
-                    break
-            if n == 4*r:
-                print(4, a_c)
-                if legendre(-a_c, p) == 1:
-                    print(a_c,'is')
-                    break
-        break
-    else:
-        return None, None, None
+    while True:
+        x0, y0 = randint(1,p-1), randint(1,p-1)
+    # for x0 in range(1, p):
+    #     for y0 in range(1, p):
+        a_c = (((pow(y0, 2, p) - pow(x0, 3, p)) % p) * pow(x0, -1, p)) % p
+        if n == 2*r:
+            print(2, a_c)
+            if legendre(-a_c, p) == -1:
+                print(a_c, 'not')
+                break
+        if n == 4*r:
+            print(4, a_c)
+            if legendre(-a_c, p) == 1:
+                print(a_c,'is')
+                break
+    # else:
+    #     return None, None, None
     return x0, y0, a_c
 
 
@@ -157,42 +156,44 @@ def main():
     while True:
         i = 0
         xs, ys = [], []
+        # px0,py0 = None, None
         x0, y0, a_c = gen_point(p, n, r)
         print(x0, y0, a_c)
         if x0 is None and y0 is None:
             continue
         p0 = (x0, y0)
-        q0 = (x0,y0)
+        # q0 = (x0, y0)
         print('1 x0 y0', x0,y0)
         xs.append(x0)
         ys.append(y0)
         print(f'n = {n}')
-        if n == 2*r:
-            np = pp(*q0, x0, y0, a_c, p)
-            q0 = (np[0], np[1])
-        if n == 4*r:
-            for _ in range(3):
-                np = pp(*q0, x0, y0, a_c, p)
-                q0 = (np[0], np[1])
-        print(q0)
+        # if n == 2*r:
+        #     np = pp(*q0, x0, y0, a_c, p)
+        #     q0 = (np[0], np[1])
+        # if n == 4*r:
+        #     for _ in range(3):
+        #         np = pp(*q0, x0, y0, a_c, p)
+        #         q0 = (np[0], np[1])
+        # print(q0)
         for i in range(n):
             try:
-                np = pp(*q0, x0, y0, a_c, p)
-                q0 = (np[0], np[1])
-                print(f'{i+2} x0 y0',q0)
-                xs.append(q0[0])
-                ys.append(q0[1])
+                np = pp(*p0, x0, y0, a_c, p)
+                p0 = (np[0], np[1])
+                print(f'{i+2} x0 y0',p0)
+                xs.append(p0[0])
+                ys.append(p0[1])
             except Exception as e:
                 print('...')
                 break
-        print(i)
-        # if i+2 != n:
-        #     continue
+        if i+2 != n:
+            continue
+        print('i', i)
         print(f'mod {p}, p0 = {x0},{y0}, pinf = {p0}')
-        print(r, len(xs), len(ys))
+        print(n, r, len(xs), len(ys))
         plt.scatter(xs, ys)
         plt.show()
-        break
+        
+        # break
 
 
 if __name__ == '__main__':
