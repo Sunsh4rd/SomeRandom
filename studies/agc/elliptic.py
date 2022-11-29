@@ -5,42 +5,6 @@ from sympy import isprime
 import matplotlib.pyplot as plt
 
 
-# def miller_rabin(n, k):
-#     if n == 3:
-#         return True
-
-#     n1 = n - 1
-#     q = n1
-#     t = None
-#     s = 0
-#     while True:
-#         q //= 2
-#         s += 1
-#         if q % 2 != 0:
-#             t = q
-#             break
-
-#     for _ in range(k):
-#         a = randint(2, int(str(n))-2)
-#         x = pow(a, t, n)
-#         if x == 1 or x == n1:
-#             continue
-
-#         for _ in range(s-1):
-#             x = pow(x, 2, n)
-#             # if not isinstance(x, Bigint):
-#             #     x = Bigint(int_to_list_of_digits(x))
-#             if x == 1:
-#                 return False
-#             if x == n1:
-#                 break
-
-#         if x != n1:
-#             return False
-
-#     return True
-
-
 def gen_char_n_bits(n):
     begin = 1 << n-1
     end = (1 << n)-1
@@ -63,16 +27,12 @@ def verify_n(p, a, b):
     opts = []
     for n in ns:
         if n % 2 == 0:
-            # print(n)
             r = n // 2
             if isprime(r):
-                # print(r)
                 opts.append((n, r, 2))
         if n % 4 == 0:
-            # print(n)
             r = n // 4
             if isprime(r):
-                # print(r)
                 opts.append((n, r, 4))
     print(opts)
     if len(opts) == 0:
@@ -93,9 +53,6 @@ def legendre(a, p):
 
 
 def gen_point(p, n, r):
-    # a, b = factorize(65129)
-    # n,r,k = verify_n(65129, a, b) # verify_n(p,a,b)
-    # print(n,r)
     while True:
         x0, y0 = randint(1,p-1), randint(1,p-1)
     # for x0 in range(1, p):
@@ -123,8 +80,7 @@ def pp(x1, y1, x2, y2, a, p):
         alpha = ((3*x1*x1 + a) * pow(2*y1, -1, p)) % p
     else:
         alpha = ((y1 - y2) * pow(x1 - x2, -1, p)) % p
-    # print(alpha, end=' ')
-    print(alpha)
+    # print(alpha)
     x3 = (pow(alpha, 2, p)-x1-x2) % p
     y3 = (alpha*(x1-x3) - y1) % p
     return x3, y3
@@ -144,6 +100,7 @@ def main():
             continue
         n = ver_n[0]
         r = ver_n[1]
+        c_n = ver_n[2]
         print(r)
         ver_p = verify_p(p, r, m)
         print(ver_p)
@@ -151,49 +108,84 @@ def main():
             continue
         break
 
-    print(p, ver_n, ver_p, 'steps 1-4 ok')
+    # print(p, ver_n, ver_p, 'steps 1-4 ok')
 
     while True:
-        i = 0
-        xs, ys = [], []
-        # px0,py0 = None, None
         x0, y0, a_c = gen_point(p, n, r)
-        print(x0, y0, a_c)
         if x0 is None and y0 is None:
             continue
         p0 = (x0, y0)
-        # q0 = (x0, y0)
         print('1 x0 y0', x0,y0)
-        xs.append(x0)
-        ys.append(y0)
-        print(f'n = {n}')
-        # if n == 2*r:
-        #     np = pp(*q0, x0, y0, a_c, p)
-        #     q0 = (np[0], np[1])
-        # if n == 4*r:
-        #     for _ in range(3):
-        #         np = pp(*q0, x0, y0, a_c, p)
-        #         q0 = (np[0], np[1])
-        # print(q0)
+        print(f'N = {n}, p = {p}, (x0, y0) = {p0}, A = {a_c}, r = {r}, c_n = {c_n}')
         for i in range(n):
             try:
                 np = pp(*p0, x0, y0, a_c, p)
                 p0 = (np[0], np[1])
                 print(f'{i+2} x0 y0',p0)
-                xs.append(p0[0])
-                ys.append(p0[1])
             except Exception as e:
                 print('...')
                 break
         if i+2 != n:
             continue
-        print('i', i)
-        print(f'mod {p}, p0 = {x0},{y0}, pinf = {p0}')
-        print(n, r, len(xs), len(ys))
-        plt.scatter(xs, ys)
-        plt.show()
-        
-        # break
+        else:
+            break
+
+    q = (x0,y0)
+    print('1 q', q)
+    nq = pp(*q,x0,y0,a_c,p)
+    q = (nq[0],nq[1])
+    print('2 q', q)
+    if c_n == 4:
+        nq = pp(*q,q[0],q[1],a_c,p)
+        q = nq
+        print('4 q', q)
+    qi = (q[0],q[1])
+    xs, ys = [], []
+    xs.append(qi[0])
+    ys.append(qi[1])
+    for i in range(r):
+        try:
+            np = pp(*q, qi[0], qi[1], a_c, p)
+            q = (np[0], np[1])
+            print(f'{i+2} q',q)
+            xs.append(q[0])
+            ys.append(q[1])
+        except Exception as e:
+            print('...')
+            break
+    print(n, r, len(xs), len(ys))
+    print(xs, ys)
+    plt.scatter(xs, ys)
+    plt.show()
+
+
+    # print('i', i)
+    # print(f'mod {p}, p0 = {x0},{y0}, pinf = {p0}')
+    # xs, ys = [], []
+    # if n == 2*r:
+    #     np = pp(*q,x0,y0,a_c,p)
+    #     q = (np[0],np[1])
+    # elif n == 4*r:
+    #     for _ in range(3):
+    #         np = pp(*q, x0, y0, a_c, p)
+    #         q = (np[0], np[1])
+    # print('Q', q)
+    # xs.append(q[0])
+    # ys.append(q[1])
+    # for i in range(r):
+    #         try:
+    #             np = pp(*q, q[0], q[1], a_c, p)
+    #             q = (np[0], np[1])
+    #             print(f'{i+2} Q',q)
+    #             xs.append(q[0])
+    #             ys.append(q[1])
+    #         except Exception as e:
+    #             print('...')
+    #             break
+    # print(n, r, len(xs), len(ys))
+    # print(xs, ys)
+    # plt.scatter(xs, ys)
+    # plt.show()
 
 
 if __name__ == '__main__':
