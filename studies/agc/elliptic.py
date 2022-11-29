@@ -33,6 +33,7 @@ def verify_n(p, a, b):
         if n % 4 == 0:
             r = n // 4
             if isprime(r):
+                continue
                 opts.append((n, r, 4))
     print(opts)
     if len(opts) == 0:
@@ -54,7 +55,7 @@ def legendre(a, p):
 
 def gen_point(p, n, r):
     while True:
-        x0, y0 = randint(1,p-1), randint(1,p-1)
+        x0, y0 = randint(1, p-1), randint(1, p-1)
     # for x0 in range(1, p):
     #     for y0 in range(1, p):
         a_c = (((pow(y0, 2, p) - pow(x0, 3, p)) % p) * pow(x0, -1, p)) % p
@@ -66,7 +67,7 @@ def gen_point(p, n, r):
         if n == 4*r:
             print(4, a_c)
             if legendre(-a_c, p) == 1:
-                print(a_c,'is')
+                print(a_c, 'is')
                 break
     # else:
     #     return None, None, None
@@ -115,13 +116,14 @@ def main():
         if x0 is None and y0 is None:
             continue
         p0 = (x0, y0)
-        print('1 x0 y0', x0,y0)
-        print(f'N = {n}, p = {p}, (x0, y0) = {p0}, A = {a_c}, r = {r}, c_n = {c_n}')
+        print('1 x0 y0', x0, y0)
+        print(
+            f'N = {n}, p = {p}, (x0, y0) = {p0}, A = {a_c}, r = {r}, c_n = {c_n}')
         for i in range(n):
             try:
                 np = pp(*p0, x0, y0, a_c, p)
                 p0 = (np[0], np[1])
-                print(f'{i+2} x0 y0',p0)
+                print(f'{i+2} x0 y0', p0)
             except Exception as e:
                 print('...')
                 break
@@ -130,16 +132,16 @@ def main():
         else:
             break
 
-    q = (x0,y0)
+    q = (x0, y0)
     print('1 q', q)
-    nq = pp(*q,x0,y0,a_c,p)
-    q = (nq[0],nq[1])
+    nq = pp(*q, x0, y0, a_c, p)
+    q = (nq[0], nq[1])
     print('2 q', q)
     if c_n == 4:
-        nq = pp(*q,q[0],q[1],a_c,p)
+        nq = pp(*q, q[0], q[1], a_c, p)
         q = nq
         print('4 q', q)
-    qi = (q[0],q[1])
+    qi = (q[0], q[1])
     xs, ys = [], []
     xs.append(qi[0])
     ys.append(qi[1])
@@ -147,7 +149,7 @@ def main():
         try:
             np = pp(*q, qi[0], qi[1], a_c, p)
             q = (np[0], np[1])
-            print(f'{i+2} q',q)
+            print(f'{i+2} q', q)
             xs.append(q[0])
             ys.append(q[1])
         except Exception as e:
@@ -157,7 +159,6 @@ def main():
     print(xs, ys)
     plt.scatter(xs, ys)
     plt.show()
-
 
     # print('i', i)
     # print(f'mod {p}, p0 = {x0},{y0}, pinf = {p0}')
