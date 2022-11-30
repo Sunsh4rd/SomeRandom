@@ -20,12 +20,7 @@
         },
         {
             "source": "C",
-            "dest": "F",
-            "order": 1
-        },
-        {
-            "source": "D",
-            "dest": "A",
+            "dest": "B",
             "order": 1
         },
         {
