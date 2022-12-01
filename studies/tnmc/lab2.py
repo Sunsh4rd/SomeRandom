@@ -146,19 +146,19 @@ def main():
         print('Разложение в цепную дробь =', chain(m, n))
 
     if opt == '1':
-        m, n, c = int(input('Введите число a\n')), int(
-            input('Введите число b\n')), int(input('Введите число c\n'))
-        print('Решение диафантового ур-я =', (diophantus(m, n, c)))
+        m, n, c = int(input('Число a = ')), int(
+            input('Число b = ')), int(input('Число c = '))
+        print('Решение диафантова уравнения =', (diophantus(m, n, c)))
 
     if opt == '2':
-        a, m = int(input('Введите число a\n')), int(
-            input('Введите модуль m\n'))
-        print('обратный элемент по заданному модулю =',
+        a, m = int(input('Число a = ')), int(
+            input('Модуль m = '))
+        print('Обратный элемент по заданному модулю =',
               modular_multiplicative_inverse(a, m))
 
     if opt == '3':
-        m, n, c = int(input('Введите число a\n')), int(
-            input('Введите число b\n')), int(input('Введите модуль m\n'))
+        m, n, c = int(input('Число a = ')), int(
+            input('Число b = ')), int(input('Модуль m = '))
         print('Решение линейного сравнения =', diophantus(m, c, n)[0] % c)
 
     if opt == '4':
