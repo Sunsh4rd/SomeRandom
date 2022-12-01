@@ -163,7 +163,7 @@ class Graph:
     def get_function_value_by_graph(self):
         with open('operations.txt', 'r', encoding='utf-8') as f:
             data = f.read()
-            vert_op_list = re.findall(r'\w : [*+\d]|\w : exp', data)
+            vert_op_list = re.findall(r'\w : [*+]|\w : exp|\w : \d*', data)
             print(vert_op_list)
             vert_op_dict = {}
             for v_op in vert_op_list:
