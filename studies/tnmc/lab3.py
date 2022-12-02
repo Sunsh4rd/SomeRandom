@@ -1,5 +1,6 @@
 from random import randint
 
+
 def euclid_extended(a, b):
     if a == 0:
         return b, 0, 1
@@ -25,55 +26,58 @@ def jacobi(a, n):
 
 def fermat(n):
     a = randint(2, n - 2)
-    r = a ** (n-1) % n
+    r = pow(a, (n-1), n)
     if r == 1:
-        return f'Вероятно простое'
+        return 'Вероятно простое'
     else:
-        return f'Составное'
-
-#Тестовый запуск
-# print("Число для проверки = ", end ="")
-# p = int(input())
-# print (fermat(p))
+        return 'Составное'
 
 
-def solovei_shtrassen(n):
+def solovay_strassen(n):
     a = randint(2, n - 2)
-    r = a ** ((n-1) // 2) % n
-    if r!= 1 and r != n-1:
-        return f'Число {n} составное'
+    r = pow(a, (n-1) // 2, n)
+    if r != 1 and r != n-1:
+        return 'Составное'
     s = jacobi(a, n)
     if r % n == s % n:
-        return f'Число {n}, вероятно, простое'
+        return 'Вероятно простое'
     else:
-        return f'Число {n} составное'
+        return 'Составное'
 
-#Тестовый запуск
-# print("Введите число = ", end ="")
-# p = int(input())
-# print (solovei_shtrassen(p))
 
 def miller_rabin(n):
     s = 0
-    n_test = n -1
+    n_test = n - 1
     while(n_test % 2 == 0):
         s += 1
         n_test //= 2
     r = n_test
     a = randint(2, n - 2)
-    y = a ** r % n
+    y = pow(a, r, n)
     j = 1
     if y != 1 and y != n - 1:
         while j <= s - 1 and y != n - 1:
-            y = y ** 2 % n
+            y = pow(y, 2, n)
             if y == 1:
-                return f'Число {n} составное'
+                return 'Составное'
             j += 1
     if y != n - 1:
-        return f'Число {n} составное'
-    return f'Число {n}, веротяно, простое'
+        return 'Составное'
+    return 'Веротяно простое'
 
-#Тестовый запуск
-# print("Введите число = ", end ="")
-# p = int(input())
-# print (solovei_shtrassen(p))
+
+def main():
+    opt = input(
+        '0 - Провека тестом Ферма\n1 - Проверка тестом Соловея-Штрассена\n2 - Проверка тестом Миллера-Рабина\n')
+    n = int(input('Число для проверки = '))
+    if opt == '0':
+        print(f'Результат проверки тестом Ферма: {fermat(n)}')
+    elif opt == '1':
+        print(
+            f'Результат проверки тестом Соловея-Штрассена: {fermat(n)}')
+    elif opt == '2':
+        print(f'Результат проверки тестом Миллера-Рабина: {fermat(n)}')
+
+
+if __name__ == '__main__':
+    main()

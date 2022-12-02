@@ -1,5 +1,4 @@
 import random
-from time import perf_counter_ns
 from sympy import isprime
 import json
 
@@ -24,27 +23,10 @@ def fast_mod_exp(a, b, m):
 
 
 def logarithm(q, p):
-    # k = 0
-    # a = 2**k * q - 1
-    # while True:
-    #     # print(a)
-    #     if a % p == 1:
-    #         return a
-    #     k += 1
-    #     a = 2**k * q - 1
     while True:
-        # print(a, q, p)
-        # a = random.randint(2, p-1)
-        # print(a)
         for a in range(2, p):
             if fast_mod_exp(a, q, p) == 1:
                 return a
-    # k = 0
-    # while True:
-    #     a = log((2**k) * p + 1, q)
-    #     print(a)
-    #     if a % 1 == 0:
-    #         return int(a)
 
 
 def gen_shared_parameters(n):
@@ -55,24 +37,14 @@ def gen_shared_parameters(n):
         if isprime(p):
             break
         k += 1
-        # q = get_random_prime(16)
         p = (2**k) * q + 1
 
     a = logarithm(q, p)
 
-    return p, q, a,  # s, v
+    return p, q, a
 
 
 def main():
-    # print(get_random_prime(128))
-    # s = perf_counter_ns()
-    # print(pow(12124, 15235112, 253235))
-    # f = perf_counter_ns()
-    # print(f-s)
-    # s = perf_counter_ns()
-    # print(fast_mod_exp(12124, 15235112, 253235))
-    # f = perf_counter_ns()
-    # print(f-s)
 
     while True:
         opt = input('''Выберите шаг протокола:
@@ -177,18 +149,7 @@ def main():
             case _:
                 print('Ошибка, попробуйте другой вариант!')
 
-    # with open('schnorr_parameters/shared_parameters.json', 'r') as sp:
-    #     shared = json.load(sp)
-    #     p, q, a = shared['p'], shared['q'], shared['a']
-    #     # print(p, q, a)
 
-    # print(p, q, a, s, v)
-    # r = random.randint(1, q-1)
-    # x = pow(a, r, p)
-    # t = random.getrandbits(16)
-    # e = random.randint(0, 2**(t-1))
-    # y = (r + s*e) % q
-    # print(x == (pow(a, y, p) * pow(v, e, p)) % p)
 if __name__ == '__main__':
     main()
 
