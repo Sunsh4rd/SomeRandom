@@ -156,13 +156,6 @@ def verify3():
     with open('chaum_parameters/c.json', 'w', encoding='utf-8') as cw:
         dump({'c': c}, cw, indent=4)
 
-    with open('chaum_parameters/to_sign.txt', 'r', encoding='utf-8') as msgr:
-        me = msgr.read()
-        m = hash(me)
-        print(me, m)
-
-    print('Подпись подлинная' if d % p == (pow(m, a, p)*pow(g, b, p)) %
-          p else 'Подпись не подлинная')
 
 
 def verify4():
@@ -174,6 +167,8 @@ def verify4():
     t = pow(x, -1, p-1)
     with open('chaum_parameters/t.json', 'w', encoding='utf-8') as tw:
         dump({'t': t}, tw, indent=4)
+    with open('chaum_parameters/c.json','r',encoding='utf-8') as cr:
+        c = int(load(cr)['c'])
     d = pow(c, t, p)
     with open('chaum_parameters/d.json', 'w', encoding='utf-8') as dw:
         dump({'d': d}, dw, indent=4)
@@ -181,7 +176,19 @@ def verify4():
 
 
 def verify5():
-    pass
+    with open('chaum_parameters/d.json','r',encoding='utf-8') as dr:
+        d = int(load(dr)['d'])
+    with open('chaum_parameters/public_key.json', 'r', encoding='utf-8') as pubr:
+        data = load(pubr)
+        p, g, y = data['p'], data['g'], data['y']
+    with open('chaum_parameters/ab.json', 'r', encoding='utf-8') as abr:
+        data = load(abr)
+        a,b = data['a'], data['b']
+    with open('chaum_parameters/to_sign.txt', 'r', encoding='utf-8') as tsr:
+        m = hash(tsr.read())
+        
+
+    print('Подпись подлинная' if d == (pow(m,a,p)*pow(g,b,p))%p else 'Подпись не подлинная')
 
 
 def main():
