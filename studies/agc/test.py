@@ -68,23 +68,23 @@ def pp(x1, y1, x2, y2, a, p):
     return x3, y3
 
 
-# p0 = (77,172)
-# print(pp(77,172,77,172,135,173))
-p0 = (33,157)
-print(1, p0)
-xs, ys = [], []
-xs.append(p0[0])
-ys.append(p0[1])
-for i in range(113):
-    np = pp(*p0, 160,169, 74, 197)
-    if np is None:
-        break
-    print(i+2, np)
-    xs.append(np[0])
-    ys.append(np[1])
-    p0 = (np[0], np[1])
+p0 = (63,157)
+print(pp(135,25,63,157,159,197))
+# p0 = (55,76)
+# print(1, p0)
+# xs, ys = [], []
+# xs.append(p0[0])
+# ys.append(p0[1])
+# for i in range(41):
+#     np = pp(*p0, 55,76, 101, 181)
+#     if np is None:
+#         break
+#     print(i+2, np)
+#     xs.append(np[0])
+#     ys.append(np[1])
+#     p0 = (np[0], np[1])
 
-print(i, len(xs), len(ys))
-print(*zip(xs,ys))
-plt.scatter(xs, ys)
-plt.show()
+# print(i, len(xs), len(ys))
+# print(*zip(xs,ys))
+# plt.scatter(xs, ys)
+# plt.show()

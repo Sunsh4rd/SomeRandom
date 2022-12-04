@@ -1,6 +1,6 @@
+from hashlib import sha256
 import random
 from sympy import isprime
-import json
 
 
 def get_random_prime(n):
@@ -10,23 +10,15 @@ def get_random_prime(n):
             return number
 
 
-def fast_mod_exp(a, b, m):
-    r = 1
-    while b > 0:
-        if b & 1:
-            r *= a
-            r %= m
-        a *= a
-        a %= m
-        b >>= 1
-    return r
+def check_element_is_primitive(element, p, q):
+    return not pow(element, (p - 1) // q, p) == 1 and not pow(element, (p - 1) // 2, p) == 1
 
 
-def logarithm(q, p):
-    while True:
-        for a in range(2, p):
-            if fast_mod_exp(a, q, p) == 1:
-                return a
+def get_g(p, q):
+    g = random.randint(1, p - 1)
+    while not check_element_is_primitive(g, p, q):
+        g = random.randint(1, p - 1)
+    return g
 
 
 def gen_shared_parameters(n):
@@ -39,13 +31,78 @@ def gen_shared_parameters(n):
         k += 1
         p = (2**k) * q + 1
 
-    a = logarithm(q, p)
+    a = pow(get_g(p, q), (2**k), p)
 
     return p, q, a
 
 
 def main():
-    print(gen_shared_parameters(64))
+    while True:
+        opt = input('0 - Генерация общих параметров\n1 - Генерация индивидуальных параметров\n2 - Генерация подписи (шаг 1)\n3 - Генерация подписи (шаг 2)\n4 - Проверка подписи\n')
+        if opt == '0':
+            l = int(input('Длина числа p: '))
+            p, q, a = gen_shared_parameters(l)
+            print(f'p = {p}, q = {q}, a = {a}')
+            print(pow(a, q, p))
+            with open('parameters/shared.txt', 'w', encoding='utf-8') as spw:
+                spw.write(' '.join(str(x) for x in [p, q, a]))
+        elif opt == '1':
+            with open('parameters/shared.txt', 'r', encoding='utf-8') as spr:
+                p, q, a = map(int, spr.read().split())
+            s = random.randint(1, q-1)
+            v = pow(a, -s, p)
+            print(f's = {s}, v = {v}')
+            with open('parameters/private_key.txt', 'w', encoding='utf-8') as privkw:
+                privkw.write(str(s))
+            with open('parameters/public_key.txt', 'w', encoding='utf-8') as pubkw:
+                pubkw.write(str(v))
+        elif opt == '2':
+            with open('parameters/shared.txt', 'r', encoding='utf-8') as spr:
+                p, q, a = map(int, spr.read().split())
+            r = random.randint(1, q-1)
+            x = pow(a, r, p)
+            with open('parameters/r.txt', 'w', encoding='utf-8') as rw:
+                rw.write(str(r))
+            with open('parameters/x.txt', 'w', encoding='utf-8') as xw:
+                xw.write(str(x))
+            print(f'r = {r}, x = {x}')
+            with open('parameters/message.txt', 'r', encoding='utf-8') as mr:
+                m = mr.read()
+            e = sha256((m+str(x)).encode()).hexdigest()
+            print(f'e = {e}')
+            with open('parameters/e.txt', 'w', encoding='utf-8') as ew:
+                ew.write(str(e))
+        elif opt == '3':
+            with open('parameters/shared.txt', 'r', encoding='utf-8') as spr:
+                p, q, a = map(int, spr.read().split())
+            with open('parameters/r.txt', 'r', encoding='utf-8') as rr:
+                r = int(rr.read())
+            with open('parameters/private_key.txt', 'r', encoding='utf-8') as privkr:
+                s = int(privkr.read())
+            with open('parameters/e.txt', 'r', encoding='utf-8') as er:
+                e = int(er.read(), base=16)
+            y = (r + s*e) % q
+            print(f'y = {y}')
+            with open('parameters/y.txt', 'w', encoding='utf-8') as yw:
+                yw.write(str(y))
+        elif opt == '4':
+            with open('parameters/shared.txt', 'r', encoding='utf-8') as spr:
+                p, q, a = map(int, spr.read().split())
+            with open('parameters/y.txt', 'r', encoding='utf-8') as yr:
+                y = int(yr.read())
+            with open('parameters/e.txt', 'r', encoding='utf-8') as er:
+                e = int(er.read(), base=16)
+            with open('parameters/public_key.txt', 'r', encoding='utf-8') as pubkr:
+                v = int(pubkr.read())
+            x_b = (pow(a, y, p)*pow(v, e, p)) % p
+            with open('parameters/message.txt', 'r', encoding='utf-8') as mr:
+                m = mr.read()
+            chck = int(sha256((m+str(x_b)).encode()).hexdigest(), base=16)
+            if e == chck:
+                print('Подрись подлинная')
+            else:
+                print('Подпись не подлинная')
+
 
 if __name__ == '__main__':
     main()

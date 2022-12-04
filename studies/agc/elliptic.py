@@ -30,6 +30,7 @@ def verify_n(p, a, b):
         if n % 2 == 0:
             r = n // 2
             if isprime(r):
+                # continue
                 opts.append((n, r, 2))
         if n % 4 == 0:
             r = n // 4
@@ -89,7 +90,7 @@ def pp(x1, y1, x2, y2, a, p):
 
 
 def main():
-    m = 5
+    m = 1
     l = int(input('Длина числа p: '))
     if l < 6:
         print('Слишком маленькое значение l, попробуйте другое')
@@ -131,12 +132,11 @@ def main():
             except Exception as e:
                 print('...')
                 break
+        # exit()
         if i+2 != n:
             continue
         else:
             break
-
-    
 
     q = (x0, y0)
     print('1 q', q)
@@ -148,8 +148,9 @@ def main():
         q = nq
         print('4 q', q)
     qi = (q[0], q[1])
-    with open('curve_params.json','w') as cp:
-        dump({'p':p,'A':a_c,'Q':qi,'r':r}, cp, indent=4)
+    print(f'qi {qi}')
+    with open('curve_params.json', 'w') as cp:
+        dump({'p': p, 'A': a_c, 'Q': qi, 'r': r}, cp, indent=4)
     xs, ys = [], []
     xs.append(qi[0])
     ys.append(qi[1])
