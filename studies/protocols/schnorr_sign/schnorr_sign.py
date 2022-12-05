@@ -38,7 +38,7 @@ def gen_shared_parameters(n):
 
 def main():
     while True:
-        opt = input('0 - Генерация общих параметров\n1 - Генерация индивидуальных параметров\n2 - Генерация подписи (шаг 1)\n3 - Генерация подписи (шаг 2)\n4 - Проверка подписи\n')
+        opt = input('0 - Генерация общих параметров\n1 - Генерация индивидуальных параметров\n2 - Генерация подписи (шаг 1)\n3 - Генерация подписи (шаг 2-3)\n4 - Проверка подписи\n')
         if opt == '0':
             l = int(input('Длина числа p: '))
             p, q, a = gen_shared_parameters(l)
@@ -66,13 +66,16 @@ def main():
             with open('parameters/x.txt', 'w', encoding='utf-8') as xw:
                 xw.write(str(x))
             print(f'r = {r}, x = {x}')
+        elif opt == '3':
             with open('parameters/message.txt', 'r', encoding='utf-8') as mr:
                 m = mr.read()
+            with open('parameters/x.txt', 'r', encoding='utf-8') as xr:
+                x = int(xr.read())
             e = sha256((m+str(x)).encode()).hexdigest()
             print(f'e = {e}')
             with open('parameters/e.txt', 'w', encoding='utf-8') as ew:
                 ew.write(str(e))
-        elif opt == '3':
+        # elif opt == '4':
             with open('parameters/shared.txt', 'r', encoding='utf-8') as spr:
                 p, q, a = map(int, spr.read().split())
             with open('parameters/r.txt', 'r', encoding='utf-8') as rr:
@@ -99,7 +102,7 @@ def main():
                 m = mr.read()
             chck = int(sha256((m+str(x_b)).encode()).hexdigest(), base=16)
             if e == chck:
-                print('Подрись подлинная')
+                print('Подпись подлинная')
             else:
                 print('Подпись не подлинная')
 
