@@ -1,4 +1,6 @@
 import matplotlib.pyplot as plt
+from sympy import isprime
+from random import randint, choice
 # def gen_p(n):
 #     while True:
 #         p = randint(2**(n-1), 2**n)
@@ -68,8 +70,30 @@ def pp(x1, y1, x2, y2, a, p):
     return x3, y3
 
 
-p0 = (63,157)
-print(pp(135,25,63,157,159,197))
+
+def verify_n(p, a, b):
+    ns = [p + 1 + 2*a, p + 1 + 2*b, p + 1 - 2*a, p + 1 - 2*b]
+    # print(ns)
+    opts = []
+    for n in ns:
+        if n % 2 == 0:
+            r = n // 2
+            if isprime(r):
+                # continue
+                opts.append((n, r, 2))
+        if n % 4 == 0:
+            r = n // 4
+            if isprime(r):
+                continue
+                opts.append((n, r, 4))
+    # print(opts)
+    if len(opts) == 0:
+        return None
+    return choice(opts)
+
+
+# p0 = (63,157)
+# print(pp(135,25,63,157,159,197))
 # p0 = (55,76)
 # print(1, p0)
 # xs, ys = [], []
