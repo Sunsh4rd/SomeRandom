@@ -343,3 +343,9 @@
 # a = np.array([list(map(float, input().split())) for _ in range(n)])
 # for l in np.linalg.inv(a):
 #     print(*l)
+
+import numpy as np
+
+n = int(input())
+a = np.array([list(map(int, input().split())) for _ in range(n)])
+print(a[:,::2])
