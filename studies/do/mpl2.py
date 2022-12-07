@@ -74,7 +74,6 @@
 #     plt.show()
 
 
-import matplotlib as mpl
 import matplotlib.pyplot as plt
 import matplotlib.colors as colors
 import csv
@@ -82,10 +81,11 @@ import numpy as np
 
 colors_list = list(colors._colors_full_map.values())
 
-with open('task191.csv', 'r',encoding='utf-8') as csv_file: # 1 - суммарный расход бензина за день
+with open('task191.csv', 'r', encoding='utf-8') as csv_file:  # 1 - суммарный расход бензина за день
     data = csv.DictReader(csv_file, delimiter=';')
 
-    days = ['1 окт.', '2 окт.', '3 окт.', '4 окт.', '5 окт.', '6 окт.', '7 окт.', '8 окт.', '9 окт.']
+    days = ['1 окт.', '2 окт.', '3 окт.', '4 окт.',
+            '5 окт.', '6 окт.', '7 окт.', '8 окт.', '9 окт.']
     gasoline_consumption_per_day = [0] * 9
     for line in data:
         date = line['Дата']
@@ -93,22 +93,27 @@ with open('task191.csv', 'r',encoding='utf-8') as csv_file: # 1 - суммарн
         temp = int(line['Расход бензина'])
         gasoline_consumption_per_day[day] += int(line['Расход бензина'])
 
-with open('task191.csv', 'r',encoding='utf-8') as csv_file: # 2 - сколько всего доставлено груза в каждый населенный пункт
+# 2 - сколько всего доставлено груза в каждый населенный пункт
+with open('task191.csv', 'r', encoding='utf-8') as csv_file:
     data = csv.DictReader(csv_file, delimiter=';')
 
-    destinations = ['Липки', 'Орехово', 'Осинки', 'Березки', 'Дубки', 'Вязово', 'Буково', 'Сосново']
-    cargo_to_destinations = {'Липки' : 0, 'Орехово' : 0, 'Осинки' : 0, 'Березки' : 0, 'Дубки' : 0, 'Вязово' : 0, 'Буково' : 0, 'Сосново' : 0}
+    destinations = ['Липки', 'Орехово', 'Осинки',
+                    'Березки', 'Дубки', 'Вязово', 'Буково', 'Сосново']
+    cargo_to_destinations = {'Липки': 0, 'Орехово': 0, 'Осинки': 0,
+                             'Березки': 0, 'Дубки': 0, 'Вязово': 0, 'Буково': 0, 'Сосново': 0}
     for line in data:
         destination = line['Пункт назначения']
         cargo_to_destinations[destination] += int(line['Масса груза'])
 
 # 2 - распределение доставленного груза в населенные пункты
 # 3 - сколько груза отправлено из населенных пунктов и сколько в них поступило груза
-with open('task191.csv', 'r',encoding='utf-8') as csv_file:
+with open('task191.csv', 'r', encoding='utf-8') as csv_file:
     data = csv.DictReader(csv_file, delimiter=';')
 
-    cargo_to_destinations = {'Липки' : 0, 'Орехово' : 0, 'Осинки' : 0, 'Березки' : 0, 'Дубки' : 0, 'Вязово' : 0, 'Буково' : 0, 'Сосново' : 0}
-    cargo_from_destinations = {'Липки' : 0, 'Орехово' : 0, 'Осинки' : 0, 'Березки' : 0, 'Дубки' : 0, 'Вязово' : 0, 'Буково' : 0, 'Сосново' : 0}
+    cargo_to_destinations = {'Липки': 0, 'Орехово': 0, 'Осинки': 0,
+                             'Березки': 0, 'Дубки': 0, 'Вязово': 0, 'Буково': 0, 'Сосново': 0}
+    cargo_from_destinations = {'Липки': 0, 'Орехово': 0, 'Осинки': 0,
+                               'Березки': 0, 'Дубки': 0, 'Вязово': 0, 'Буково': 0, 'Сосново': 0}
 
     for line in data:
         destination = line['Пункт назначения']
@@ -119,25 +124,27 @@ with open('task191.csv', 'r',encoding='utf-8') as csv_file:
 fig, ax = plt.subplots()
 ax.set_ylabel('литров')
 ax.set_title('Суммарный расход бензина за день')
-ax.bar(days, gasoline_consumption_per_day, color=colors_list)
+ax.bar(days, gasoline_consumption_per_day, color=['cyan','magenta'])
 
 plt.savefig('chart1.png')
 
 fig, ax = plt.subplots()
 ax.set_title('Распределение доставленного груза по населенным пунктам')
-ax.pie([cargo_to_destinations[key] for key in cargo_to_destinations.keys()], labels=destinations, colors=colors_list, autopct='%1.1f%%')
+ax.pie([cargo_to_destinations[key] for key in cargo_to_destinations.keys()],
+       labels=destinations, colors=['r','g','b','m','c','y','orange','grey'], autopct='%1.1f%%')
 ax.axis('equal')
 
 plt.savefig('chart2.png')
 
 fig, ax = plt.subplots()
-ax.set_title('Сколько груза отправлено из населенных пунктов\nи сколько доставлено в них')
+ax.set_title(
+    'Сколько груза отправлено из населенных пунктов\nи сколько доставлено в них')
 g1 = [cargo_from_destinations[key] for key in cargo_from_destinations.keys()]
 g2 = [cargo_to_destinations[key] for key in cargo_to_destinations.keys()]
 width = 0.3
 x = np.arange(len(cargo_to_destinations.keys()))
-rects1 = ax.bar(x - width/2, g1, width, color = 'g', label='Отправлено')
-rects2 = ax.bar(x + width/2, g2, width, color = 'm', label='Получено')
+rects1 = ax.bar(x - width/2, g1, width, color='g', label='Отправлено')
+rects2 = ax.bar(x + width/2, g2, width, color='m', label='Получено')
 ax.set_xticks(x)
 ax.set_xticklabels(cargo_to_destinations.keys())
 ax.legend()
