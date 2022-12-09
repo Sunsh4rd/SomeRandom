@@ -1,4 +1,4 @@
-from math import sqrt, log10, gcd
+from math import sqrt, log10, gcd, log
 from random import randint
 
 
@@ -40,7 +40,8 @@ def poly(coef, x):
     return ans
 
 
-def p_pollard(n, f, eps):
+def p_pollard(n, eps):
+    f = [1, 0, 1, 0]
     T = int(sqrt(2 * sqrt(n) * log10(1 / eps))) + 1
     x = list()
     a = randint(1, n)
@@ -48,6 +49,7 @@ def p_pollard(n, f, eps):
     while i < T:
         a = poly(f, a) % n
         x.append(a)
+        print(x)
         for k in range(i):
             d = gcd((x[i] - x[k]) % n, n)
             if 1 < d < n:
@@ -66,16 +68,14 @@ def p1_pollard(n):
         if x < 4 or (x % 2 != 0 and miller_rabin(x, 5)):
             p.append(x)
         x += 1
-    from random import randint
+    print(p)
     a = randint(2, n - 2)
-    from math import gcd
     d = gcd(a, n)
     if d >= 2:
         return d
     for i in range(len(p)):
-        from math import log
         l = int(log(n) / log(p[i]))
-        a = pow(a, p[i] ** l, n)
+        a *= pow(a, p[i] ** l, n)
     d = gcd(a - 1, n)
     if d == 1 or d == n:
         return None
@@ -92,11 +92,8 @@ def main():
     eps = float(input("Введите значение eps\n"))
     if eps < 0 or eps > 1:
         print("Введено неправильное значение eps\n")
-    print("Функция f, задаваемая коэффициентами = ", end='')
-    f = list(map(int, input().split()))
 
-    f.reverse()
-    p = p_pollard(n, f, eps)
+    p = p_pollard(n, eps)
 
     if p is not None:
         print("Нетривиальный делитель p = {}".format(str(p)))
