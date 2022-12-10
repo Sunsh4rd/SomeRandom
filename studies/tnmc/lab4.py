@@ -100,12 +100,12 @@ def main():
     else:
         print("Делитель не найден")
 
-    p = p1_pollard(n)
+    # p = p1_pollard(n)
 
-    if p is not None:
-        print("Нетривиальный делитель p = {} числа n = {}".format(str(p), str(n)))
-    else:
-        print("Делитель не найден")
+    # if p is not None:
+    #     print("Нетривиальный делитель p = {} числа n = {}".format(str(p), str(n)))
+    # else:
+    #     print("Делитель не найден")
 
 
 if __name__ == '__main__':
