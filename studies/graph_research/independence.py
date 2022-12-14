@@ -62,3 +62,11 @@ def maximal_independent_sets(v, s, ind):
 
 
 print(maximal_independent_sets(0, [], g_matrix))
+
+'''
+[0,1,2]
+[0,1,3]
+...
+[0,1,5]
+[0,2,3]
+'''
