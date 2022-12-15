@@ -51,8 +51,12 @@ def modular_multiplicative_inverse(a, m):
 
 def gcrt(us, ms):
     M = reduce(lambda x, y: x * y, ms)
+    print(M)
     cs = [M // mi for mi in ms]
+    print(cs)
     ds = [modular_multiplicative_inverse(ci, mi) for ci, mi in zip(cs, ms)]
+    print(ds)
+    print(*zip(cs,ds,us))
     return sum((ci * di * ui for ci, di, ui in zip(cs, ds, us))) % M
 
 
