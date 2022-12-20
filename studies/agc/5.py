@@ -1,3 +1,6 @@
+from sympy import legendre_symbol
+
+
 def pp(x1, y1, x2, y2, a, p):
     if x1 == x2 and -y1 % p == y2:
         return None
@@ -8,16 +11,6 @@ def pp(x1, y1, x2, y2, a, p):
     x3 = (pow(alpha, 2, p)-x1-x2) % p
     y3 = (alpha*(x1-x3) - y1) % p
     return x3, y3
-
-
-def legendre(a, p):
-    if a == 0:
-        return 0
-    res = pow(a, (p-1)//2, p)
-    if res == p-1:
-        return -1
-    if res == 1:
-        return 1
 
 
 def discriminant(a, b, p):
@@ -31,7 +24,7 @@ def points(a, b, p):
     for x in range(11):
         y2np = x**3+a*x+b
         y2 = (x**3+a*x+b) % p
-        leg = legendre(y2, p)
+        leg = legendre_symbol(y2, p)
         legs.append(leg)
         if leg != -1:
             ys = []
@@ -95,9 +88,9 @@ def main():
             print(t)
         gen = find_generator(pts[1:], a, m, order)
         if gen:
-            print(f'Порождающий элемент: {gen}')
+            print(f'Группа является циклической.\nПорождающий элемент: {gen}')
         else:
-            print('Порождающий элемент не найден')
+            print('Группа не является циклической')
 
     else:
         print(
