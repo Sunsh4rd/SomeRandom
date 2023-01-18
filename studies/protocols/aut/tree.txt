@@ -2,33 +2,33 @@
  a 0 0 1 1 0 1  
  b 0 0 0 1 1 1  
  c 0 0 0 0 0 1  
- d 0 0 0 0 0 1  
- e 0 0 0 0 0 1  
+ d 0 0 1 0 0 1  
+ e 0 0 0 1 0 1  
  f 0 0 0 0 0 0  
 
 Уровень: 1
 f a 0 0 1 1 0  
   b 0 0 0 1 1  
   c 0 0 0 0 0  
-  d 0 0 0 0 0  
-  e 0 0 0 0 0  
+  d 0 0 1 0 0  
+  e 0 0 0 1 0  
 
 Уровень: 2
-fc a 0 0 1 0  fd a 0 0 1 0  fe a 0 0 1 1  
-   b 0 0 1 1     b 0 0 0 1     b 0 0 0 1  
-   d 0 0 0 0     c 0 0 0 0     c 0 0 0 0  
-   e 0 0 0 0     e 0 0 0 0     d 0 0 0 0  
+fc a 0 0 1 0  
+   b 0 0 1 1  
+   d 0 0 0 0  
+   e 0 0 1 0  
 
 Уровень: 3
-fcd a 0 0 0  fce a 0 0 1  fdc a 0 0 0  fde a 0 0 1  fec a 0 0 1  fed a 0 0 1  
-    b 0 0 1      b 0 0 1      b 0 0 1      b 0 0 0      b 0 0 1      b 0 0 0  
-    e 0 0 0      d 0 0 0      e 0 0 0      c 0 0 0      d 0 0 0      c 0 0 0  
+fcd a 0 0 0  
+    b 0 0 1  
+    e 0 0 0  
 
 Уровень: 4
-fcda b 0 1  fcde a 0 0  fced a 0 0  fdca b 0 1  fdce a 0 0  fdeb a 0 1  fdec a 0 0  fecd a 0 0  fedb a 0 1  fedc a 0 0  
-     e 0 0       b 0 0       b 0 0       e 0 0       b 0 0       c 0 0       b 0 0       b 0 0       c 0 0       b 0 0  
+fcda b 0 1  fcde a 0 0  
+     e 0 0       b 0 0  
 
 Уровень: 5
-fcdae b 0  fcdea b 0  fcdeb a 0  fceda b 0  fcedb a 0  fdcae b 0  fdcea b 0  fdceb a 0  fdebc a 0  fdeca b 0  fdecb a 0  fecda b 0  fecdb a 0  fedbc a 0  fedca b 0  fedcb a 0  
+fcdae b 0  fcdea b 0  fcdeb a 0  
 
 
