@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7840661-8fb8-4673-9ba7-8c14bf64897d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaProgramming.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/patterns/factory/Coin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/patterns/factory/CoinFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/patterns/factory/CopperCoin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/patterns/factory/GoldCoin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/patterns/factory/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/patterns/proxy/Main.java" afterDir="false" />
-    </list>
+    <list default="true" id="d7840661-8fb8-4673-9ba7-8c14bf64897d" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
