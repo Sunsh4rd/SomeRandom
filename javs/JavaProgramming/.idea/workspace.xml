@@ -4,47 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7840661-8fb8-4673-9ba7-8c14bf64897d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/patterns/abstractfactory/Kingdom.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/patterns/abstractfactory/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/patterns/abstractfactory/components/Army.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/patterns/abstractfactory/components/Castle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/patterns/abstractfactory/components/King.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/patterns/abstractfactory/elves/ElvenArmy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/patterns/abstractfactory/elves/ElvenCastle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/patterns/abstractfactory/elves/ElvenKing.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/patterns/abstractfactory/factories/ElvenKingdomFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/patterns/abstractfactory/factories/KingdomFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/patterns/abstractfactory/factories/OrcishKingdomFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/patterns/abstractfactory/orcs/OrcishArmy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/patterns/abstractfactory/orcs/OrcishCastle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/patterns/abstractfactory/orcs/OrcishKing.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/patterns/bridge/Enhancement.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/patterns/bridge/FlyingEnhancement.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/patterns/bridge/Hammer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/patterns/bridge/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/patterns/bridge/SoulEatingEnhancement.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/patterns/bridge/Sword.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/patterns/bridge/Weapon.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/patterns/command/Goblin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/patterns/command/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/patterns/command/Target.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/patterns/command/Wizard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/patterns/factory/Wizard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/patterns/proxy/IvoryTower.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/patterns/proxy/WizardTower.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/patterns/proxy/WizardTowerProxy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/patterns/strategy/DragonSlayer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/patterns/strategy/DragonSlayingStrategy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/patterns/strategy/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/patterns/strategy/MeleeStrategy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/patterns/strategy/ProjectileStrategy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/patterns/strategy/SpellStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/patterns/proxy/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/patterns/proxy/Main.java" afterDir="false" />
-    </list>
+    <list default="true" id="d7840661-8fb8-4673-9ba7-8c14bf64897d" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
