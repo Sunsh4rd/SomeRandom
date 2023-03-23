@@ -1,4 +1,4 @@
-package patterns.factory;
+package patterns.proxy;
 
 public class Wizard {
     private final String name;

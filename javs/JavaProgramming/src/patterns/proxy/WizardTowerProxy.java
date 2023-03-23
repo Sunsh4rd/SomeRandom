@@ -1,7 +1,5 @@
 package patterns.proxy;
 
-import patterns.factory.Wizard;
-
 public class WizardTowerProxy implements WizardTower {
 
     private static final int NUMBER_OF_WIZARDS_ALLOWED = 3;
