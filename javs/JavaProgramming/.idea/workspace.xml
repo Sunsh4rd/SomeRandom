@@ -4,31 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ce3cd593-881d-4fe0-96d4-ab133c177261" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../letsspring/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../letsspring/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../letsspring/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../letsspring/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../letsspring/.idea/libraries/Maven__junit_junit_4_11.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../letsspring/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../letsspring/.idea/libraries/Maven__org_springframework_spring_aop_5_3_9.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../letsspring/.idea/libraries/Maven__org_springframework_spring_beans_5_3_9.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../letsspring/.idea/libraries/Maven__org_springframework_spring_context_5_3_9.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../letsspring/.idea/libraries/Maven__org_springframework_spring_core_5_3_9.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../letsspring/.idea/libraries/Maven__org_springframework_spring_expression_5_3_9.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../letsspring/.idea/libraries/Maven__org_springframework_spring_jcl_5_3_9.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../letsspring/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../letsspring/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../letsspring/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/patterns/factory/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/patterns/factory/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/patterns/factory/Wizard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/patterns/proxy/Wizard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/patterns/proxy/IvoryTower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/patterns/proxy/IvoryTower.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/patterns/proxy/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/patterns/proxy/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/patterns/proxy/WizardTower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/patterns/proxy/WizardTower.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/patterns/proxy/WizardTowerProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/patterns/proxy/WizardTowerProxy.java" afterDir="false" />
-    </list>
+    <list default="true" id="ce3cd593-881d-4fe0-96d4-ab133c177261" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
