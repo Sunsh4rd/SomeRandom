@@ -1,3 +1,9 @@
+en = 'abcdefghijklmnopqrstuvwxyz'
+ru = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя'
+other = ' .,/\\!?[]()0123456789{}\'\":;|@#$%^&*_=+-'
+allowed_alph = en + en.upper() + ru + ru.upper() + other
+
+
 def decrypt():
 
     def find_original_block(block, permutation):
@@ -18,6 +24,10 @@ def decrypt():
 
     with open('params/ciphertext.txt', 'r', encoding='utf-8') as ct_r:
         ciphertext = ct_r.read()
+
+    if not all([s in allowed_alph for s in ciphertext]):
+        print('В криптограмме присутствуют запрещенные символы')
+        exit()
 
     key_reverse = key[::-1]
     permutation_d = {key[i-1]: key[i] for i in range(len(key))}

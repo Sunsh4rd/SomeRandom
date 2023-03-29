@@ -1,9 +1,19 @@
+en = 'abcdefghijklmnopqrstuvwxyz'
+ru = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя'
+other = ' .,/\\!?[]()0123456789{}\'\":;|@#$%^&*_=+-'
+allowed_alph = en + en.upper() + ru + ru.upper() + other
+
+
 def encrypt():
     with open('params/key.txt', 'r', encoding='utf-8') as key_r:
         key = list(map(int, key_r.read().split()))
     block_length = len(key)
     with open('params/message.txt', 'r', encoding='utf-8') as msg_r:
         message = msg_r.read()
+    
+    if not all([s in allowed_alph for s in message]):
+        print('В сообщении присутствуют запрещенные символы')
+        exit()
 
     print(f'{message=}')
     print(f'{key=}')
