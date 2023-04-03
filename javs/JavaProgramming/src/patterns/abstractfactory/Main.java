@@ -7,10 +7,10 @@ import patterns.abstractfactory.factories.OrcishKingdomFactory;
 public class Main {
     private static class FactoryMaker {
         private enum KingdomType {
-            ELF, ORC
+            ELF, ORC, HUMAN
         }
 
-        public static KingdomFactory makeFactory(KingdomType type) {
+        public static KingdomFactory makeFactory(KingdomType type) throws IllegalArgumentException {
             switch (type) {
                 case ELF -> {
                     return new ElvenKingdomFactory();
@@ -28,6 +28,8 @@ public class Main {
         kingdom.createKingdom(FactoryMaker.makeFactory(FactoryMaker.KingdomType.ELF));
         System.out.println(kingdom);
         kingdom.createKingdom(FactoryMaker.makeFactory(FactoryMaker.KingdomType.ORC));
+        System.out.println(kingdom);
+        kingdom.createKingdom(FactoryMaker.makeFactory(FactoryMaker.KingdomType.HUMAN));
         System.out.println(kingdom);
     }
 }

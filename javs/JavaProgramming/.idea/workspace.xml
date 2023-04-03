@@ -5,14 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="88fa0a9b-d683-46d0-b86d-7e372b13c4d2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/objectdemo/Data.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/objectdemo/Receiver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/objectdemo/Sender.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/objectdemo/SomeEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objectdemo/EntityWithDefaultToString.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objectdemo/EntityWithOverriddenToString.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objectdemo/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objectdemo/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/patterns/abstractfactory/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/patterns/abstractfactory/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/patterns/factory/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/patterns/factory/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +48,7 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.objectdemo.Main">
+  <component name="RunManager" selected="Application.patterns.factory.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="patterns.bridge.Main" />
       <module name="JavaProgramming" />
@@ -80,8 +75,36 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="patterns.abstractfactory.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="patterns.abstractfactory.Main" />
+      <module name="JavaProgramming" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="patterns.abstractfactory.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="patterns.factory.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="patterns.factory.Main" />
+      <module name="JavaProgramming" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="patterns.factory.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.patterns.factory.Main" />
+        <item itemvalue="Application.patterns.abstractfactory.Main" />
         <item itemvalue="Application.objectdemo.Main" />
         <item itemvalue="Application.Main" />
       </list>
