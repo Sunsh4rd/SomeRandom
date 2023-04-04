@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88fa0a9b-d683-46d0-b86d-7e372b13c4d2" name="Changes" comment="" />
+    <list default="true" id="88fa0a9b-d683-46d0-b86d-7e372b13c4d2" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,6 +39,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;/home/sunshrad/Загрузки/obj (1)&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
@@ -44,7 +47,7 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.patterns.factory.Main">
+  <component name="RunManager" selected="Application.patterns.abstractfactory.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="patterns.bridge.Main" />
       <module name="JavaProgramming" />
@@ -99,9 +102,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.patterns.factory.Main" />
         <item itemvalue="Application.patterns.abstractfactory.Main" />
         <item itemvalue="Application.objectdemo.Main" />
+        <item itemvalue="Application.patterns.factory.Main" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
