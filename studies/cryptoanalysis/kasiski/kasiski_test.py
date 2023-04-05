@@ -4,7 +4,9 @@ import math
 def kasiski():
     with open('params/ciphertext.txt', 'r', encoding='utf-8') as f:
         text = f.read()
-    l = []
+
+    subs_len = int(input('Длина подслова: '))
+    
     for j in range(2, 10):
         for i in range(len(text) - 1):
             s = text[i:i + j]

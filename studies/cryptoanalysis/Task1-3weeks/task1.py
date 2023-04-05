@@ -79,7 +79,7 @@ def brute():
     cryptogram = f.read()
     f.close()
 
-    with open("brute.txt", 'w') as out:
+    with open("brute.txt", 'w', encoding='utf-8') as out:
         out.write("Длина ключа: " + str(l) + "\n\n")
         all_keys = {}
         from math import factorial
