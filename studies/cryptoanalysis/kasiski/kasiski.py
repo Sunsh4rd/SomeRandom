@@ -4,6 +4,7 @@ from decrypt import decrypt
 from kasiski_test import kasiski
 from brute import brute
 
+
 def main():
     while True:
         opt = input(
