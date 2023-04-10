@@ -1,4 +1,5 @@
 import math
+from collections import Counter
 
 
 def find_all(sub, src):
@@ -35,7 +36,15 @@ def kasiski():
 
     print(subs_dists)
 
+    divisors = []
+    for dist in subs_dists:
+        for d in range(2, int(math.sqrt(dist))+1):
+            if dist % d == 0:
+                divisors.append(d)
+    print(divisors)
 
+    count = Counter(divisors)
+    print(count)
         # res = text.index(subs, text.index(subs, i) + 1) - text.index(subs, i)
         #     # print(s, res)
         #     l.append(res)
