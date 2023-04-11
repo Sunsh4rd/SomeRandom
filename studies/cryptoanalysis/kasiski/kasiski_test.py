@@ -22,6 +22,8 @@ def kasiski():
     subs_pos = {}
     for i in range(len(text)):
         subs = text[i: i + subs_len]
+        if len(subs) < subs_len:
+            continue
         found = list(find_all(subs, text))
         if len(found) == 1:
             continue

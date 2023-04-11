@@ -1,4 +1,5 @@
 from random import shuffle
+from math import factorial
 
 
 def gen_key(n):
@@ -9,14 +10,13 @@ def gen_key(n):
         r.append(r.pop(0))
     # with open('params/key.txt', 'w', encoding='utf-8') as key_w:
     #     key_w.write(' '.join(str(i) for i in r))
-    return ' '.join(str(i) for i in r)
+    return r
 
 
-def decrypt(key):
+def decrypt(ciphertext, key):
     # with open('params/key.txt', 'r', encoding='utf-8') as key_r:
     #     key = list(map(int, key_r.read().split()))
     block_length = len(key)
-    key = list(map(int, key.split()))
 
     def find_original_block(block, permutation):
         previous_block = block[:]
@@ -31,8 +31,8 @@ def decrypt(key):
 
         return ''.join(previous_block)
 
-    with open('params/ciphertext.txt', 'r', encoding='utf-8') as ct_r:
-        ciphertext = ct_r.read()
+    # with open('params/ciphertext.txt', 'r', encoding='utf-8') as ct_r:
+    #     ciphertext = ct_r.read()
 
     key_reverse = key[::-1]
     permutation_d = {key[i - 1]: key[i] for i in range(len(key))}
@@ -43,42 +43,35 @@ def decrypt(key):
     splitted_ciphertext = [ciphertext[i:i + block_length]
                            for i in range(0, len(ciphertext), block_length)]
     decrypted_blocks = []
-    print(permutation_d)
-    print(inverse_permutation_d)
     for block in splitted_ciphertext:
         decrypted_block = [''] * block_length
         if len(block) < block_length:
             decrypted_blocks.append(find_original_block(block, permutation_d))
         else:
             for f, t in inverse_permutation_d.items():
-                print(f,block)
-                if int(f) < len(block):
-                    decrypted_block[int(t)] = block[int(f)]
+                if f < len(block):
+                    decrypted_block[t] = block[f]
             decrypted_blocks.append(''.join(decrypted_block))
 
     # with open('params/deciphertext.txt', 'w', encoding='utf-8') as dct_w:
     #     dct_w.write(''.join(decrypted_blocks))
-
     return ''.join(decrypted_blocks)
 
 
 def brute():
     l = int(input('Введите длину ключа для перебора: '))
+    with open('params/ciphertext.txt', 'r', encoding="utf-8") as ct_r:
+        cryptogram = ct_r.read()
 
-    f = open('params/ciphertext.txt', 'r', encoding="utf-8")
-    cryptogram = f.read()
-    f.close()
-    print('yay')
-    with open("params/brute.txt", 'w', encoding='utf-8') as out:
-        out.write("Длина ключа: " + str(l) + "\n\n")
+    with open("params/brute.txt", 'w', encoding='utf-8') as brute_w:
         all_keys = {}
-        from math import factorial
         n = factorial(l - 1)
+        print(n)
         while len(all_keys) < n:
             key = gen_key(l)
             while ", ".join(str(x) for x in key) in all_keys.keys():
                 key = gen_key(l)
-            all_keys[", ".join(str(x) for x in key)] = decrypt(key)
+            all_keys[", ".join(str(x) for x in key)] = decrypt(cryptogram, key)
             key = ", ".join(str(x) for x in key)
-            out.write("Ключ: " + key + "\n")
-            out.write("Текст:\n" + all_keys[key] + "\n\n")
+            brute_w.write("Ключ: " + key + "\n")
+            brute_w.write("Текст:\n" + all_keys[key] + "\n\n")
