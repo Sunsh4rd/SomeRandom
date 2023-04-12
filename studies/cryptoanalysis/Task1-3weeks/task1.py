@@ -52,7 +52,7 @@ def replace(text, k, key, f):
 
 def kaziski(text):
     l = []
-    for j in range(2, 10):
+    for j in range(3, 6):
         for i in range(len(text) - 1):
             s = text[i:i+j]
             try:
@@ -63,7 +63,7 @@ def kaziski(text):
                 continue
     # print(l)
     d = {}
-    for i in range(2, 50):
+    for i in range(2, 24):
         d[i] = sum(map(lambda item: item % i == 0, l))
     print(d)
     od = [k for k, v in sorted(d.items(), key=lambda item: item[1])]

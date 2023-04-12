@@ -141,7 +141,7 @@ def match_idx_average(y, z, dict):
     for x in dict:
         I_average += (y.count(x) / N1) * (z.count(x) / N2)
 
-    return I_average
+    return I_average, N1, N2
 
 
 def crypt(key, text):
@@ -309,9 +309,11 @@ def main():
                 continue
             if cmd == 1:
                 N, I = match_idx(y, z)
+                print(N, I)
                 print('Индекс совпадения y и z = {:.03f}\n'.format(I / N))
             else:
-                I_average = match_idx_average(y, z, dict)
+                print(match_idx_average(y, z, dict))
+
                 print('Средний индекс совпадения y и z = {:.03f}\n'.format(I_average))
         elif cmd == 3:
             vigenere_encrypt()
