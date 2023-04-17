@@ -14,7 +14,7 @@ public class Main {
         int n = scanner.nextInt();
 
         if ((n & (n - 1)) == 0) {
-            
+
         }
     }
 }
