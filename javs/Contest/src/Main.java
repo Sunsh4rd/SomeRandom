@@ -10,11 +10,23 @@ public class Main {
 //        int d = scanner.nextInt();
 //        System.out.println(d > b ? a + (d - b) * c : a);
 
+//        "Рулет"
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
-
-        if ((n & (n - 1)) == 0) {
-
+        if (n == 1) {
+            System.out.println(0);
+        }
+        else {
+            int it = 0, p = 0;
+            while (n > 0) {
+                it++;
+                p += n % 2;
+                n /= 2;
+            }
+            if (p == 1)
+                System.out.println(--it);
+            else
+                System.out.println(it);
         }
     }
 }
