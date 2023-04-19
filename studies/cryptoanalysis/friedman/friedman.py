@@ -1,18 +1,22 @@
-import string
-
-
-def index_of_coincidence_avg(seq1, seq2):
-    alph = string.ascii_lowercase
-    return sum(seq1.count(a) / len(seq1) * seq2.count(a) / len(seq2) for a in alph)
-
-
-def index_of_coincidence(seq1, seq2):
-    return len(list(filter(lambda pair: pair[0] == pair[1], zip(seq1, seq2)))) / min(len(seq1), len(seq2))
+from coincidence import index_of_coincidence, index_of_coincidence_avg
 
 
 def main():
-    print(index_of_coincidence('bbcdf', 'abcdef'))
-    print(index_of_coincidence_avg('the', 'the'))
+    while True:
+        opt = input('0 - Индекс совпадения\n'
+                    '1 - Средний индекс совпадения\n'
+                    '2 - Шифровать\n'
+                    '3 - Расшифровать\n'
+                    '4 - Сдвиг\n')
+
+        if opt == '0':
+            print(f'{index_of_coincidence():.3f}')
+        elif opt == '1':
+            print(f'{index_of_coincidence_avg():.3f}')
+        else:
+            break
+    # print(index_of_coincidence('bbcdf', 'abcdef'))
+    # print(index_of_coincidence_avg('the', 'thf'))
 
 
 if __name__ == '__main__':
