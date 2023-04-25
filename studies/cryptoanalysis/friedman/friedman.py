@@ -1,4 +1,5 @@
 from coincidence import index_of_coincidence, index_of_coincidence_avg
+from vigenere import encrypt, decrypt
 
 
 def main():
@@ -10,9 +11,13 @@ def main():
                     '4 - Сдвиг\n')
 
         if opt == '0':
-            print(f'{index_of_coincidence():.3f}')
+            index_of_coincidence()
         elif opt == '1':
             print(f'{index_of_coincidence_avg():.3f}')
+        elif opt == '2':
+            print(encrypt())
+        elif opt == '3':
+            print(decrypt())
         else:
             break
     # print(index_of_coincidence('bbcdf', 'abcdef'))

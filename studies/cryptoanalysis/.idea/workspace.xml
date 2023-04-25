@@ -4,7 +4,38 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1aef19e9-3855-4daa-b816-a892f5f64abf" name="Changes" comment="" />
+    <list default="true" id="1aef19e9-3855-4daa-b816-a892f5f64abf" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/friedman/params/alpheng.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/friedman/params/alphrus.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/friedman/params/ciphertext.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/friedman/params/eng11.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/friedman/params/eng12.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/friedman/params/eng21.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/friedman/params/eng22.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/friedman/params/eng31.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/friedman/params/eng32.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/friedman/params/eng41.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/friedman/params/eng42.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/friedman/params/key.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/friedman/params/message.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/friedman/params/rand1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/friedman/params/rand2.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/friedman/vigenere.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kasiski/params/message_copy.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/friedman/coincidence.py" beforeDir="false" afterPath="$PROJECT_DIR$/friedman/coincidence.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/friedman/friedman.py" beforeDir="false" afterPath="$PROJECT_DIR$/friedman/friedman.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/friedman/gen_sequence.py" beforeDir="false" afterPath="$PROJECT_DIR$/friedman/gen_sequence.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/friedman/params/alph.txt" beforeDir="false" afterPath="$PROJECT_DIR$/friedman/params/alph.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/friedman/params/random_text_1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/friedman/params/random_text_2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/kasiski/kasiski_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/kasiski/kasiski_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kasiski/params/ciphertext.txt" beforeDir="false" afterPath="$PROJECT_DIR$/kasiski/params/ciphertext.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kasiski/params/deciphertext.txt" beforeDir="false" afterPath="$PROJECT_DIR$/kasiski/params/deciphertext.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kasiski/params/key.txt" beforeDir="false" afterPath="$PROJECT_DIR$/kasiski/params/key.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kasiski/params/message.txt" beforeDir="false" afterPath="$PROJECT_DIR$/kasiski/params/message.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kasiski/params/test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/kasiski/params/test.txt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,13 +56,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/SomeRandom/studies/cryptoanalysis/kasiski/params&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\SomeRandom\studies\cryptoanalysis\kasiski\params" />
+    </key>
+  </component>
   <component name="RunManager" selected="Python.friedman">
     <configuration name="friedman" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="cryptoanalysis" />
