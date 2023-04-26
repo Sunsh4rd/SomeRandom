@@ -5,19 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1aef19e9-3855-4daa-b816-a892f5f64abf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/10/10.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/11/11.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/11/primes_database.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/simpson/chiper_text.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/simpson/english_alphabet.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/simpson/key.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/simpson/output.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/simpson/output_1.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/simpson/simpson.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/simpson/text.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/9/9.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/friedman/params/rand1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/friedman/params/rand1.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/friedman/params/rand2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/friedman/params/rand2.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,22 +31,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "D:/SomeRandom/studies/cryptoanalysis/kasiski/params",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/SomeRandom/studies/cryptoanalysis/kasiski/params&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\SomeRandom\studies\cryptoanalysis\kasiski\params" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.friedman">
     <configuration name="friedman" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="cryptoanalysis" />
       <option name="INTERPRETER_OPTIONS" value="" />
