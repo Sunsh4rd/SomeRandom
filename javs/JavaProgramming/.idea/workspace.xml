@@ -5,20 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="88fa0a9b-d683-46d0-b86d-7e372b13c4d2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../studies/cryptoanalysis/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../studies/cryptoanalysis/.idea/cryptoanalysis.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../studies/cryptoanalysis/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../studies/cryptoanalysis/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../studies/cryptoanalysis/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../studies/cryptoanalysis/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../studies/cryptoanalysis/kasiski/decrypt.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../studies/cryptoanalysis/kasiski/decrypt.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../studies/cryptoanalysis/kasiski/encrypt.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../studies/cryptoanalysis/kasiski/encrypt.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../studies/cryptoanalysis/kasiski/kasiski.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../studies/cryptoanalysis/kasiski/kasiski.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../studies/cryptoanalysis/kasiski/params/ciphertext.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../studies/cryptoanalysis/kasiski/params/ciphertext.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../studies/cryptoanalysis/kasiski/params/deciphertext.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../studies/cryptoanalysis/kasiski/params/deciphertext.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../studies/cryptoanalysis/kasiski/params/key.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../studies/cryptoanalysis/kasiski/params/key.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../studies/cryptoanalysis/kasiski/params/message.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../studies/cryptoanalysis/kasiski/params/message.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,20 +34,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/sunshrad/Загрузки/obj (1)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "/home/sunshrad/Загрузки/obj (1)",
+    "project.structure.last.edited": "SDKs",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Application.patterns.abstractfactory.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="patterns.bridge.Main" />
