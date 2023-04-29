@@ -1,0 +1,226 @@
+[
+    {
+        "address": "1-я улица",
+        "overallSpace": 80.0,
+        "livingSpace": 80.0,
+        "floor": 7,
+        "hasElevator": true,
+        "hasConcierge": true,
+        "hasPrivateArea": true,
+        "hasParkingLot": true,
+        "previousOwners": [
+            "Vasya Pupkin 01.01.1990"
+        ],
+        "residents": {
+            "Masha Ivanova 01.01.1991": "31.12.2030"
+        }
+    },
+    {
+        "address": "2-я улица",
+        "overallSpace": 80.0,
+        "livingSpace": 80.0,
+        "floor": 7,
+        "hasElevator": true,
+        "hasConcierge": true,
+        "hasPrivateArea": true,
+        "hasParkingLot": true,
+        "previousOwners": [
+            "Vasya Pupkin 01.01.1990"
+        ],
+        "residents": {
+            "Masha Ivanova 01.01.1991": "31.12.2030"
+        }
+    },
+    {
+        "address": "2-я улица",
+        "overallSpace": 80.0,
+        "livingSpace": 80.0,
+        "floor": 7,
+        "hasElevator": true,
+        "hasConcierge": true,
+        "hasPrivateArea": true,
+        "hasParkingLot": true,
+        "previousOwners": [
+            "Vasya Pupkin 01.01.1990"
+        ],
+        "residents": {
+            "Masha Ivanova 01.01.1991": "31.12.2030"
+        }
+    },
+    {
+        "address": "3-я улица",
+        "overallSpace": 80.0,
+        "livingSpace": 80.0,
+        "floor": 7,
+        "hasElevator": true,
+        "hasConcierge": true,
+        "hasPrivateArea": true,
+        "hasParkingLot": true,
+        "previousOwners": [
+            "Vasya Pupkin 01.01.1990"
+        ],
+        "residents": {
+            "Masha Ivanova 01.01.1991": "31.12.2030"
+        }
+    },
+    {
+        "address": "4-я улица",
+        "overallSpace": 80.0,
+        "livingSpace": 80.0,
+        "floor": 7,
+        "hasElevator": true,
+        "hasConcierge": true,
+        "hasPrivateArea": true,
+        "hasParkingLot": true,
+        "previousOwners": [
+            "Vasya Pupkin 01.01.1990"
+        ],
+        "residents": {
+            "Masha Ivanova 01.01.1991": "31.12.2030"
+        }
+    },
+    {
+        "address": "5-я улица",
+        "overallSpace": 80.0,
+        "livingSpace": 80.0,
+        "floor": 7,
+        "hasElevator": true,
+        "hasConcierge": true,
+        "hasPrivateArea": true,
+        "hasParkingLot": true,
+        "previousOwners": [
+            "Vasya Pupkin 01.01.1990"
+        ],
+        "residents": {
+            "Masha Ivanova 01.01.1991": "31.12.2030"
+        }
+    },
+    {
+        "address": "6-я улица",
+        "overallSpace": 80.0,
+        "livingSpace": 80.0,
+        "floor": 7,
+        "hasElevator": true,
+        "hasConcierge": true,
+        "hasPrivateArea": true,
+        "hasParkingLot": true,
+        "previousOwners": [
+            "Vasya Pupkin 01.01.1990"
+        ],
+        "residents": {
+            "Masha Ivanova 01.01.1991": "31.12.2030"
+        }
+    },
+    {
+        "address": "7-я улица",
+        "overallSpace": 80.0,
+        "livingSpace": 80.0,
+        "floor": 7,
+        "hasElevator": true,
+        "hasConcierge": true,
+        "hasPrivateArea": true,
+        "hasParkingLot": true,
+        "previousOwners": [
+            "Vasya Pupkin 01.01.1990"
+        ],
+        "residents": {
+            "Masha Ivanova 01.01.1991": "31.12.2030"
+        }
+    },
+    {
+        "address": "8-я улица",
+        "overallSpace": 80.0,
+        "livingSpace": 80.0,
+        "floor": 7,
+        "hasElevator": true,
+        "hasConcierge": true,
+        "hasPrivateArea": true,
+        "hasParkingLot": true,
+        "previousOwners": [
+            "Vasya Pupkin 01.01.1990"
+        ],
+        "residents": {
+            "Masha Ivanova 01.01.1991": "31.12.2030"
+        }
+    },
+    {
+        "address": "9-я улица",
+        "overallSpace": 80.0,
+        "livingSpace": 80.0,
+        "floor": 7,
+        "hasElevator": true,
+        "hasConcierge": true,
+        "hasPrivateArea": true,
+        "hasParkingLot": true,
+        "previousOwners": [
+            "Vasya Pupkin 01.01.1990"
+        ],
+        "residents": {
+            "Masha Ivanova 01.01.1991": "31.12.2030"
+        }
+    },
+    {
+        "address": "10-я улица",
+        "overallSpace": 80.0,
+        "livingSpace": 80.0,
+        "floor": 7,
+        "hasElevator": true,
+        "hasConcierge": true,
+        "hasPrivateArea": true,
+        "hasParkingLot": true,
+        "previousOwners": [
+            "Vasya Pupkin 01.01.1990"
+        ],
+        "residents": {
+            "Masha Ivanova 01.01.1991": "31.12.2030"
+        }
+    },
+    {
+        "address": "11-я улица",
+        "overallSpace": 80.0,
+        "livingSpace": 80.0,
+        "floor": 7,
+        "hasElevator": true,
+        "hasConcierge": true,
+        "hasPrivateArea": true,
+        "hasParkingLot": true,
+        "previousOwners": [
+            "Vasya Pupkin 01.01.1990"
+        ],
+        "residents": {
+            "Masha Ivanova 01.01.1991": "31.12.2030"
+        }
+    },
+    {
+        "address": "12-я улица",
+        "overallSpace": 80.0,
+        "livingSpace": 80.0,
+        "floor": 7,
+        "hasElevator": true,
+        "hasConcierge": true,
+        "hasPrivateArea": true,
+        "hasParkingLot": true,
+        "previousOwners": [
+            "Vasya Pupkin 01.01.1990"
+        ],
+        "residents": {
+            "Masha Ivanova 01.01.1991": "31.12.2030"
+        }
+    },
+    {
+        "address": "2-я улица",
+        "overallSpace": 80.0,
+        "livingSpace": 80.0,
+        "floor": 7,
+        "hasElevator": true,
+        "hasConcierge": true,
+        "hasPrivateArea": true,
+        "hasParkingLot": true,
+        "previousOwners": [
+            "Vasya Pupkin 01.01.1990"
+        ],
+        "residents": {
+            "Masha Ivanova 01.01.1991": "31.12.2030"
+        }
+    }
+]
