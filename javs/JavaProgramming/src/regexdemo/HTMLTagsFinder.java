@@ -1,6 +1,7 @@
 package regexdemo;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.regex.Pattern;
 
 public class HTMLTagsFinder {
@@ -10,12 +11,15 @@ public class HTMLTagsFinder {
         var openingTagPattern = Pattern.compile(openingTagExpr);
         var closingTagPattern = Pattern.compile(closingTagExpr);
         var list = new ArrayList<String>();
-        for (String line: html.split("\n")) {
-            System.out.println(line);
-            if (openingTagPattern.matcher(line).matches()) {
-                list.add(line);
-            }
-        }
-        System.out.println(list);
+        System.out.println(html);
+        var splitHTML = html.split("\n");
+        System.out.println(Arrays.toString(splitHTML));
+//        for (String line: html.split("\n")) {
+//            System.out.println(line);
+//            if (openingTagPattern.matcher(line).matches()) {
+//                list.add(line);
+//            }
+//        }
+//        System.out.println(list);
     }
 }

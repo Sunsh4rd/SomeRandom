@@ -6,9 +6,10 @@ import java.nio.file.Paths;
 
 public class Main {
     public static void main(String[] args) {
-        try {
-            var html = new String(Files.readAllBytes(Paths.get("test.html")));
-            HTMLTagsFinder.findUnclosedTags(html);
+        var openingTagExpr = "<[a-zA-Z]+[^>]*>";
+        try(var html = Files.lines(Paths.get("test.html"))) {
+            html.filter(s -> s.matches(openingTagExpr))
+                    .forEach(System.out::println);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
