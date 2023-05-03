@@ -23,10 +23,10 @@ def trial_division(n):
         for line in db_r.read().split('\n'):
             prod = list(map(int, line.split()))
             db[prod[0]] = prod[1:]
-    print(db)
+    # print(db)
     while True:
         d = list(filter(lambda x: gcd(n, x) != 1, db.keys()))[0]
-        print(d)
+        # print(d)
         for div in db[d]:
             if n % div == 0:
                 yield div
@@ -37,8 +37,12 @@ def trial_division(n):
 
 
 def main():
-    create_db()
-    print(Counter(list(trial_division(84257901))))
+    opt = input('1 - Создать базу данных простых чисел\n'
+                '2 - Метод пробного деления\n')
+    if opt == '1':
+        create_db()
+    elif opt == '2':
+        print(Counter(list(trial_division(int(input('n = '))))))
 
 
 if __name__ == '__main__':
