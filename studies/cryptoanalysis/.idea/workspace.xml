@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1aef19e9-3855-4daa-b816-a892f5f64abf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/12/fermat.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/14/rsa.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../javs/Contest/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../javs/Contest/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../javs/JavaProgramming/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../javs/JavaProgramming/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/9/9.py" beforeDir="false" afterPath="$PROJECT_DIR$/9/9.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/9/db.txt" beforeDir="false" afterPath="$PROJECT_DIR$/9/db.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/9/primes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/9/primes.txt" afterDir="false" />
-    </list>
+    <list default="true" id="1aef19e9-3855-4daa-b816-a892f5f64abf" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -55,7 +46,7 @@
       <recent name="D:\SomeRandom\studies\cryptoanalysis\kasiski\params" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.9">
+  <component name="RunManager" selected="Python.rsa">
     <configuration name="9" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="cryptoanalysis" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -119,7 +110,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="kasiski" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="rsa" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="cryptoanalysis" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -127,11 +118,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/kasiski" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/14" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/kasiski/kasiski.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/14/rsa.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -163,11 +154,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.rsa" />
         <item itemvalue="Python.9" />
         <item itemvalue="Python.fermat" />
         <item itemvalue="Python.simpson" />
         <item itemvalue="Python.friedman" />
-        <item itemvalue="Python.kasiski" />
       </list>
     </recent_temporary>
   </component>
