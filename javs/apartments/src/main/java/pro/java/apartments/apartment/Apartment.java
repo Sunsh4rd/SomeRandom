@@ -21,7 +21,9 @@ public class Apartment {
             generator = "apartment_sequence"
     )
     private Long id;
-    private String address;
+    private String streetName;
+    private int buildingNumber;
+    private int apartmentNumber;
     private int overallSpace;
     private int livingSpace;
     private int numberOfRooms;
@@ -31,7 +33,9 @@ public class Apartment {
     private boolean hasPrivateArea;
     private boolean hasParkingLot;
 
-    public Apartment(String address,
+    public Apartment(String streetName,
+                     int buildingNumber,
+                     int apartmentNumber,
                      int overallSpace,
                      int livingSpace,
                      int numberOfRooms,
@@ -40,7 +44,9 @@ public class Apartment {
                      boolean hasConcierge,
                      boolean hasPrivateArea,
                      boolean hasParkingLot) {
-        this.address = address;
+        this.streetName = streetName;
+        this.buildingNumber = buildingNumber;
+        this.apartmentNumber = apartmentNumber;
         this.overallSpace = overallSpace;
         this.livingSpace = livingSpace;
         this.numberOfRooms = numberOfRooms;
@@ -50,7 +56,6 @@ public class Apartment {
         this.hasPrivateArea = hasPrivateArea;
         this.hasParkingLot = hasParkingLot;
     }
-
     //    private List<Resident> previousOwners;
 //    private Map<Resident, LocalDate> registeredResidents;
 }

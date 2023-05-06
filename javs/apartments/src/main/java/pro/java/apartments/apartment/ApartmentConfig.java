@@ -14,6 +14,8 @@ public class ApartmentConfig {
         return args -> {
             Apartment firstApartment = new Apartment(
                     "1-я улица",
+                    5,
+                    7,
                     80,
                     80,
                     4,
@@ -25,6 +27,8 @@ public class ApartmentConfig {
             );
             Apartment secondApartment = new Apartment(
                     "2-я улица",
+                    4,
+                    3,
                     60,
                     60,
                     3,
