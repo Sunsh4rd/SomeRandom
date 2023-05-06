@@ -48,7 +48,7 @@
       <recent name="D:\SomeRandom\studies\cryptoanalysis\kasiski\params" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.rsa">
+  <component name="RunManager" selected="Python.fermat">
     <configuration name="9" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="cryptoanalysis" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -156,8 +156,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.rsa" />
         <item itemvalue="Python.fermat" />
+        <item itemvalue="Python.rsa" />
         <item itemvalue="Python.9" />
         <item itemvalue="Python.simpson" />
         <item itemvalue="Python.friedman" />
