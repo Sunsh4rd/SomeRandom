@@ -1,12 +1,14 @@
-package pro.java.apartments.apartment;
+package pro.java.apartments.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pro.java.apartments.model.Apartment;
+import pro.java.apartments.service.ApartmentService;
 
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "apartments")
+@RequestMapping(path = "/apartments/")
 public class ApartmentController {
 
     private final ApartmentService apartmentService;

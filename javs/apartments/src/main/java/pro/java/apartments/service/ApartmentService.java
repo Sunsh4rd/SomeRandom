@@ -1,8 +1,10 @@
-package pro.java.apartments.apartment;
+package pro.java.apartments.service;
 
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pro.java.apartments.repository.ApartmentRepository;
+import pro.java.apartments.model.Apartment;
 
 import java.util.List;
 import java.util.Optional;

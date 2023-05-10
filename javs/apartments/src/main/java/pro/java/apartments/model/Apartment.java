@@ -1,13 +1,15 @@
-package pro.java.apartments.apartment;
+package pro.java.apartments.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
+import java.util.List;
 
 
-@Data
+
 @Entity
 @Table
+@Data
 @NoArgsConstructor
 public class Apartment {
     @Id
@@ -33,6 +35,9 @@ public class Apartment {
     private boolean hasPrivateArea;
     private boolean hasParkingLot;
 
+    @OneToMany(mappedBy = "apartment")
+    private List<Resident> residents;
+
     public Apartment(String streetName,
                      int buildingNumber,
                      int apartmentNumber,
@@ -43,7 +48,8 @@ public class Apartment {
                      boolean hasElevator,
                      boolean hasConcierge,
                      boolean hasPrivateArea,
-                     boolean hasParkingLot) {
+                     boolean hasParkingLot,
+                     List<Resident> residents) {
         this.streetName = streetName;
         this.buildingNumber = buildingNumber;
         this.apartmentNumber = apartmentNumber;
@@ -55,7 +61,6 @@ public class Apartment {
         this.hasConcierge = hasConcierge;
         this.hasPrivateArea = hasPrivateArea;
         this.hasParkingLot = hasParkingLot;
+        this.residents = residents;
     }
-    //    private List<Resident> previousOwners;
-//    private Map<Resident, LocalDate> registeredResidents;
 }
