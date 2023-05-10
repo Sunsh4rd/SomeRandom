@@ -1,5 +1,6 @@
 package pro.java.apartments.controller;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pro.java.apartments.model.Apartment;
@@ -8,7 +9,8 @@ import pro.java.apartments.service.ApartmentService;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/apartments/")
+@RequestMapping(path = "/apartments")
+@Tag(name = "Apartments", description = "apts methods")
 public class ApartmentController {
 
     private final ApartmentService apartmentService;

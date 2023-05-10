@@ -8,7 +8,7 @@ import pro.java.apartments.service.ResidentService;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/residents/")
+@RequestMapping(path = "/residents")
 public class ResidentController {
 
     @Autowired
