@@ -5,23 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1aef19e9-3855-4daa-b816-a892f5f64abf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/13/dixon.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/13/gaussian.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/13/p.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/13/utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/14/eulerpq.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/14/extspq.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/14/d.txt" beforeDir="false" afterPath="$PROJECT_DIR$/14/d.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/14/e.txt" beforeDir="false" afterPath="$PROJECT_DIR$/14/e.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/14/exts1.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/14/exts2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/14/eulerpq.txt" beforeDir="false" afterPath="$PROJECT_DIR$/14/eulerpq.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/14/n.txt" beforeDir="false" afterPath="$PROJECT_DIR$/14/n.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/14/phi.txt" beforeDir="false" afterPath="$PROJECT_DIR$/14/phi.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/14/pq.txt" beforeDir="false" afterPath="$PROJECT_DIR$/14/pq.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/14/r1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/7/simpson.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/14/r2.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/14/rsa.py" beforeDir="false" afterPath="$PROJECT_DIR$/14/rsa.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
