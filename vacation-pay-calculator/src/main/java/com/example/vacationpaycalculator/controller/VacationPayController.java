@@ -1,25 +1,37 @@
 package com.example.vacationpaycalculator.controller;
 
-import org.springframework.stereotype.Controller;
+import com.example.vacationpaycalculator.service.VacationPayService;
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+
+@RestController
+@AllArgsConstructor
 public class VacationPayController {
 
-    @GetMapping("/calculate")
-    public String getVacationPay(
+    @Autowired
+    private final VacationPayService vacationPayService;
+
+//    @GetMapping("/calculate")
+//    public Integer getVacationPay(
 //            @RequestParam Integer salary,
 //            @RequestParam Integer vacationDays
-    ) {
-//        return salary / (int) 29.3 * vacationDays;
-        return "calculate";
-    }
+//    ) {
+//        return (int) ((double) salary / 29.3 * vacationDays);
+//    }
 
-    @PostMapping("/calculate")
-    @ModelAttribute("calculate")
-    public String vacate() {
-        return "ye";
+    @GetMapping("/calculate")
+    public Integer calculateVacationPay(
+            @RequestParam Integer salary,
+            @RequestParam(name = "start") @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate vacationStartDate,
+            @RequestParam(name = "end") @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate vacationEndDate
+            ) {
+        return vacationPayService.calculateVacationPay(salary, vacationStartDate, vacationEndDate);
     }
 }
