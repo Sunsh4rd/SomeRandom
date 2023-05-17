@@ -91,7 +91,7 @@ def hypothesis0(frequencies):
         for k in range(len(frequencies)):
             P[((i - k) + m) % m] += frequencies[i][1] * frequencies[k][1]
     P = [round(P[j], 5) for j in range(m)]
-    with open('h0.txt', 'w') as hypothesis:
+    with open('h0.txt', 'w', encoding='utf-8') as hypothesis:
         for j in range(m):
             hypothesis.write("{}\t{}\n".format(j, P[j]))
     print("Гипотеза H(0) составлена\n")

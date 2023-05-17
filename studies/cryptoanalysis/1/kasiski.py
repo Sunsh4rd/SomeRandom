@@ -1,6 +1,8 @@
-from random import choice
 from math import factorial, gcd
+from random import choice
+
 from sympy import divisors
+
 
 def gen_monocycle_permutation(n):
     numbers = [i for i in range(n)]
@@ -36,7 +38,7 @@ def crypt():
     encrypted_text = ""
     while i < len(text):
         tmp = ""
-        part_of_text = text[i:i + len(key)+1]
+        part_of_text = text[i:i + len(key) + 1]
         for j in range(len(key)):
             tmp += part_of_text[key[j] - 1]
         encrypted_text += tmp
@@ -96,7 +98,7 @@ def kasiski():
     with open("kasiski_result.txt", "w", encoding='utf-8') as res:
         gcd_dividers_dict = {}
         for l in range(l_limit, h_limit + 1):
-            #res.write('Последовательность длины: {}\n\n'.format(str(l)))
+            # res.write('Последовательность длины: {}\n\n'.format(str(l)))
             for gcd_dist in sorted(gcds_of_lengths[l].items(), key=lambda x: (-x[1], x[0])):
                 if gcd_dist[0] != 1:
                     gcd_deviders = divisors(gcd_dist[0])
@@ -106,12 +108,14 @@ def kasiski():
                                 gcd_dividers_dict[divider] = 0
                             gcd_dividers_dict[divider] += 1
 
-                    #res.write('{} - {}\n'.format(gcd_dist[0], gcd_dist[1]))
-            #res.write('\n\n')
+                    # res.write('{} - {}\n'.format(gcd_dist[0], gcd_dist[1]))
+            # res.write('\n\n')
 
         res.write('Частота встречаемости НОД:\n')
         for i in sorted(gcd_dividers_dict.items(), key=lambda x: (-x[1], x[0])):
             res.write('{} - {}\n'.format(i[0], i[1]))
+
+
 def brute():
     l = int(input("Введите длину ключа: "))
     with open("result_of_brute.txt", "w", encoding='utf-8') as result:
