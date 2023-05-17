@@ -3,6 +3,7 @@ package pro.java.apartments.service;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pro.java.apartments.dto.ApartmentDTO;
 import pro.java.apartments.repository.ApartmentRepository;
 import pro.java.apartments.model.Apartment;
 
@@ -23,17 +24,30 @@ public class ApartmentService {
         return apartmentRepository.findAll();
     }
 
-    public void addNewApartment(Apartment apartment) {
-        Optional<Apartment> apartmentByAddress = apartmentRepository
-                .findApartmentByAddress(
-                        apartment.getStreetName(),
-                        apartment.getBuildingNumber(),
-                        apartment.getApartmentNumber()
-                );
-        if (apartmentByAddress.isPresent()) {
-            throw new IllegalStateException("address taken");
-        }
-        apartmentRepository.save(apartment);
+    public Apartment addNewApartment(ApartmentDTO dto) {
+        Apartment apartment = Apartment.builder()
+                .streetName(dto.getStreetName())
+                .buildingNumber(dto.getBuildingNumber())
+                .apartmentNumber(dto.getApartmentNumber())
+                .overallSpace(dto.getOverallSpace())
+                .livingSpace(dto.getLivingSpace())
+                .numberOfRooms(dto.getNumberOfRooms())
+                .floor(dto.getFloor())
+                .hasElevator(dto.isHasElevator())
+                .hasConcierge(dto.isHasConcierge())
+                .hasPrivateArea(dto.isHasPrivateArea())
+                .hasParkingLot(dto.isHasParkingLot())
+                .build();
+//        Optional<Apartment> apartmentByAddress = apartmentRepository
+//                .findApartmentByAddress(
+//                        apartment.getStreetName(),
+//                        apartment.getBuildingNumber(),
+//                        apartment.getApartmentNumber()
+//                );
+//        if (apartmentByAddress.isPresent()) {
+//            throw new IllegalStateException("address taken");
+//        }
+        return apartmentRepository.save(apartment);
     }
 
     public void deleteApartment(Long apartmentId) {
@@ -58,4 +72,6 @@ public class ApartmentService {
             apartment.setNumberOfRooms(numberOfRooms);
         }
     }
+
+
 }

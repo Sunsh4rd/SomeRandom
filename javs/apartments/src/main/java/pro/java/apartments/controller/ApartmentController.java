@@ -2,7 +2,10 @@ package pro.java.apartments.controller;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pro.java.apartments.dto.ApartmentDTO;
 import pro.java.apartments.model.Apartment;
 import pro.java.apartments.service.ApartmentService;
 
@@ -26,8 +29,8 @@ public class ApartmentController {
     }
 
     @PostMapping
-    public void registerNewApartment(@RequestBody Apartment apartment) {
-        apartmentService.addNewApartment(apartment);
+    public ResponseEntity<Apartment> registerNewApartment(@RequestBody ApartmentDTO dto) {
+        return new ResponseEntity<>(apartmentService.addNewApartment(dto), HttpStatus.OK);
     }
 
     @DeleteMapping("{apartmentId}")
