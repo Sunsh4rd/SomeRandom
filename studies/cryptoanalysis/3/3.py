@@ -30,7 +30,7 @@ def encrypt():
     i = 0
     encrypted_text = ""
     while i < len(text):
-        print(len(text))
+        # print(len(text))
         subs_text = [""] * len(key)
         if i + len(key) < len(text):
             text_part = text[i:i + len(key)]

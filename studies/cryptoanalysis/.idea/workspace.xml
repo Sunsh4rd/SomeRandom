@@ -4,7 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1aef19e9-3855-4daa-b816-a892f5f64abf" name="Changes" comment="" />
+    <list default="true" id="1aef19e9-3855-4daa-b816-a892f5f64abf" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/1/encrypt.txt" beforeDir="false" afterPath="$PROJECT_DIR$/1/encrypt.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/1/kasiski.py" beforeDir="false" afterPath="$PROJECT_DIR$/1/kasiski.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/1/key.txt" beforeDir="false" afterPath="$PROJECT_DIR$/1/key.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/1/key_length.txt" beforeDir="false" afterPath="$PROJECT_DIR$/1/key_length.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/3/3.py" beforeDir="false" afterPath="$PROJECT_DIR$/3/3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/3/encrypted_text.txt" beforeDir="false" afterPath="$PROJECT_DIR$/3/encrypted_text.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/3/key.txt" beforeDir="false" afterPath="$PROJECT_DIR$/3/key.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/6/6.py" beforeDir="false" afterPath="$PROJECT_DIR$/6/6.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/6/encrypted_text.txt" beforeDir="false" afterPath="$PROJECT_DIR$/6/encrypted_text.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/6/hypothesis.txt" beforeDir="false" afterPath="$PROJECT_DIR$/6/hypothesis.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/6/key.txt" beforeDir="false" afterPath="$PROJECT_DIR$/6/key.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/6/values.txt" beforeDir="false" afterPath="$PROJECT_DIR$/6/values.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kasiski/params/test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/kasiski/params/test.txt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -35,17 +50,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "D:/SomeRandom/studies/cryptoanalysis/4",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/SomeRandom/studies/cryptoanalysis/4&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\SomeRandom\studies\cryptoanalysis\4" />
@@ -55,7 +70,7 @@
       <recent name="D:\SomeRandom\studies\cryptoanalysis\kasiski\params" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.4">
+  <component name="RunManager">
     <configuration name="3" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="cryptoanalysis" />
       <option name="INTERPRETER_OPTIONS" value="" />

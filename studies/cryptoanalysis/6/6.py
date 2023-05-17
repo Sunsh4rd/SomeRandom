@@ -123,6 +123,7 @@ def hypotheses(n1, n2):
         scalar_mult = 0
         for j in range(min(len(p), len(P0))):
             scalar_mult += pow(p[j] - P0[j], 2)
+        print(p)
         P.append(p)
         from math import sqrt
         values[d] = round(sqrt(scalar_mult), 5)

@@ -25,7 +25,8 @@ def gen_key():
         n = int(input("Введите длину ключа (n>2): "))
     open("key_length.txt", "w", encoding='utf-8').write(str(n))
     key = gen_monocycle_permutation(n)
-    open("key.txt", "w", encoding='utf-8').write(" ".join(str(x) for x in key))
+    print(sorted(zip(key, [i+1 for i in range(len(key))]), key=lambda x: x[0]))
+    open("key.txt", "w", encoding='utf-8').write(" ".join(str(x) for x in key) + '\n' + ' '.join(str(x+1) for x in range(len(key))))
     print("Ключ был успешно сгенерирован: ", key)
 
 
