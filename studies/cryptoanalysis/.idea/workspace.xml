@@ -6,19 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1aef19e9-3855-4daa-b816-a892f5f64abf" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/1/encrypt.txt" beforeDir="false" afterPath="$PROJECT_DIR$/1/encrypt.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/1/kasiski.py" beforeDir="false" afterPath="$PROJECT_DIR$/1/kasiski.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/1/key.txt" beforeDir="false" afterPath="$PROJECT_DIR$/1/key.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/1/key_length.txt" beforeDir="false" afterPath="$PROJECT_DIR$/1/key_length.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/3/3.py" beforeDir="false" afterPath="$PROJECT_DIR$/3/3.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/3/encrypted_text.txt" beforeDir="false" afterPath="$PROJECT_DIR$/3/encrypted_text.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/3/key.txt" beforeDir="false" afterPath="$PROJECT_DIR$/3/key.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/6/6.py" beforeDir="false" afterPath="$PROJECT_DIR$/6/6.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/6/encrypted_text.txt" beforeDir="false" afterPath="$PROJECT_DIR$/6/encrypted_text.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/6/hypothesis.txt" beforeDir="false" afterPath="$PROJECT_DIR$/6/hypothesis.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/6/key.txt" beforeDir="false" afterPath="$PROJECT_DIR$/6/key.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/6/values.txt" beforeDir="false" afterPath="$PROJECT_DIR$/6/values.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kasiski/params/test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/kasiski/params/test.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +57,7 @@
       <recent name="D:\SomeRandom\studies\cryptoanalysis\kasiski\params" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.3">
     <configuration name="3" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="cryptoanalysis" />
       <option name="INTERPRETER_OPTIONS" value="" />
