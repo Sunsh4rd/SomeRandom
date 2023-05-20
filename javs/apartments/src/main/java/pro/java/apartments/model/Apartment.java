@@ -32,7 +32,12 @@ public class Apartment {
     private boolean hasPrivateArea;
     private boolean hasParkingLot;
 
-    @OneToMany(mappedBy = "apartment")
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER,
+            mappedBy = "apartment"
+    )
+//    @JoinColumn(name = "resident_id")
     private List<Resident> residents;
 
 }
