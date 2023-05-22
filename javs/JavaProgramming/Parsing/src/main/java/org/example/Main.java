@@ -7,67 +7,394 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
         var apartmentList = List.of(
-                new Apartment("1-я улица", 80, 80, 7, true, true, true, true,
-                        List.of(new Resident("Vasya", "Pupkin", "01.01.1990")),
-                        Map.of(new Resident("Masha", "Ivanova", "01.01.1991"), "31.12.2030")
-                ),
-                new Apartment("2-я улица", 80, 80, 7, true, true, true, true,
-                        List.of(new Resident("Vasya", "Pupkin", "01.01.1990")),
-                        Map.of(new Resident("Masha", "Ivanova", "01.01.1991"), "31.12.2030")
-                ),
-                new Apartment("2-я улица", 80, 80, 7, true, true, true, true,
-                        List.of(new Resident("Vasya", "Pupkin", "01.01.1990")),
-                        Map.of(new Resident("Masha", "Ivanova", "01.01.1991"), "31.12.2030")
-                ),
-                new Apartment("3-я улица", 80, 80, 7, true, true, true, true,
-                        List.of(new Resident("Vasya", "Pupkin", "01.01.1990")),
-                        Map.of(new Resident("Masha", "Ivanova", "01.01.1991"), "31.12.2030")
-                ),
-                new Apartment("4-я улица", 80, 80, 7, true, true, true, true,
-                        List.of(new Resident("Vasya", "Pupkin", "01.01.1990")),
-                        Map.of(new Resident("Masha", "Ivanova", "01.01.1991"), "31.12.2030")
-                ),
-                new Apartment("5-я улица", 80, 80, 7, true, true, true, true,
-                        List.of(new Resident("Vasya", "Pupkin", "01.01.1990")),
-                        Map.of(new Resident("Masha", "Ivanova", "01.01.1991"), "31.12.2030")
-                ),
-                new Apartment("6-я улица", 80, 80, 7, true, true, true, true,
-                        List.of(new Resident("Vasya", "Pupkin", "01.01.1990")),
-                        Map.of(new Resident("Masha", "Ivanova", "01.01.1991"), "31.12.2030")
-                ),
-                new Apartment("7-я улица", 80, 80, 7, true, true, true, true,
-                        List.of(new Resident("Vasya", "Pupkin", "01.01.1990")),
-                        Map.of(new Resident("Masha", "Ivanova", "01.01.1991"), "31.12.2030")
-                ),
-                new Apartment("8-я улица", 80, 80, 7, true, true, true, true,
-                        List.of(new Resident("Vasya", "Pupkin", "01.01.1990")),
-                        Map.of(new Resident("Masha", "Ivanova", "01.01.1991"), "31.12.2030")
-                ),
-                new Apartment("9-я улица", 80, 80, 7, true, true, true, true,
-                        List.of(new Resident("Vasya", "Pupkin", "01.01.1990")),
-                        Map.of(new Resident("Masha", "Ivanova", "01.01.1991"), "31.12.2030")
-                ),
-                new Apartment("10-я улица", 80, 80, 7, true, true, true, true,
-                        List.of(new Resident("Vasya", "Pupkin", "01.01.1990")),
-                        Map.of(new Resident("Masha", "Ivanova", "01.01.1991"), "31.12.2030")
-                ),
-                new Apartment("11-я улица", 80, 80, 7, true, true, true, true,
-                        List.of(new Resident("Vasya", "Pupkin", "01.01.1990")),
-                        Map.of(new Resident("Masha", "Ivanova", "01.01.1991"), "31.12.2030")
-                ),
-                new Apartment("12-я улица", 80, 80, 7, true, true, true, true,
-                        List.of(new Resident("Vasya", "Pupkin", "01.01.1990")),
-                        Map.of(new Resident("Masha", "Ivanova", "01.01.1991"), "31.12.2030")
-                ),
-                new Apartment("2-я улица", 80, 80, 7, true, true, true, true,
-                        List.of(new Resident("Vasya", "Pupkin", "01.01.1990")),
-                        Map.of(new Resident("Masha", "Ivanova", "01.01.1991"), "31.12.2030")
-                )
+                Apartment.builder()
+                        .streetName("1-я улица")
+                        .buildingNumber(1)
+                        .apartmentNumber(25)
+                        .overallSpace(80)
+                        .livingSpace(80)
+                        .numberOfRooms(4)
+                        .floor(6)
+                        .hasElevator(true)
+                        .hasConcierge(true)
+                        .hasParkingLot(true)
+                        .hasPrivateArea(true)
+                        .previousOwners(
+                                List.of(Resident.builder()
+                                                .firstName("Вася")
+                                                .lastName("Пупкин")
+                                                .birthDate("01.01.1990")
+                                                .build(),
+                                        Resident.builder()
+                                                .firstName("Петр")
+                                                .lastName("Петров")
+                                                .birthDate("02.03.1990")
+                                                .build())
+                        )
+                        .residents(
+                                Map.of(Resident.builder()
+                                                .firstName("Иван")
+                                                .lastName("Иванов")
+                                                .birthDate("02.02.1991").build(),
+                                        "31.12.2030")
+                        )
+                        .build(),
+                Apartment.builder()
+                        .streetName("2-я улица")
+                        .buildingNumber(1)
+                        .apartmentNumber(25)
+                        .overallSpace(60)
+                        .livingSpace(60)
+                        .numberOfRooms(3)
+                        .floor(6)
+                        .hasElevator(true)
+                        .hasConcierge(false)
+                        .hasParkingLot(false)
+                        .hasPrivateArea(true)
+                        .previousOwners(
+                                List.of(Resident.builder()
+                                                .firstName("Вася")
+                                                .lastName("Пупкин")
+                                                .birthDate("01.01.1990")
+                                                .build(),
+                                        Resident.builder()
+                                                .firstName("Петр")
+                                                .lastName("Петров")
+                                                .birthDate("02.03.1990")
+                                                .build())
+                        )
+                        .residents(
+                                Map.of(Resident.builder()
+                                                .firstName("Алексей")
+                                                .lastName("Алексеев")
+                                                .birthDate("02.02.1991").build(),
+                                        "31.12.2030")
+                        )
+                        .build(),
+                Apartment.builder()
+                        .streetName("3-я улица")
+                        .buildingNumber(1)
+                        .apartmentNumber(25)
+                        .overallSpace(70)
+                        .livingSpace(70)
+                        .numberOfRooms(4)
+                        .floor(6)
+                        .hasElevator(true)
+                        .hasConcierge(false)
+                        .hasParkingLot(true)
+                        .hasPrivateArea(true)
+                        .previousOwners(
+                                List.of(Resident.builder()
+                                                .firstName("Вася")
+                                                .lastName("Пупкин")
+                                                .birthDate("01.01.1990")
+                                                .build(),
+                                        Resident.builder()
+                                                .firstName("Петр")
+                                                .lastName("Петров")
+                                                .birthDate("02.03.1990")
+                                                .build())
+                        )
+                        .residents(
+                                Map.of(Resident.builder()
+                                                .firstName("Мария")
+                                                .lastName("Петрова")
+                                                .birthDate("02.02.1991").build(),
+                                        "31.12.2030")
+                        )
+                        .build(),
+                Apartment.builder()
+                        .streetName("4-я улица")
+                        .buildingNumber(1)
+                        .apartmentNumber(25)
+                        .overallSpace(100)
+                        .livingSpace(100)
+                        .numberOfRooms(5)
+                        .floor(6)
+                        .hasElevator(true)
+                        .hasConcierge(true)
+                        .hasParkingLot(false)
+                        .hasPrivateArea(true)
+                        .previousOwners(
+                                List.of(Resident.builder()
+                                                .firstName("Вася")
+                                                .lastName("Пупкин")
+                                                .birthDate("01.01.1990")
+                                                .build(),
+                                        Resident.builder()
+                                                .firstName("Петр")
+                                                .lastName("Петров")
+                                                .birthDate("02.03.1990")
+                                                .build())
+                        )
+                        .residents(
+                                Map.of(Resident.builder()
+                                                .firstName("Антон")
+                                                .lastName("Иванов")
+                                                .birthDate("02.02.1991").build(),
+                                        "31.12.2030")
+                        )
+                        .build(),
+                Apartment.builder()
+                        .streetName("5-я улица")
+                        .buildingNumber(1)
+                        .apartmentNumber(25)
+                        .overallSpace(40)
+                        .livingSpace(40)
+                        .numberOfRooms(2)
+                        .floor(6)
+                        .hasElevator(true)
+                        .hasConcierge(true)
+                        .hasParkingLot(true)
+                        .hasPrivateArea(true)
+                        .previousOwners(
+                                List.of(Resident.builder()
+                                                .firstName("Вася")
+                                                .lastName("Пупкин")
+                                                .birthDate("01.01.1990")
+                                                .build(),
+                                        Resident.builder()
+                                                .firstName("Петр")
+                                                .lastName("Петров")
+                                                .birthDate("02.03.1990")
+                                                .build())
+                        )
+                        .residents(
+                                Map.of(Resident.builder()
+                                                .firstName("Абрам")
+                                                .lastName("Козырев")
+                                                .birthDate("02.02.1991").build(),
+                                        "31.12.2030")
+                        )
+                        .build(),
+                Apartment.builder()
+                        .streetName("6-я улица")
+                        .buildingNumber(1)
+                        .apartmentNumber(25)
+                        .overallSpace(65)
+                        .livingSpace(65)
+                        .numberOfRooms(3)
+                        .floor(6)
+                        .hasElevator(true)
+                        .hasConcierge(true)
+                        .hasParkingLot(false)
+                        .hasPrivateArea(true)
+                        .previousOwners(
+                                List.of(Resident.builder()
+                                                .firstName("Вася")
+                                                .lastName("Пупкин")
+                                                .birthDate("01.01.1990")
+                                                .build(),
+                                        Resident.builder()
+                                                .firstName("Петр")
+                                                .lastName("Петров")
+                                                .birthDate("02.03.1990")
+                                                .build())
+                        )
+                        .residents(
+                                Map.of(Resident.builder()
+                                                .firstName("Алена")
+                                                .lastName("Солнышко")
+                                                .birthDate("02.02.1991").build(),
+                                        "31.12.2030")
+                        )
+                        .build(),
+                Apartment.builder()
+                        .streetName("7-я улица")
+                        .buildingNumber(1)
+                        .apartmentNumber(25)
+                        .overallSpace(75)
+                        .livingSpace(75)
+                        .numberOfRooms(4)
+                        .floor(6)
+                        .hasElevator(true)
+                        .hasConcierge(true)
+                        .hasParkingLot(true)
+                        .hasPrivateArea(true)
+                        .previousOwners(
+                                List.of(Resident.builder()
+                                                .firstName("Вася")
+                                                .lastName("Пупкин")
+                                                .birthDate("01.01.1990")
+                                                .build(),
+                                        Resident.builder()
+                                                .firstName("Петр")
+                                                .lastName("Петров")
+                                                .birthDate("02.03.1990")
+                                                .build())
+                        )
+                        .residents(
+                                Map.of(Resident.builder()
+                                                .firstName("Райан")
+                                                .lastName("Гослинг")
+                                                .birthDate("02.02.1991").build(),
+                                        "31.12.2030")
+                        )
+                        .build(),
+                Apartment.builder()
+                        .streetName("8-я улица")
+                        .buildingNumber(1)
+                        .apartmentNumber(25)
+                        .overallSpace(95)
+                        .livingSpace(95)
+                        .numberOfRooms(4)
+                        .floor(6)
+                        .hasElevator(true)
+                        .hasConcierge(true)
+                        .hasParkingLot(false)
+                        .hasPrivateArea(true)
+                        .previousOwners(
+                                List.of(Resident.builder()
+                                                .firstName("Вася")
+                                                .lastName("Пупкин")
+                                                .birthDate("01.01.1990")
+                                                .build(),
+                                        Resident.builder()
+                                                .firstName("Петр")
+                                                .lastName("Петров")
+                                                .birthDate("02.03.1990")
+                                                .build())
+                        )
+                        .residents(
+                                Map.of(Resident.builder()
+                                                .firstName("Йозеф")
+                                                .lastName("Швейк")
+                                                .birthDate("02.02.1991").build(),
+                                        "31.12.2030")
+                        )
+                        .build(),
+                Apartment.builder()
+                        .streetName("9-я улица")
+                        .buildingNumber(1)
+                        .apartmentNumber(25)
+                        .overallSpace(80)
+                        .livingSpace(80)
+                        .numberOfRooms(4)
+                        .floor(6)
+                        .hasElevator(true)
+                        .hasConcierge(true)
+                        .hasParkingLot(true)
+                        .hasPrivateArea(true)
+                        .previousOwners(
+                                List.of(Resident.builder()
+                                                .firstName("Вася")
+                                                .lastName("Пупкин")
+                                                .birthDate("01.01.1990")
+                                                .build(),
+                                        Resident.builder()
+                                                .firstName("Петр")
+                                                .lastName("Петров")
+                                                .birthDate("02.03.1990")
+                                                .build())
+                        )
+                        .residents(
+                                Map.of(Resident.builder()
+                                                .firstName("Индржих")
+                                                .lastName("Лукаш")
+                                                .birthDate("02.02.1991").build(),
+                                        "31.12.2030")
+                        )
+                        .build(),
+                Apartment.builder()
+                        .streetName("10-я улица")
+                        .buildingNumber(1)
+                        .apartmentNumber(25)
+                        .overallSpace(77)
+                        .livingSpace(77)
+                        .numberOfRooms(4)
+                        .floor(6)
+                        .hasElevator(true)
+                        .hasConcierge(true)
+                        .hasParkingLot(false)
+                        .hasPrivateArea(true)
+                        .previousOwners(
+                                List.of(Resident.builder()
+                                                .firstName("Вася")
+                                                .lastName("Пупкин")
+                                                .birthDate("01.01.1990")
+                                                .build(),
+                                        Resident.builder()
+                                                .firstName("Петр")
+                                                .lastName("Петров")
+                                                .birthDate("02.03.1990")
+                                                .build())
+                        )
+                        .residents(
+                                Map.of(Resident.builder()
+                                                .firstName("Вернон")
+                                                .lastName("Роше")
+                                                .birthDate("02.02.1991").build(),
+                                        "31.12.2030")
+                        )
+                        .build(),
+                Apartment.builder()
+                        .streetName("11-я улица")
+                        .buildingNumber(1)
+                        .apartmentNumber(25)
+                        .overallSpace(87)
+                        .livingSpace(87)
+                        .numberOfRooms(4)
+                        .floor(6)
+                        .hasElevator(true)
+                        .hasConcierge(true)
+                        .hasParkingLot(true)
+                        .hasPrivateArea(true)
+                        .previousOwners(
+                                List.of(Resident.builder()
+                                                .firstName("Вася")
+                                                .lastName("Пупкин")
+                                                .birthDate("01.01.1990")
+                                                .build(),
+                                        Resident.builder()
+                                                .firstName("Петр")
+                                                .lastName("Петров")
+                                                .birthDate("02.03.1990")
+                                                .build())
+                        )
+                        .residents(
+                                Map.of(Resident.builder()
+                                                .firstName("Эредин")
+                                                .lastName("Гласс")
+                                                .birthDate("02.02.1991").build(),
+                                        "31.12.2030")
+                        )
+                        .build(),
+                Apartment.builder()
+                        .streetName("12-я улица")
+                        .buildingNumber(1)
+                        .apartmentNumber(25)
+                        .overallSpace(55)
+                        .livingSpace(55)
+                        .numberOfRooms(4)
+                        .floor(6)
+                        .hasElevator(true)
+                        .hasConcierge(true)
+                        .hasParkingLot(false)
+                        .hasPrivateArea(true)
+                        .previousOwners(
+                                List.of(Resident.builder()
+                                                .firstName("Вася")
+                                                .lastName("Пупкин")
+                                                .birthDate("01.01.1990")
+                                                .build(),
+                                        Resident.builder()
+                                                .firstName("Петр")
+                                                .lastName("Петров")
+                                                .birthDate("02.03.1990")
+                                                .build())
+                        )
+                        .residents(
+                                Map.of(Resident.builder()
+                                                .firstName("Аксель")
+                                                .lastName("Эспарза")
+                                                .birthDate("02.02.1991").build(),
+                                        "31.12.2030")
+                        )
+                        .build()
         );
 
         var objectMapper = new ObjectMapper();
@@ -77,11 +404,26 @@ public class Main {
             throw new RuntimeException(e);
         }
         try {
-            var apartmentStream = Stream.of(
-                    objectMapper.readValue(new File("apartments.json"), new TypeReference<List<Apartment>>() {
-                    })
+            var apartmentsFromJson = objectMapper.readValue(
+                    new File("apartments.json"), new TypeReference<List<Apartment>>() {
+                    }
             );
-            apartmentStream.forEach(System.out::println);
+            System.out.println("Прописанные люди:");
+            apartmentsFromJson.stream()
+                    .map(Apartment::getResidents)
+                    .forEach(System.out::println);
+            System.out.println("Квартиры с парковками:");
+            apartmentsFromJson.stream()
+                    .filter(Apartment::isHasParkingLot)
+                    .forEach(System.out::println);
+            System.out.println("Сортировка квартир по площади:");
+            apartmentsFromJson.stream()
+                    .sorted(new ApartmentSpaceComparator())
+                    .forEach(System.out::println);
+            System.out.println("Квартиры с 4-мя комнатами:");
+            apartmentsFromJson.stream()
+                    .filter(apartment -> apartment.getNumberOfRooms() == 4)
+                    .forEach(System.out::println);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
