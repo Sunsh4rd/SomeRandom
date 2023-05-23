@@ -112,6 +112,12 @@ public:
 
     bool check(const vector<int> &v, int n) override
     {
+        // cout << "check" << n << v << endl;
+        if (n >= upper_bound)
+        {
+            return false;
+        }
+        
         mark(v[n]);
         for (auto u : g->adjacency(v[n]))
         {
@@ -131,6 +137,7 @@ public:
 
     void back(const vector<int> &v, int n) override
     {
+        // cout << "back" << endl;
         unmark(v[n]);
         for (auto u : g->adjacency(v[n]))
         {
@@ -244,6 +251,16 @@ void enumerate_subsets(subset_enumerator_hadler &h, int n, int k)
 
 int main(int argc, char **argv)
 {
+    // string code = "H??CAB?";
+    // graph g = graph::from_graph6(code);
+    // cout << g;
+    // auto ih = independence_handler(g);
+    // auto dh = domination_handler(g);
+    // enumerate_subsets(ih, g.vertex_count(), g.vertex_count());
+    // enumerate_subsets(dh, g.vertex_count(), g.vertex_count());
+    // cout << code;
+    // cout << " \tindependence=" << ih.result();
+    // cout << " \tdomination=" << dh.result() << endl;
     string code;
     while (cin >> code)
     {
@@ -254,8 +271,8 @@ int main(int argc, char **argv)
         enumerate_subsets(ih, g.vertex_count(), g.vertex_count());
         enumerate_subsets(dh, g.vertex_count(), g.vertex_count());
         cout << code;
-        cout << " \tindependence=" << ih.result();
-        cout << " \tdomination=" << dh.result() << endl;
+        cout << " i=" << ih.result();
+        cout << " d=" << dh.result() << endl;
     }
 
     return 0;
