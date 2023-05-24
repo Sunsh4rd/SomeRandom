@@ -1,8 +1,8 @@
-from gen_key import gen_key
-from encrypt import encrypt
-from decrypt import decrypt
-from kasiski_test import kasiski
 from brute import brute
+from decrypt import decrypt
+from encrypt import encrypt
+from gen_key import gen_key
+from kasiski_test import kasiski
 
 
 def main():

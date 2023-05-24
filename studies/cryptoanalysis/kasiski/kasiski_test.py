@@ -1,3 +1,17 @@
+from collections import Counter
+from itertools import chain
+
+from sympy import divisors
+
+
+# keylen = None
+# try:
+#     with open('params/l.txt', 'r', encoding='utf-8') as k_r:
+#         keylen = int(k_r.read())
+# except Exception:
+#     pass
+
+
 def find_all(sub, src):
     start = 0
     while True:
@@ -12,18 +26,52 @@ def find_all(sub, src):
 def kasiski():
     with open('params/ciphertext.txt', 'r', encoding='utf-8') as f:
         text = f.read().lower()
-    start, end = map(int, input('Длина подслова(от-до): ').split())
-    l = []
-    for j in range(start, end + 1):
-        for i in range(len(text) - 1):
-            s = text[i:i + j]
-            try:
-                res = text.index(s, text.index(s, i) + 1) - text.index(s, i)
-                # print(s, res)
-                l.append(res)
-            except ValueError:
+    # start, end = map(int, input('Длина подслова(от-до): ').split())
+    subs_pos = {}
+    for subs_len in range(3, 8):
+        for i in range(len(text) - subs_len + 1):
+            subs = text[i: i + subs_len]
+            # if len(subs) < subs_len:
+            #     continue
+            found = list(find_all(subs, text))
+            if len(found) == 1:
                 continue
-    print(l)
+            subs_pos[subs] = found
+
+    print(subs_pos)
+
+    subs_dists = []
+    for subs, idx in subs_pos.items():
+        for i in range(len(idx) - 1):
+            subs_dists.append(idx[i + 1] - idx[i])
+
+    print('Наиболее вероятные значения ключа:')
+
+    print(
+        Counter(
+            filter(
+                lambda x: x not in (1, 2, 3),
+                chain.from_iterable(
+                    map(
+                        lambda x: divisors(x),
+                        subs_dists
+                    )
+                )
+            )
+        )
+    )
+
+    # l = []
+    # for j in range(start, end + 1):
+    #     for i in range(len(text) - 1):
+    #         s = text[i:i + j]
+    #         try:
+    #             res = text.index(s, text.index(s, i) + 1) - text.index(s, i)
+    #             # print(s, res)
+    #             l.append(res)
+    #         except ValueError:
+    #             continue
+    # print(l)
 
 #     # d = {}
 #     # for i in range(2, 50):

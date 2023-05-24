@@ -9,3 +9,5 @@ def gen_key(n):
         r.append(r.pop(0))
     with open('params/key.txt', 'w', encoding='utf-8') as key_w:
         key_w.write(' '.join(str(i) for i in r))
+    # with open('params/l.txt', 'w', encoding='utf-8') as l_w:
+    #     l_w.write(str(len(r)))

@@ -5,14 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1aef19e9-3855-4daa-b816-a892f5f64abf" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/8/8.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/8/E.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/8/alph.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/8/big_text.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/8/decrypted_text.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/8/encrypted_text.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/8/key.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/8/key0.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/8/keylen.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/8/keys.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/8/text.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/cryptoanalysis.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/cryptoanalysis.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kasiski/gen_key.py" beforeDir="false" afterPath="$PROJECT_DIR$/kasiski/gen_key.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kasiski/kasiski.py" beforeDir="false" afterPath="$PROJECT_DIR$/kasiski/kasiski.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kasiski/kasiski_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/kasiski/kasiski_test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kasiski/params/brute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/kasiski/params/brute.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kasiski/params/ciphertext.txt" beforeDir="false" afterPath="$PROJECT_DIR$/kasiski/params/ciphertext.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kasiski/params/deciphertext.txt" beforeDir="false" afterPath="$PROJECT_DIR$/kasiski/params/deciphertext.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kasiski/params/key.txt" beforeDir="false" afterPath="$PROJECT_DIR$/kasiski/params/key.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graph_research/ind_dom.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../graph_research/ind_dom.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kasiski/params/message.txt" beforeDir="false" afterPath="$PROJECT_DIR$/kasiski/params/message.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,27 +58,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "D:/SomeRandom/studies/cryptoanalysis/4",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/SomeRandom/studies/cryptoanalysis&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\SomeRandom\studies\cryptoanalysis" />
       <recent name="D:\SomeRandom\studies\cryptoanalysis\4" />
       <recent name="D:\SomeRandom\studies\cryptoanalysis\3" />
       <recent name="D:\SomeRandom\studies\cryptoanalysis\6" />
       <recent name="D:\SomeRandom\studies\cryptoanalysis\1" />
-      <recent name="D:\SomeRandom\studies\cryptoanalysis\kasiski\params" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.kasiski">
+  <component name="RunManager" selected="Python.8">
     <configuration name="4" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="cryptoanalysis" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -99,6 +113,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="D:\SomeRandom\studies\cryptoanalysis\6\6.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="8" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="cryptoanalysis" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/8" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/8/8.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -172,11 +207,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.8" />
         <item itemvalue="Python.kasiski" />
         <item itemvalue="Python.kasiski" />
         <item itemvalue="Python.dixon" />
         <item itemvalue="Python.6" />
-        <item itemvalue="Python.4" />
       </list>
     </recent_temporary>
   </component>
