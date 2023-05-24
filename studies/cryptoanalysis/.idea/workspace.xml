@@ -4,30 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1aef19e9-3855-4daa-b816-a892f5f64abf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/8/8.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/8/E.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/8/alph.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/8/big_text.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/8/decrypted_text.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/8/encrypted_text.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/8/key.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/8/key0.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/8/keylen.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/8/keys.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/8/text.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/cryptoanalysis.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/cryptoanalysis.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kasiski/gen_key.py" beforeDir="false" afterPath="$PROJECT_DIR$/kasiski/gen_key.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kasiski/kasiski.py" beforeDir="false" afterPath="$PROJECT_DIR$/kasiski/kasiski.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kasiski/kasiski_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/kasiski/kasiski_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kasiski/params/brute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/kasiski/params/brute.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kasiski/params/ciphertext.txt" beforeDir="false" afterPath="$PROJECT_DIR$/kasiski/params/ciphertext.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kasiski/params/deciphertext.txt" beforeDir="false" afterPath="$PROJECT_DIR$/kasiski/params/deciphertext.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kasiski/params/key.txt" beforeDir="false" afterPath="$PROJECT_DIR$/kasiski/params/key.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kasiski/params/message.txt" beforeDir="false" afterPath="$PROJECT_DIR$/kasiski/params/message.txt" afterDir="false" />
-    </list>
+    <list default="true" id="1aef19e9-3855-4daa-b816-a892f5f64abf" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
