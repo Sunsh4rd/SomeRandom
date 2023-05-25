@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88fa0a9b-d683-46d0-b86d-7e372b13c4d2" name="Changes" comment="" />
+    <list default="true" id="88fa0a9b-d683-46d0-b86d-7e372b13c4d2" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apartments.json" beforeDir="false" afterPath="$PROJECT_DIR$/apartments.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.html" beforeDir="false" afterPath="$PROJECT_DIR$/test.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -54,7 +58,7 @@
       <recent name="D:\SomeRandom\javs\JavaProgramming" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.org.example.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="regexdemo.Main" />
       <module name="JavaProgramming" />
@@ -122,8 +126,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
         <item itemvalue="Application.org.example.Main" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.stringdemo.Main" />
         <item itemvalue="Application.patterns.abstractfactory.Main" />
         <item itemvalue="Application.objectdemo.Main" />
