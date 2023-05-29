@@ -1,5 +1,6 @@
 package pro.java.apartments.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -32,11 +33,8 @@ public class Apartment {
     private boolean hasPrivateArea;
     private boolean hasParkingLot;
 
-    @OneToMany(
-            cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER,
-            mappedBy = "apartment"
-    )
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "apartment")
 //    @JoinColumn(name = "resident_id")
     private List<Resident> residents;
 
