@@ -1,9 +1,9 @@
-package pro.java.apartmentsgradle.entity;
+package pro.java.apartments.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import lombok.*;
-
-import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -14,7 +14,7 @@ import java.util.List;
 public class Apartment {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
     private String streetName;
     private int buildingNumber;
@@ -27,8 +27,4 @@ public class Apartment {
     private boolean hasConcierge;
     private boolean hasPrivateArea;
     private boolean hasParkingLot;
-
-    @OneToMany
-    @JoinColumn(name = "resident_id")
-    private List<Resident> residents;
 }
