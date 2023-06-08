@@ -191,16 +191,31 @@ public class Main {
 //            }
 //            System.out.println("*******************************************");
 
-            System.out.println("Квартиры с 4 комнатами:");
-            var sql5 = "select a.id as a_id, street_name, building_number, apartment_number from apartment a\n" +
-                    "where number_of_rooms = 4";
-            var stmt5 = connection.prepareStatement(sql5);
-            var rs5 = stmt5.executeQuery();
-            while (rs5.next()) {
-                System.out.println(rs5.getInt("a_id"));
-                System.out.println(rs5.getString("street_name"));
-                System.out.println(rs5.getInt("building_number"));
-                System.out.println(rs5.getInt("apartment_number"));
+//            System.out.println("Квартиры с 4 комнатами:");
+//            var sql5 = "select a.id as a_id, street_name, building_number, apartment_number from apartment a\n" +
+//                    "where number_of_rooms = 4";
+//            var stmt5 = connection.prepareStatement(sql5);
+//            var rs5 = stmt5.executeQuery();
+//            while (rs5.next()) {
+//                System.out.println(rs5.getInt("a_id"));
+//                System.out.println(rs5.getString("street_name"));
+//                System.out.println(rs5.getInt("building_number"));
+//                System.out.println(rs5.getInt("apartment_number"));
+////                System.out.println(rs4.getInt("number_of_rooms"));
+//                System.out.println("-----------------------------------------");
+//            }
+//            System.out.println("*******************************************");
+
+            System.out.println("Квартиры с парковками:");
+            var sql6 = "select a.id as a_id, street_name, building_number, apartment_number from apartment a\n" +
+                    "where has_parking_lot = true";
+            var stmt6 = connection.prepareStatement(sql6);
+            var rs6 = stmt6.executeQuery();
+            while (rs6.next()) {
+                System.out.println(rs6.getInt("a_id"));
+                System.out.println(rs6.getString("street_name"));
+                System.out.println(rs6.getInt("building_number"));
+                System.out.println(rs6.getInt("apartment_number"));
 //                System.out.println(rs4.getInt("number_of_rooms"));
                 System.out.println("-----------------------------------------");
             }
