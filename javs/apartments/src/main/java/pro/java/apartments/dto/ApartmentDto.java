@@ -1,21 +1,18 @@
-package pro.java.apartments.entity;
+package pro.java.apartments.dto;
 
-import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import pro.java.apartments.entity.Resident;
 
-import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
+@Data
 @Builder
-public class Apartment {
-
-    @Id
-    @GeneratedValue
+@NoArgsConstructor
+@AllArgsConstructor
+public class ApartmentDto {
     private Long id;
     private String streetName;
     private int buildingNumber;
@@ -28,8 +25,5 @@ public class Apartment {
     private boolean hasConcierge;
     private boolean hasPrivateArea;
     private boolean hasParkingLot;
-
-    @Builder.Default
-    @OneToMany(mappedBy = "apartment")
-    private List<Resident> residents = new ArrayList<>();
+//    private List<Resident> residents;
 }

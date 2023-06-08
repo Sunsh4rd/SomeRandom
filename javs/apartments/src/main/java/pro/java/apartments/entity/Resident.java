@@ -21,7 +21,6 @@ public class Resident {
     private LocalDate birtDate;
     private String gender;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "apartment_id", nullable = false)
     private Apartment apartment;
