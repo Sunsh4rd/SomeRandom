@@ -129,82 +129,82 @@ public class Main {
 //                    "(6, 8), " +
 //                    "(7, 7)";
 //            stmtInsertPreviousOwner.execute(sqlInsertPreviousOwner);
-//            System.out.println("Квартиры и люди, которые в них живут:");
-//            var sql1 = "select a.id as a_id, street_name, building_number, apartment_number, r.id as r_id, first_name, last_name, apartment_id from apartment a\n" +
-//                    "join resident r\n" +
-//                    "on a.id = apartment_id";
-//            var stmt1 = connection.prepareStatement(sql1);
-//            var rs = stmt1.executeQuery();
-//            while (rs.next()) {
-//                System.out.println(rs.getString("street_name"));
-//                System.out.println(rs.getInt("building_number"));
-//                System.out.println(rs.getInt("apartment_number"));
-//                System.out.println(rs.getString("first_name"));
-//                System.out.println(rs.getString("last_name"));
-//                System.out.println("-----------------------------------------");
-//            }
-//            System.out.println("*******************************************");
-//
-//            System.out.println("Прошлые хозяева некоторой квартиры:");
-//            var sql2 = "select r.id as r_id, first_name, last_name, p.apartment_id as p_aid from resident r\n" +
-//                    "join previous_owner p\n" +
-//                    "on p.resident_id = r.id";
-//            var stmt2 = connection.prepareStatement(sql2);
-//            var rs2 = stmt2.executeQuery();
-//            while (rs2.next()) {
-//                System.out.println(rs2.getString("first_name"));
-//                System.out.println(rs2.getString("last_name"));
-//                System.out.println(rs2.getInt("p_aid"));
-//                System.out.println("-----------------------------------------");
-//            }
-//            System.out.println("*******************************************");
-//
-//            System.out.println("Для военкомата (адреса людей для армии):");
-//            var sql3 = "select a.id as a_id, street_name, building_number, apartment_number, r.id as r_id, first_name, last_name, birth_date, gender, apartment_id from apartment a\n" +
-//                    "join resident r\n" +
-//                    "on a.id = apartment_id\n" +
-//                    "where gender = 'M' and DATE_PART('year', CURRENT_DATE) - DATE_PART('year', birth_date) >= 18 and DATE_PART('year', CURRENT_DATE) - DATE_PART('year', birth_date) <= 50";
-//            var stmt3 = connection.prepareStatement(sql3);
-//            var rs3 = stmt3.executeQuery();
-//            while (rs3.next()) {
-//                System.out.println(rs3.getString("first_name"));
-//                System.out.println(rs3.getString("last_name"));
-//                System.out.println(rs3.getString("street_name"));
-//                System.out.println(rs3.getInt("building_number"));
-//                System.out.println(rs3.getInt("apartment_number"));
-//                System.out.println("-----------------------------------------");
-//            }
-//            System.out.println("*******************************************");
+            System.out.println("Квартиры и люди, которые в них живут:");
+            var sql1 = "select a.id as a_id, street_name, building_number, apartment_number, r.id as r_id, first_name, last_name, apartment_id from apartment a\n" +
+                    "join resident r\n" +
+                    "on a.id = apartment_id";
+            var stmt1 = connection.prepareStatement(sql1);
+            var rs = stmt1.executeQuery();
+            while (rs.next()) {
+                System.out.println(rs.getString("street_name"));
+                System.out.println(rs.getInt("building_number"));
+                System.out.println(rs.getInt("apartment_number"));
+                System.out.println(rs.getString("first_name"));
+                System.out.println(rs.getString("last_name"));
+                System.out.println("-----------------------------------------");
+            }
+            System.out.println("*******************************************");
 
-//            System.out.println("Сортировка по площадям:");
-//            var sql4 = "select a.id as a_id, street_name, building_number, apartment_number, overall_space from apartment a\n" +
-//                    "order by overall_space";
-//            var stmt4 = connection.prepareStatement(sql4);
-//            var rs4 = stmt4.executeQuery();
-//            while (rs4.next()) {
-//                System.out.println(rs4.getInt("a_id"));
-//                System.out.println(rs4.getString("street_name"));
-//                System.out.println(rs4.getInt("building_number"));
-//                System.out.println(rs4.getInt("apartment_number"));
-//                System.out.println(rs4.getInt("overall_space"));
-//                System.out.println("-----------------------------------------");
-//            }
-//            System.out.println("*******************************************");
+            System.out.println("Прошлые хозяева некоторой квартиры:");
+            var sql2 = "select r.id as r_id, first_name, last_name, p.apartment_id as p_aid from resident r\n" +
+                    "join previous_owner p\n" +
+                    "on p.resident_id = r.id";
+            var stmt2 = connection.prepareStatement(sql2);
+            var rs2 = stmt2.executeQuery();
+            while (rs2.next()) {
+                System.out.println(rs2.getString("first_name"));
+                System.out.println(rs2.getString("last_name"));
+                System.out.println(rs2.getInt("p_aid"));
+                System.out.println("-----------------------------------------");
+            }
+            System.out.println("*******************************************");
 
-//            System.out.println("Квартиры с 4 комнатами:");
-//            var sql5 = "select a.id as a_id, street_name, building_number, apartment_number from apartment a\n" +
-//                    "where number_of_rooms = 4";
-//            var stmt5 = connection.prepareStatement(sql5);
-//            var rs5 = stmt5.executeQuery();
-//            while (rs5.next()) {
-//                System.out.println(rs5.getInt("a_id"));
-//                System.out.println(rs5.getString("street_name"));
-//                System.out.println(rs5.getInt("building_number"));
-//                System.out.println(rs5.getInt("apartment_number"));
-////                System.out.println(rs4.getInt("number_of_rooms"));
-//                System.out.println("-----------------------------------------");
-//            }
-//            System.out.println("*******************************************");
+            System.out.println("Для военкомата (адреса людей для армии):");
+            var sql3 = "select a.id as a_id, street_name, building_number, apartment_number, r.id as r_id, first_name, last_name, birth_date, gender, apartment_id from apartment a\n" +
+                    "join resident r\n" +
+                    "on a.id = apartment_id\n" +
+                    "where gender = 'M' and DATE_PART('year', CURRENT_DATE) - DATE_PART('year', birth_date) >= 18 and DATE_PART('year', CURRENT_DATE) - DATE_PART('year', birth_date) <= 50";
+            var stmt3 = connection.prepareStatement(sql3);
+            var rs3 = stmt3.executeQuery();
+            while (rs3.next()) {
+                System.out.println(rs3.getString("first_name"));
+                System.out.println(rs3.getString("last_name"));
+                System.out.println(rs3.getString("street_name"));
+                System.out.println(rs3.getInt("building_number"));
+                System.out.println(rs3.getInt("apartment_number"));
+                System.out.println("-----------------------------------------");
+            }
+            System.out.println("*******************************************");
+
+            System.out.println("Сортировка по площадям:");
+            var sql4 = "select a.id as a_id, street_name, building_number, apartment_number, overall_space from apartment a\n" +
+                    "order by overall_space";
+            var stmt4 = connection.prepareStatement(sql4);
+            var rs4 = stmt4.executeQuery();
+            while (rs4.next()) {
+                System.out.println(rs4.getInt("a_id"));
+                System.out.println(rs4.getString("street_name"));
+                System.out.println(rs4.getInt("building_number"));
+                System.out.println(rs4.getInt("apartment_number"));
+                System.out.println(rs4.getInt("overall_space"));
+                System.out.println("-----------------------------------------");
+            }
+            System.out.println("*******************************************");
+
+            System.out.println("Квартиры с 4 комнатами:");
+            var sql5 = "select a.id as a_id, street_name, building_number, apartment_number from apartment a\n" +
+                    "where number_of_rooms = 4";
+            var stmt5 = connection.prepareStatement(sql5);
+            var rs5 = stmt5.executeQuery();
+            while (rs5.next()) {
+                System.out.println(rs5.getInt("a_id"));
+                System.out.println(rs5.getString("street_name"));
+                System.out.println(rs5.getInt("building_number"));
+                System.out.println(rs5.getInt("apartment_number"));
+//                System.out.println(rs4.getInt("number_of_rooms"));
+                System.out.println("-----------------------------------------");
+            }
+            System.out.println("*******************************************");
 
             System.out.println("Квартиры с парковками:");
             var sql6 = "select a.id as a_id, street_name, building_number, apartment_number from apartment a\n" +
@@ -216,10 +216,72 @@ public class Main {
                 System.out.println(rs6.getString("street_name"));
                 System.out.println(rs6.getInt("building_number"));
                 System.out.println(rs6.getInt("apartment_number"));
-//                System.out.println(rs4.getInt("number_of_rooms"));
                 System.out.println("-----------------------------------------");
             }
+
             System.out.println("*******************************************");
+            System.out.println("Общая площадь неравна жилой:");
+            var sql7 = "select a.id as a_id, street_name, building_number, apartment_number, overall_space, living_space from apartment a\n" +
+                    "where overall_space != living_space";
+            var stmt7 = connection.prepareStatement(sql7);
+            var rs7 = stmt7.executeQuery();
+            while (rs7.next()) {
+                System.out.println(rs7.getInt("a_id"));
+                System.out.println(rs7.getString("street_name"));
+                System.out.println(rs7.getInt("building_number"));
+                System.out.println(rs7.getInt("apartment_number"));
+                System.out.println(rs7.getInt("overall_space"));
+                System.out.println(rs7.getInt("living_space"));
+                System.out.println("-----------------------------------------");
+            }
+
+            System.out.println("*******************************************");
+            System.out.println("Квартиры на конкретной улице:");
+            var sql8 = "select a.id as a_id, street_name, building_number, apartment_number, overall_space, living_space from apartment a\n" +
+                    "where street_name = '1-я улица'";
+            var stmt8 = connection.prepareStatement(sql8);
+            var rs8 = stmt8.executeQuery();
+            while (rs8.next()) {
+                System.out.println(rs8.getInt("a_id"));
+                System.out.println(rs8.getString("street_name"));
+                System.out.println(rs8.getInt("building_number"));
+                System.out.println(rs8.getInt("apartment_number"));
+                System.out.println(rs8.getInt("overall_space"));
+                System.out.println(rs8.getInt("living_space"));
+                System.out.println("-----------------------------------------");
+            }
+
+            System.out.println("*******************************************");
+            System.out.println("Квартиры в конкретном доме:");
+            var sql9 = "select a.id as a_id, street_name, building_number, apartment_number, overall_space, living_space from apartment a\n" +
+                    "where street_name = '1-я улица' and building_number = 1";
+            var stmt9 = connection.prepareStatement(sql9);
+            var rs9 = stmt9.executeQuery();
+            while (rs9.next()) {
+                System.out.println(rs9.getInt("a_id"));
+                System.out.println(rs9.getString("street_name"));
+                System.out.println(rs9.getInt("building_number"));
+                System.out.println(rs9.getInt("apartment_number"));
+                System.out.println(rs9.getInt("overall_space"));
+                System.out.println(rs9.getInt("living_space"));
+                System.out.println("-----------------------------------------");
+            }
+
+            System.out.println("*******************************************");
+            System.out.println("Где живет бывший хозяин:");
+            var sql10 = "select r.id as r_id, first_name, last_name, p.apartment_id as p_aid, street_name, building_number, apartment_number from resident r\n" +
+                    "join previous_owner p on p.resident_id = r.id\n" +
+                    "join apartment a on a.id = r.apartment_id";
+            var stmt10 = connection.prepareStatement(sql10);
+            var rs10 = stmt10.executeQuery();
+            while (rs10.next()) {
+                System.out.println(rs10.getString("first_name"));
+                System.out.println(rs10.getString("last_name"));
+                System.out.println(rs10.getString("street_name"));
+                System.out.println(rs10.getInt("building_number"));
+                System.out.println(rs10.getInt("apartment_number"));
+                System.out.println("-----------------------------------------");
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
