@@ -1,79 +1,21 @@
 package org.example;
 
-import java.io.*;
+import java.math.BigDecimal;
 
 
-class Singleton implements Serializable {
 
+class ClassCastExceptionExample {
 
-    // public instance initialized when loading the class
+    public static void main(String[] args)
 
-    public static Singleton instance = new Singleton();
+    {
 
+        // Creating a BigDecimal object
 
-    private Singleton() {
+        Object sampleObject = new BigDecimal(10000000.45);
 
-        // private constructor
-
-    }
-
-
-    // implement readResolve method
-
-    protected Object readResolve() {
-        return instance;
-    }
-
-}
-
-
-class GFG {
-
-
-    public static void main(String[] args) {
-
-        try {
-
-            Singleton instance1 = Singleton.instance;
-
-            ObjectOutput out = new ObjectOutputStream(
-
-                    new FileOutputStream("file.text"));
-
-
-            out.writeObject(instance1);
-
-            out.close();
-
-
-            // deserialize from file to object
-
-            ObjectInput in = new ObjectInputStream(
-
-                    new FileInputStream("file.text"));
-
-            Singleton instance2
-
-                    = (Singleton) in.readObject();
-
-            in.close();
-
-
-            System.out.println("instance1 hashCode:- "
-
-                    + instance1.hashCode());
-
-            System.out.println("instance2 hashCode:- "
-
-                    + instance2.hashCode());
-
-        } catch (Exception e) {
-
-            e.printStackTrace();
-
-        }
+        System.out.println(String.valueOf(sampleObject));
 
     }
 
 }
-
