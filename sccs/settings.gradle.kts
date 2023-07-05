@@ -1,1 +1,1 @@
-rootProject.name = "com.example.sccs"
+rootProject.name = "ru.corporation.sccs"
